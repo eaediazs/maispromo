@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vitrine IA — +Promo | Ofertas com Cashback perto de você e online</title>
+  <meta name="description" content="Descubra ofertas com cashback em lojas perto de você e nos maiores e-commerces do Brasil. A Vitrine IA da +Promo seleciona as melhores promoções para você.">
+
+  <!-- Open Graph -->
+  <meta property="og:type"        content="website">
+  <meta property="og:url"         content="https://maispromo.site/vitrine">
+  <meta property="og:title"       content="Vitrine IA — +Promo | Cashback inteligente">
+  <meta property="og:description" content="Ofertas com cashback nas maiores lojas do Brasil e em parceiros perto de você.">
+  <meta property="og:image"       content="https://maispromo.site/og-image.png">
+
+  <!-- PWA -->
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#1A1A1A">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Nunito+Sans:wght@300;400;500;600;700&display=swap">
+
+  <link rel="stylesheet" href="/css/style.css?v=1.4">
+  <link rel="stylesheet" href="/css/vitrine.css?v=1.0">
+</head>
+<body>
+
+<div id="page-loader"><div class="loader-brand"><div class="brand-pill"><svg viewBox="0 0 100 100" width="28" height="28" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="goldGrad-25" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#FFF275"/><stop offset="100%" stop-color="#F7C500"/></linearGradient></defs><circle cx="53" cy="53" r="44" fill="#C49B00"/><circle cx="48" cy="48" r="44" fill="url(#goldGrad-25)"/><path d="M40 26 h16 v16 h16 v16 h-16 v16 h-16 v-16 h-16 v-16 h16 z" fill="rgba(196,155,0,0.4)" transform="translate(3,4)"/><rect x="40" y="24" width="16" height="48" rx="1.5" fill="#1A1A1A"/><rect x="24" y="40" width="48" height="16" rx="1.5" fill="#1A1A1A"/><rect x="40" y="24" width="8" height="48" rx="1.5" fill="#3D3D3D"/><rect x="24" y="40" width="48" height="8" rx="1.5" fill="#3D3D3D"/></svg><span class="brand-pill-text">PROMO</span></div></div></div>
+<div id="toast-container"></div>
+
+<!-- NAVBAR -->
+<nav class="navbar" id="vitrine-navbar">
+  <button id="menu-toggle" class="mobile-only" aria-label="Abrir menu">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+  </button>
+
+  <a href="/" class="navbar-brand">
+    <div class="brand-pill"><svg viewBox="0 0 100 100" width="28" height="28" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="goldGrad-26" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#FFF275"/><stop offset="100%" stop-color="#F7C500"/></linearGradient></defs><circle cx="53" cy="53" r="44" fill="#C49B00"/><circle cx="48" cy="48" r="44" fill="url(#goldGrad-26)"/><path d="M40 26 h16 v16 h16 v16 h-16 v16 h-16 v-16 h-16 v-16 h16 z" fill="rgba(196,155,0,0.4)" transform="translate(3,4)"/><rect x="40" y="24" width="16" height="48" rx="1.5" fill="#1A1A1A"/><rect x="24" y="40" width="48" height="16" rx="1.5" fill="#1A1A1A"/><rect x="40" y="24" width="8" height="48" rx="1.5" fill="#3D3D3D"/><rect x="24" y="40" width="48" height="8" rx="1.5" fill="#3D3D3D"/></svg><span class="brand-pill-text">PROMO</span></div>
+  </a>
+
+  <ul class="navbar-links desktop-navbar">
+    <li><a href="/">Início</a></li>
+    <li><a href="/parceiros">Parceiros</a></li>
+    <li><a href="/planos">Planos</a></li>
+    <li><a href="/simulador">Simulador</a></li>
+    <li><a href="/vitrine" class="active">Vitrine IA</a></li>
+  </ul>
+
+  <div class="navbar-right" id="nav-right">
+    <div class="nav-seal">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+      SSL Seguro
+    </div>
+    <a href="/login"><button class="btn btn-ghost btn-sm">Entrar</button></a>
+    <a href="/cadastro"><button class="btn btn-yellow btn-sm">Começar grátis</button></a>
+  </div>
+</nav>
+
+<!-- ╔═══════════════════════════════════════╗ -->
+<!-- ║  OFF-CANVAS MOBILE MENU              ║ -->
+<!-- ╚═══════════════════════════════════════╝ -->
+<div class="mobile-menu mobile-menu-wrapper" id="mobile-menu">
+  <div class="mobile-menu-inner">
+    <div class="mobile-menu-header">
+      <a href="/" class="navbar-brand"><div class="brand-pill"><svg viewBox="0 0 100 100" width="28" height="28" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="goldGrad-27" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#FFF275"/><stop offset="100%" stop-color="#F7C500"/></linearGradient></defs><circle cx="53" cy="53" r="44" fill="#C49B00"/><circle cx="48" cy="48" r="44" fill="url(#goldGrad-27)"/><path d="M40 26 h16 v16 h16 v16 h-16 v16 h-16 v-16 h-16 v-16 h16 z" fill="rgba(196,155,0,0.4)" transform="translate(3,4)"/><rect x="40" y="24" width="16" height="48" rx="1.5" fill="#1A1A1A"/><rect x="24" y="40" width="48" height="16" rx="1.5" fill="#1A1A1A"/><rect x="40" y="24" width="8" height="48" rx="1.5" fill="#3D3D3D"/><rect x="24" y="40" width="48" height="8" rx="1.5" fill="#3D3D3D"/></svg><span class="brand-pill-text">PROMO</span></div></a>
+      <button id="mobile-menu-close" aria-label="Fechar menu" class="btn-ghost">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <ul class="mobile-menu-links">
+      <li><a href="/">Início</a></li>
+      <li><a href="/parceiros">Parceiros</a></li>
+      <li><a href="/planos">Planos</a></li>
+      <li><a href="/simulador">Simulador</a></li>
+      <li><a href="/vitrine" style="color:var(--yellow-d)">Vitrine IA</a></li>
+    </ul>
+    <div class="mobile-menu-footer">
+      <a href="/login" class="btn btn-ghost btn-full" style="margin-bottom:12px;justify-content:center">Entrar</a>
+      <a href="/cadastro" class="btn btn-yellow btn-full" style="justify-content:center">Começar grátis</a>
+    </div>
+  </div>
+</div>
+
+<!-- ╔═══════════════════════════════════════╗ -->
+<!-- ║  HERO — VITRINE IA                   ║ -->
+<!-- ╚═══════════════════════════════════════╝ -->
+<section class="vitrine-hero" aria-label="Vitrine IA da +Promo">
+  <div class="container">
+    <div class="vitrine-hero__content">
+      <div class="vitrine-hero__eyebrow">
+        <span class="pulse-dot"></span>
+        Vitrine IA — Atualizada em tempo real
+      </div>
+      <h1>As melhores ofertas com <em>cashback</em>, perto de você e online.</h1>
+      <p class="vitrine-hero__sub">
+        Nosso motor de inteligência artificial seleciona promoções em lojas da sua região
+        e nos maiores e-commerces do Brasil — tudo com dinheiro de volta garantido.
+      </p>
+      <div class="vitrine-hero__stats">
+        <div>
+          <div class="vitrine-hero__stat-num">20+</div>
+          <div class="vitrine-hero__stat-lbl">Ofertas ativas</div>
+        </div>
+        <div>
+          <div class="vitrine-hero__stat-num">até 10%</div>
+          <div class="vitrine-hero__stat-lbl">Cashback</div>
+        </div>
+        <div>
+          <div class="vitrine-hero__stat-num">4</div>
+          <div class="vitrine-hero__stat-lbl">Lojas parceiras</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ╔═══════════════════════════════════════╗ -->
+<!-- ║  BARRA DE LOCALIZAÇÃO                ║ -->
+<!-- ╚═══════════════════════════════════════╝ -->
+<div class="vitrine-location-bar hidden" id="vitrine-location-bar">
+  <div class="container">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+    Exibindo ofertas próximas a <span class="city-name">—</span>
+  </div>
+</div>
+
+<!-- ╔═══════════════════════════════════════╗ -->
+<!-- ║  TABS DE NAVEGAÇÃO                   ║ -->
+<!-- ╚═══════════════════════════════════════╝ -->
+<div class="vitrine-tabs-wrapper">
+  <div class="container">
+    <div class="vitrine-tabs" role="tablist" aria-label="Filtros da Vitrine">
+      <button class="vitrine-tab active" data-tab="panel-local" role="tab" aria-selected="true" id="tab-local">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        Perto de Você
+        <span class="vitrine-tab__count" aria-label="Total de ofertas locais">0</span>
+      </button>
+      <button class="vitrine-tab" data-tab="panel-global" role="tab" aria-selected="false" id="tab-global">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        Top Ofertas Online
+        <span class="vitrine-tab__count" aria-label="Total de ofertas globais">0</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ╔═══════════════════════════════════════╗ -->
+<!-- ║  CONTEÚDO — PAINÉIS                  ║ -->
+<!-- ╚═══════════════════════════════════════╝ -->
+<section class="vitrine-section" aria-label="Ofertas da Vitrine IA">
+  <div class="container">
+
+    <!-- PAINEL: LOJAS LOCAIS -->
+    <div class="vitrine-panel active" id="panel-local" role="tabpanel" aria-labelledby="tab-local">
+      <div class="vitrine-section__header">
+        <h2 class="vitrine-section__title">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          Lojas perto de você
+        </h2>
+      </div>
+      <div class="vitrine-grid vitrine-grid--local" id="grid-local">
+        <!-- Skeleton screens serão injetados pelo JS -->
+      </div>
+    </div>
+
+    <!-- PAINEL: E-COMMERCE GLOBAL -->
+    <div class="vitrine-panel" id="panel-global" role="tabpanel" aria-labelledby="tab-global">
+      <div class="vitrine-section__header">
+        <h2 class="vitrine-section__title">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          Top Ofertas Online
+        </h2>
+      </div>
+      <div class="vitrine-grid" id="grid-global">
+        <!-- Skeleton screens serão injetados pelo JS -->
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ╔═══════════════════════════════════════╗ -->
+<!-- ║  CTA FINAL                           ║ -->
+<!-- ╚═══════════════════════════════════════╝ -->
+<section class="cta-final" aria-label="Chamada para ação">
+  <div class="container">
+    <h2>Gostou das ofertas?<br>Assine e ganhe cashback de verdade.</h2>
+    <p>Ative sua conta e comece a receber dinheiro de volta em cada compra.<br>A partir de R$19,90/mês. Cancele quando quiser.</p>
+    <a href="/cadastro"><button class="btn btn-black btn-lg">Criar minha conta grátis →</button></a>
+    <div class="cta-seals">
+      <div class="cta-seal">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        Dados protegidos
+      </div>
+      <div class="cta-seal">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        Cancele quando quiser
+      </div>
+      <div class="cta-seal">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        7 dias de garantia
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand"><div class="mark">+</div>+PRO<span style="color:var(--yellow)">MO</span></div>
+        <div class="footer-desc">Plataforma de assinaturas com cashback, milhas e descontos em parceiros do dia a dia. Feita para quem quer fazer o dinheiro render mais.</div>
+        <div class="footer-email">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--yellow)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          <a href="mailto:sacmaispromo@gmail.com">sacmaispromo@gmail.com</a>
+        </div>
+      </div>
+      <div class="footer-col"><h4>Produto</h4><a href="/planos">Ver planos</a><a href="/parceiros">Parceiros</a><a href="/simulador">Simulador</a><a href="/vitrine">Vitrine IA</a></div>
+      <div class="footer-col"><h4>Conta</h4><a href="/login">Entrar</a><a href="/cadastro">Criar conta</a><a href="/dashboard">Meu painel</a></div>
+      <div class="footer-col"><h4>Legal</h4><a href="/legal/termos">Termos de uso</a><a href="/legal/privacidade">Privacidade</a><a href="/legal/cancelamento">Política de cancelamento</a></div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 +Promo. Todos os direitos reservados.</span>
+      <span style="color:#444;display:flex;align-items:center;gap:5px">Feito com
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="#F7C500" stroke="none"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        no Brasil
+      </span>
+    </div>
+  </div>
+</footer>
+
+<!-- Mobile Menu Toggle Script -->
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const toggle = document.getElementById('menu-toggle');
+    const menu = document.getElementById('mobile-menu');
+    const close = document.getElementById('mobile-menu-close');
+
+    if (toggle && menu) {
+      toggle.addEventListener('click', () => menu.classList.add('active'));
+      if (close) close.addEventListener('click', () => menu.classList.remove('active'));
+      menu.addEventListener('click', (e) => {
+        if (e.target === menu) menu.classList.remove('active');
+      });
+    }
+
+    // Page loader
+    const loader = document.getElementById('page-loader');
+    if (loader) loader.classList.add('hide');
+  });
+</script>
+
+<!-- Vitrine IA Engine -->
+<script src="/js/vitrine-ia.js"></script>
+
+</body>
+</html>

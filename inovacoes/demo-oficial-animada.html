@@ -1,0 +1,1427 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>+Promo — Demo Oficial Animada (Motion UI)</title>
+  <meta name="description" content="Demo animada da landing page +Promo com Motion UI de elite: elasticidade, pseudo-3D, coreografia de entrada e textura orgânica.">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Nunito+Sans:wght@300;400;500;600;700&display=swap">
+
+<style>
+/* ============================================================
+   +PROMO — ESTILOS OFICIAIS (CÓPIA INTEGRAL)
+   Todas as cores, fontes e layout são IDÊNTICOS ao original.
+   ============================================================ */
+
+/* ── Variáveis de cor ── */
+:root {
+  --yellow:     #F7C500;
+  --yellow-d:   #E0B000;
+  --yellow-bg:  #FFFBE6;
+  --black:      #1A1A1A;
+  --gray-700:   #3D3D3D;
+  --gray-600:   #4D4D4D;
+  --gray-500:   #666666;
+  --gray-400:   #888888;
+  --gray-300:   #B0B0B0;
+  --gray-200:   #D6D6D6;
+  --gray-100:   #F2F2F2;
+  --gray-50:    #F9F9F9;
+  --white:      #FFFFFF;
+  --green:      #18B96A;
+  --green-bg:   #E6F9F1;
+  --red:        #E53935;
+  --shadow-sm:  0 2px 8px rgba(0,0,0,0.07);
+  --shadow-md:  0 4px 24px rgba(0,0,0,0.10);
+  --shadow-lg:  0 8px 40px rgba(0,0,0,0.13);
+  --radius:     12px;
+  --radius-lg:  20px;
+  --radius-pill:50px;
+}
+
+/* ── Reset ── */
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior: smooth; }
+body { font-family:'Nunito Sans',sans-serif; background:var(--gray-50); color:var(--black); line-height:1.5; }
+a { text-decoration:none; color:inherit; }
+button { cursor:pointer; font-family:'Nunito',sans-serif; }
+input, select { font-family:'Nunito Sans',sans-serif; }
+img { max-width:100%; display:block; }
+html, body { overflow-x: hidden; max-width: 100vw; }
+
+/* ── Utilitários ── */
+.container { max-width:1200px; margin:0 auto; padding:0 24px; }
+.text-center { text-align:center; }
+
+/* ── Tipografia ── */
+.eyebrow {
+  font-family:'Nunito',sans-serif;
+  font-size:11px; font-weight:800;
+  letter-spacing:2.5px; text-transform:uppercase;
+  color:var(--yellow-d); margin-bottom:8px;
+  display:block;
+}
+h1 {
+  font-family:'Nunito',sans-serif;
+  font-size:clamp(36px, 5vw, 52px); font-weight:900;
+  line-height:1.06; letter-spacing:-1.5px; color:var(--black);
+}
+h1 em { font-style:normal; color:var(--yellow-d); }
+h2 {
+  font-family:'Nunito',sans-serif;
+  font-size:clamp(26px, 3.5vw, 36px); font-weight:900;
+  line-height:1.1; letter-spacing:-0.8px; color:var(--black);
+}
+h3 {
+  font-family:'Nunito',sans-serif;
+  font-size:20px; font-weight:800; color:var(--black);
+}
+.subtitle { font-size:17px; color:var(--gray-500); font-weight:400; line-height:1.65; margin-top:12px; }
+
+/* ── Botões ── */
+.btn {
+  display:inline-flex; align-items:center; justify-content:center; gap:8px;
+  padding:10px 24px; border-radius:var(--radius-pill); border:none;
+  font-family:'Nunito',sans-serif; font-size:15px; font-weight:700;
+  cursor:pointer; white-space:nowrap;
+  position: relative; overflow: hidden;
+  /* MOTION: substituindo ease padrão por elastic cubic-bezier */
+  transition: all .35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.btn-sm   { padding:7px 18px; font-size:13px; }
+.btn-lg   { padding:14px 32px; font-size:16px; }
+.btn-full { width:100%; }
+
+.btn-yellow       { background:var(--yellow); color:var(--black); }
+.btn-yellow:hover { background:var(--yellow-d); transform:translateY(-2px) scale(1.04); box-shadow:0 6px 24px rgba(247,197,0,0.45); }
+.btn-yellow:active { transform:translateY(0) scale(0.97); transition-duration: .1s; }
+
+.btn-black        { background:var(--black); color:var(--white); }
+.btn-black:hover  { background:var(--gray-700); transform:translateY(-2px) scale(1.03); box-shadow:0 6px 20px rgba(0,0,0,0.2); }
+.btn-black:active { transform:translateY(0) scale(0.97); transition-duration: .1s; }
+
+.btn-outline      { background:transparent; color:var(--black); border:2px solid var(--black); }
+.btn-outline:hover{ background:var(--black); color:var(--white); transform:translateY(-2px) scale(1.03); }
+
+.btn-ghost        { background:transparent; color:var(--gray-500); border:2px solid var(--gray-200); }
+.btn-ghost:hover  { border-color:var(--gray-400); color:var(--black); transform:translateY(-2px) scale(1.03); }
+
+/* Ripple wave on buttons */
+.ripple-wave {
+  position: absolute;
+  border-radius: 50%;
+  transform: scale(0);
+  animation: ripple-anim .5s linear;
+  background: rgba(255, 255, 255, 0.35);
+  pointer-events: none;
+}
+@keyframes ripple-anim {
+  to { transform: scale(4); opacity: 0; }
+}
+
+/* ── Tags / Badges ── */
+.badge {
+  display:inline-flex; align-items:center; gap:5px;
+  padding:4px 12px; border-radius:var(--radius-pill);
+  font-family:'Nunito',sans-serif; font-size:12px; font-weight:800;
+}
+.badge-yellow { background:var(--yellow); color:var(--black); }
+
+/* ============================================================
+   NAVBAR — LIQUID GLASS (Glassmorphism aprimorado)
+   ============================================================ */
+.navbar {
+  display:flex; align-items:center; gap:0;
+  height:64px; padding:0 40px;
+  /* LIQUID GLASS: fundo translúcido com blur forte */
+  background: rgba(255,255,255,0.72);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border-bottom:1px solid rgba(0,0,0,0.06);
+  position:fixed; top:0; left:0; right:0; z-index:100;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 4px 24px rgba(0,0,0,0.03);
+  /* MOTION: entrada do menu Glass (coreografia Antlii) */
+  transform: translateY(-100%);
+  opacity: 0;
+}
+.navbar.anim-in {
+  animation: glassNavDrop 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+@keyframes glassNavDrop {
+  0%   { transform: translateY(-100%); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+.navbar-brand {
+  font-family:'Nunito',sans-serif; font-size:22px; font-weight:900;
+  color:var(--black); display:flex; align-items:center; gap:9px;
+}
+.navbar-brand .mark {
+  width:32px; height:32px; background:var(--yellow); border-radius:8px;
+  display:flex; align-items:center; justify-content:center;
+  font-size:15px; font-weight:900; color:var(--black);
+}
+.navbar-brand span { color:var(--yellow-d); }
+.navbar-links {
+  display:flex; gap:28px; margin-left:40px; list-style:none;
+}
+.navbar-links a {
+  font-size:14px; font-weight:600; color:var(--gray-500);
+  transition:color .15s; padding:4px 0;
+  border-bottom:2px solid transparent;
+}
+.navbar-links a:hover, .navbar-links a.active {
+  color:var(--black); border-bottom-color:var(--yellow);
+}
+.navbar-right { margin-left:auto; display:flex; align-items:center; gap:10px; }
+.nav-seal {
+  display:flex; align-items:center; gap:5px;
+  font-size:12px; font-weight:700; color:var(--gray-500);
+  border-left:1px solid var(--gray-200); padding-left:14px; margin-left:4px;
+}
+
+/* ── Theme toggle glass pill ── */
+.theme-switch {
+  position: relative; width: 44px; height: 44px;
+  cursor: pointer; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+}
+.theme-switch input { display: none; }
+.theme-switch .track {
+  width: 40px; height: 40px; border-radius: 12px;
+  background: rgba(0, 0, 0, 0.05);
+  backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  display: flex; align-items: center; justify-content: center;
+  transition: background .3s ease, border-color .3s ease, box-shadow .3s ease;
+  position: relative;
+}
+.theme-switch .track:hover {
+  background: rgba(0, 0, 0, 0.08);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+}
+.theme-switch .icon-sun,
+.theme-switch .icon-moon {
+  position: absolute; width: 20px; height: 20px;
+  transition: opacity .3s ease, transform .3s ease;
+  color: var(--gray-500);
+}
+.theme-switch .icon-sun { opacity: 1; transform: rotate(0deg) scale(1); }
+.theme-switch .icon-moon { opacity: 0; transform: rotate(-45deg) scale(0.7); }
+
+/* ============================================================
+   HERO — Estrutura oficial intacta
+   ============================================================ */
+.hero {
+  background:var(--yellow-bg);
+  padding:132px 0 0; /* extra top para compensar navbar fixed */
+  overflow:hidden;
+  border-bottom:2px solid #F0E080;
+  position:relative;
+}
+.hero-inner { display:grid; grid-template-columns:1fr 400px; gap:56px; align-items:flex-end; }
+.hero-left  { padding-bottom:68px; }
+
+/* ── Mesh Gradient (oficial) ── */
+.hero-mesh-overlay {
+  position: absolute; inset: 0; pointer-events: none; z-index: 0; overflow: hidden;
+}
+.hero-mesh-overlay::before {
+  content: ''; position: absolute; inset: -40%;
+  background:
+    radial-gradient(ellipse 55% 45% at 20% 30%, rgba(247,197,0,0.22) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 50% at 80% 15%, rgba(24,185,106,0.08) 0%, transparent 55%),
+    radial-gradient(ellipse 60% 40% at 60% 80%, rgba(247,197,0,0.14) 0%, transparent 60%),
+    radial-gradient(ellipse 35% 55% at 10% 75%, rgba(247,197,0,0.10) 0%, transparent 50%);
+  animation: meshShift 12s ease-in-out infinite alternate;
+}
+.hero-mesh-overlay::after {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(ellipse 80% 60% at 50% 110%, rgba(247,197,0,0.12) 0%, transparent 70%);
+  animation: meshPulse 8s ease-in-out infinite;
+}
+.hero > .container { position: relative; z-index: 1; }
+@keyframes meshShift {
+  0%   { transform: translate(0, 0) scale(1); }
+  33%  { transform: translate(3%, -2%) scale(1.04); }
+  66%  { transform: translate(-2%, 3%) scale(0.98); }
+  100% { transform: translate(2%, 1%) scale(1.02); }
+}
+@keyframes meshPulse {
+  0%, 100% { opacity: 0.6; }
+  50%      { opacity: 1; }
+}
+
+/* ========================================================
+   NEURASCAPES — Fundo Orgânico com Noise/Grain Animado
+   Camada quase invisível (1-2% opacidade) sobre o hero
+   para quebrar a textura plástica do CSS puro.
+   ======================================================== */
+.hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.018;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 200px 200px;
+  animation: noiseShift 0.8s steps(5) infinite;
+  mix-blend-mode: multiply;
+}
+@keyframes noiseShift {
+  0%   { transform: translate(0, 0); }
+  20%  { transform: translate(-5%, -5%); }
+  40%  { transform: translate(3%, 5%); }
+  60%  { transform: translate(-3%, 2%); }
+  80%  { transform: translate(5%, -3%); }
+  100% { transform: translate(0, 0); }
+}
+
+.hero-hook  {
+  display:inline-flex; align-items:center; gap:8px;
+  background:var(--white); border:1.5px solid var(--gray-200);
+  border-radius:var(--radius-pill); padding:6px 14px;
+  font-size:13px; font-weight:700; color:var(--black);
+  margin-bottom:22px; box-shadow:var(--shadow-sm);
+}
+.hero-hook .dot { width:8px; height:8px; background:var(--green); border-radius:50%; flex-shrink:0; animation: dotPulse 2s ease-in-out infinite; }
+@keyframes dotPulse {
+  0%, 100% { opacity:1; transform:scale(1); }
+  50%      { opacity:0.6; transform:scale(1.3); }
+}
+.hero h1     { font-family:'Nunito',sans-serif; font-size:clamp(34px,4.5vw,50px); font-weight:900; line-height:1.08; letter-spacing:-1.5px; color:var(--black); margin-bottom:18px; }
+.hero h1 em  { font-style:normal; color:var(--yellow-d); }
+.hero h1 u   { text-decoration:none; border-bottom:3px solid var(--yellow); }
+.hero-sub    { font-size:17px; color:var(--gray-600); line-height:1.65; max-width:480px; margin-bottom:30px; }
+.hero-actions    { display:flex; gap:12px; flex-wrap:wrap; margin-bottom:36px; }
+.hero-trust      { display:flex; align-items:center; gap:10px; font-size:13px; color:var(--gray-500); font-weight:600; }
+.hero-trust-sep  { width:4px; height:4px; background:var(--gray-300); border-radius:50%; }
+.trust-item      { display:flex; align-items:center; gap:5px; }
+.hero-stats      { display:flex; gap:28px; padding-top:28px; border-top:1px solid rgba(0,0,0,.08); margin-top:28px; }
+.stat-num        { font-family:'Nunito',sans-serif; font-size:26px; font-weight:900; color:var(--black); }
+.stat-lbl        { font-size:12px; color:var(--gray-500); margin-top:1px; }
+.stat-sep        { width:1px; background:var(--gray-200); align-self:stretch; }
+
+/* ── Hero Card ── */
+.hero-card-wrap  {
+  position:relative; display:flex; justify-content:center; align-self:flex-end;
+  transform-style:preserve-3d; will-change:transform;
+  /* MOTION: perspective base para o 3D tilt */
+  perspective: 1000px;
+}
+.hero-card       {
+  background:var(--white); width:330px; border-radius:20px 20px 0 0;
+  border:1.5px solid var(--gray-200); border-bottom:none;
+  padding:26px; box-shadow:0 -8px 48px rgba(0,0,0,.11);
+  animation: heroCardFloat 4s ease-in-out infinite;
+  transform-style: preserve-3d;
+  transition: transform 0.1s linear;
+}
+.hcard-top       { display:flex; align-items:center; justify-content:space-between; margin-bottom:16px; }
+.hcard-label     { font-family:'Nunito',sans-serif; font-size:11px; font-weight:800; color:var(--gray-400); letter-spacing:1.5px; text-transform:uppercase; }
+.hcard-cashback  { background:var(--yellow-bg); border:1.5px dashed var(--yellow); border-radius:12px; padding:14px; text-align:center; margin-bottom:16px; }
+.cash-big        { font-family:'Nunito',sans-serif; font-size:40px; font-weight:900; color:var(--black); line-height:1; }
+.cash-big em     { font-style:normal; color:var(--green); }
+.cash-caption    { font-size:12px; color:var(--gray-500); margin-top:4px; display:flex; align-items:center; justify-content:center; gap:4px; }
+.hcard-row       { display:flex; align-items:center; gap:10px; padding:8px 0; border-bottom:1px solid var(--gray-100); }
+.hcard-row:last-child { border-bottom:none; }
+.hrow-icon       { width:32px; height:32px; border-radius:8px; background:var(--gray-100); display:flex; align-items:center; justify-content:center; flex-shrink:0; color:var(--gray-500); }
+.hrow-name       { font-size:13px; font-weight:700; color:var(--black); }
+.hrow-detail     { font-size:11px; color:var(--gray-400); margin-top:1px; }
+.hrow-val        { margin-left:auto; font-family:'Nunito',sans-serif; font-size:13px; font-weight:800; color:var(--green); }
+
+.float-chip      { position:absolute; background:var(--white); border-radius:var(--radius-pill); padding:8px 14px; box-shadow:0 4px 16px rgba(0,0,0,.13); border:1px solid var(--gray-100); font-size:12px; font-weight:700; color:var(--black); white-space:nowrap; display:flex; align-items:center; gap:6px; }
+.chip-1          { top:14px; right:-20px; }
+.chip-2          { top:90px; left:-30px; }
+.chip-yellow     { background:var(--yellow); border-color:var(--yellow); }
+
+@keyframes heroCardFloat {
+  0%, 100% { transform: translateY(0px); }
+  45%      { transform: translateY(-10px); }
+  55%      { transform: translateY(-10px); }
+}
+.chip-1 { animation: chipFloat1 4.5s ease-in-out infinite; }
+.chip-2 { animation: chipFloat2 5s   ease-in-out infinite; }
+@keyframes chipFloat1 {
+  0%, 100% { transform: translateY(0) rotate(-1deg); }
+  50%      { transform: translateY(-6px) rotate(0deg); }
+}
+@keyframes chipFloat2 {
+  0%, 100% { transform: translateY(0) rotate(1deg); }
+  50%      { transform: translateY(5px) rotate(0deg); }
+}
+/* When tilt is active, pause float */
+.hero-card-wrap.tilting .hero-card { animation-play-state: paused; }
+
+/* Shimmer on yellow buttons */
+.btn-yellow { position: relative; overflow: hidden; }
+.btn-yellow::after {
+  content: ''; position: absolute; top: 0; left: -110%;
+  width: 80%; height: 100%;
+  background: linear-gradient(105deg, transparent 20%, rgba(255,255,255,0.55) 50%, transparent 80%);
+  transform: skewX(-15deg);
+  transition: none; pointer-events: none;
+}
+.btn-yellow:hover::after { animation: shimmerSweep 0.55s ease forwards; }
+@keyframes shimmerSweep {
+  0%   { left: -110%; }
+  100% { left: 130%; }
+}
+
+/* Glow pulse on hero CTA */
+.btn-hero-cta { animation: glowPulse 3s ease-in-out infinite; }
+.btn-hero-cta:hover { animation: none; box-shadow: 0 6px 28px rgba(247,197,0,0.55); }
+@keyframes glowPulse {
+  0%, 100% { box-shadow: 0 4px 18px rgba(247,197,0,0.30); }
+  50%      { box-shadow: 0 4px 32px rgba(247,197,0,0.55); }
+}
+
+/* ── BARRA DE PARCEIROS ── */
+.partners-bar {
+  background:var(--white); border-bottom:1px solid var(--gray-100);
+  padding:14px 0; display:flex; align-items:center; overflow:hidden;
+}
+.partners-bar-label-fixed {
+  font-size:12px; font-weight:800; color:var(--gray-400);
+  letter-spacing:1px; text-transform:uppercase;
+  white-space:nowrap; padding: 0 20px 0 24px;
+  border-right:1px solid var(--gray-200); flex-shrink:0;
+}
+.marquee-viewport {
+  flex:1; overflow:hidden; position:relative;
+  mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
+}
+.marquee-track {
+  display:flex; gap:10px; align-items:center; width:max-content;
+  animation: marqueeScroll 28s linear infinite;
+}
+.marquee-track:hover { animation-play-state:paused; }
+@keyframes marqueeScroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.p-logo-pill {
+  display:flex; align-items:center; gap:7px;
+  padding:7px 16px; border-radius:var(--radius-pill);
+  background:var(--gray-50); border:1.5px solid var(--gray-100);
+  font-size:13px; font-weight:800; color:var(--gray-600);
+  white-space:nowrap; flex-shrink:0;
+  transition:background .15s, border-color .15s, color .15s;
+}
+.p-logo-pill:hover { background:var(--yellow-bg); border-color:var(--yellow); color:var(--black); }
+.p-logo-pill svg { color:var(--yellow-d); flex-shrink:0; }
+.p-logo-more { background:transparent; border-color:transparent; }
+
+/* ── DOR + SOLUÇÃO ── */
+.pain-section    { background:var(--black); padding:72px 0; }
+.pain-inner      { display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:center; }
+.pain-eyebrow    { font-family:'Nunito',sans-serif; font-size:11px; font-weight:800; letter-spacing:2px; text-transform:uppercase; color:var(--yellow); margin-bottom:14px; display:block; }
+.pain-title      { font-family:'Nunito',sans-serif; font-size:clamp(26px,3vw,36px); font-weight:900; color:var(--white); line-height:1.2; letter-spacing:-0.8px; margin-bottom:20px; }
+.pain-title em   { font-style:normal; color:var(--yellow); }
+.pain-desc       { font-size:16px; color:#999; line-height:1.7; }
+.pain-list       { margin-top:28px; display:flex; flex-direction:column; gap:12px; }
+.pain-item       { display:flex; align-items:flex-start; gap:12px; font-size:15px; color:#ccc; line-height:1.5; }
+.pain-item .icon { flex-shrink:0; margin-top:1px; }
+.solution-box    { background:var(--yellow); border-radius:20px; padding:32px; }
+.solution-box h3 { font-family:'Nunito',sans-serif; font-size:22px; font-weight:900; color:var(--black); margin-bottom:20px; line-height:1.2; }
+.solution-item   { display:flex; align-items:flex-start; gap:12px; margin-bottom:16px; font-size:15px; color:var(--black); font-weight:600; line-height:1.5; }
+.solution-item:last-child { margin-bottom:0; }
+.sol-check       { width:24px; height:24px; background:var(--black); border-radius:50%; display:flex; align-items:center; justify-content:center; color:var(--yellow); font-size:11px; font-weight:900; flex-shrink:0; margin-top:1px; }
+
+/* ── COMO FUNCIONA ── */
+.how         { background:var(--white); padding:72px 0; }
+.how-header  { text-align:center; margin-bottom:52px; }
+.steps       { display:grid; grid-template-columns:repeat(4,1fr); gap:0; position:relative; }
+.steps::before { content:''; position:absolute; top:26px; left:calc(12.5% + 18px); right:calc(12.5% + 18px); height:2px; background:repeating-linear-gradient(90deg,var(--yellow) 0,var(--yellow) 8px,transparent 8px,transparent 18px); }
+.step        { text-align:center; padding:0 16px; position:relative; z-index:1; }
+.step-n      { width:52px; height:52px; border-radius:50%; background:var(--yellow); border:4px solid var(--white); box-shadow:0 0 0 2px var(--yellow); font-family:'Nunito',sans-serif; font-size:20px; font-weight:900; color:var(--black); display:flex; align-items:center; justify-content:center; margin:0 auto 16px; }
+.step-title  { font-family:'Nunito',sans-serif; font-size:15px; font-weight:800; color:var(--black); margin-bottom:8px; }
+.step-desc   { font-size:13px; color:var(--gray-500); line-height:1.6; }
+.step-time   { font-size:11px; font-weight:700; color:var(--yellow-d); margin-top:8px; display:flex; align-items:center; justify-content:center; gap:4px; }
+
+/* ── CALCULADORA ── */
+.calculator      { background:var(--gray-50); padding:72px 0; border-top:1px solid var(--gray-200); border-bottom:1px solid var(--gray-200); }
+.calc-inner      { display:grid; grid-template-columns:1fr 1fr; gap:40px; align-items:start; }
+.calc-left h2    { margin-top:8px; margin-bottom:10px; }
+.calc-left p     { font-size:15px; color:var(--gray-500); line-height:1.65; margin-bottom:28px; }
+.calc-field      { margin-bottom:20px; }
+.calc-label      { display:flex; justify-content:space-between; align-items:center; font-size:14px; font-weight:700; color:var(--black); margin-bottom:8px; }
+.calc-val-tag    { background:var(--yellow); color:var(--black); font-family:'Nunito',sans-serif; font-size:13px; font-weight:800; border-radius:6px; padding:2px 9px; }
+.calc-slider     { width:100%; accent-color:var(--yellow); height:6px; cursor:pointer; }
+.calc-result     { background:var(--yellow); border-radius:20px; padding:32px; position:sticky; top:88px; }
+.calc-result h3  { font-family:'Nunito',sans-serif; font-size:16px; font-weight:800; color:var(--black); margin-bottom:20px; display:flex; align-items:center; gap:6px; }
+.calc-big        { font-family:'Nunito',sans-serif; font-size:52px; font-weight:900; color:var(--black); line-height:1; }
+.calc-big-sub    { font-size:14px; color:rgba(0,0,0,.55); margin-bottom:24px; margin-top:4px; }
+.calc-row        { display:flex; justify-content:space-between; padding:8px 0; border-bottom:1px solid rgba(0,0,0,.08); font-size:14px; font-weight:600; color:var(--black); }
+.calc-row:last-child { border-bottom:none; }
+.calc-row-val    { font-family:'Nunito',sans-serif; font-weight:800; }
+.calc-anual      { background:rgba(0,0,0,.07); border-radius:10px; padding:14px 16px; margin-top:18px; text-align:center; }
+.calc-anual-label{ font-size:12px; font-weight:700; color:rgba(0,0,0,.5); margin-bottom:4px; display:flex; align-items:center; justify-content:center; gap:5px; }
+.calc-anual-val  { font-family:'Nunito',sans-serif; font-size:26px; font-weight:900; color:var(--black); }
+
+/* ── OBJEÇÕES ── */
+.objections    { background:var(--white); padding:72px 0; }
+.obj-grid      { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; margin-top:44px; }
+.obj-card      {
+  padding:28px; border-radius:16px; border:1.5px solid var(--gray-100);
+  background:var(--gray-50);
+  /* MOTION: elastic hover */
+  transition: border-color .3s cubic-bezier(0.34, 1.56, 0.64, 1),
+              transform .3s cubic-bezier(0.34, 1.56, 0.64, 1),
+              box-shadow .3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.obj-card:hover { border-color:var(--yellow); transform:translateY(-5px) scale(1.02); box-shadow:0 8px 32px rgba(247,197,0,.18); }
+.obj-q         { font-family:'Nunito',sans-serif; font-size:16px; font-weight:800; color:var(--black); margin-bottom:10px; line-height:1.3; }
+.obj-q::before { content:'\201C'; color:var(--yellow-d); font-size:24px; font-weight:900; line-height:0; vertical-align:-6px; margin-right:3px; }
+.obj-q::after  { content:'\201D'; color:var(--yellow-d); font-size:24px; font-weight:900; line-height:0; vertical-align:-6px; margin-left:3px; }
+.obj-a         { font-size:14px; color:var(--gray-600); line-height:1.65; }
+.obj-a strong  { color:var(--black); font-weight:700; }
+
+/* ── PLANOS ── */
+.plans           { background:var(--gray-50); padding:72px 0; }
+.plans-header    { text-align:center; margin-bottom:44px; }
+.plans-grid      { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; align-items:start; }
+.plan-card       {
+  background:var(--white); border-radius:20px; padding:30px 26px;
+  border:2px solid var(--gray-100); position:relative;
+  transition: box-shadow .3s cubic-bezier(0.34, 1.56, 0.64, 1),
+              transform .3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.plan-card:hover { box-shadow:var(--shadow-md); transform:translateY(-4px); }
+.plan-card.featured { border-color:var(--yellow); transform:scale(1.04); z-index:2; box-shadow:0 8px 40px rgba(247,197,0,.22); }
+.plan-card.featured:hover { transform:scale(1.06) translateY(-4px); }
+.plan-ribbon     { position:absolute; top:-13px; left:50%; transform:translateX(-50%); background:var(--yellow); color:var(--black); font-family:'Nunito',sans-serif; font-size:10px; font-weight:900; letter-spacing:1px; text-transform:uppercase; padding:5px 16px; border-radius:var(--radius-pill); white-space:nowrap; display:flex; align-items:center; gap:5px; }
+.plan-tag        { font-family:'Nunito',sans-serif; font-size:11px; font-weight:800; color:var(--gray-400); letter-spacing:2px; text-transform:uppercase; margin-bottom:12px; margin-top:4px; }
+.plan-price-row  { display:flex; align-items:baseline; gap:2px; }
+.pp-cur          { font-size:17px; font-weight:700; color:var(--gray-500); }
+.pp-val          { font-family:'Nunito',sans-serif; font-size:50px; font-weight:900; color:var(--black); line-height:1; }
+.pp-cts          { font-size:20px; font-weight:700; color:var(--black); align-self:flex-end; padding-bottom:5px; }
+.pp-period       { font-size:13px; color:var(--gray-400); margin:4px 0 18px; }
+.plan-sep        { height:1px; background:var(--gray-100); margin:16px 0; }
+.plan-feat       { display:flex; align-items:flex-start; gap:9px; margin-bottom:10px; font-size:14px; color:var(--black); font-weight:500; }
+.fc              { width:20px; height:20px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:10px; flex-shrink:0; margin-top:1px; }
+.fc-y            { background:var(--green-bg); color:var(--green); }
+.fc-n            { background:var(--gray-100); color:var(--gray-300); }
+.plan-feat.off   { color:var(--gray-300); }
+.plan-cta        { margin-top:20px; }
+.guarantee       { display:flex; align-items:center; gap:16px; background:var(--yellow-bg); border:1.5px dashed var(--yellow); border-radius:14px; padding:18px 24px; margin-top:28px; }
+.guarantee-icon  { flex-shrink:0; display:flex; }
+.guarantee-text  { font-size:14px; color:var(--gray-600); line-height:1.6; }
+.guarantee-text strong { color:var(--black); }
+
+/* ── DEPOIMENTOS ── */
+.testimonials  { background:var(--white); padding:72px 0; }
+.testi-header  { text-align:center; margin-bottom:44px; }
+.testi-grid    { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+.testi-card    {
+  background:var(--gray-50); border-radius:16px; padding:24px;
+  border:1.5px solid var(--gray-100);
+  transition: transform .3s cubic-bezier(0.34, 1.56, 0.64, 1),
+              box-shadow .3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.testi-card:hover { transform:translateY(-5px); box-shadow:var(--shadow-md); }
+.testi-stars   { color:var(--yellow); font-size:15px; margin-bottom:12px; }
+.testi-text    { font-size:15px; color:var(--black); line-height:1.65; margin-bottom:18px; font-style:italic; }
+.testi-text mark { background:var(--yellow-bg); color:var(--black); font-style:normal; font-weight:800; padding:1px 4px; border-radius:4px; }
+.testi-foot    { display:flex; align-items:center; gap:12px; }
+.testi-avatar  { width:38px; height:38px; border-radius:50%; background:var(--yellow); color:var(--black); font-family:'Nunito',sans-serif; font-size:14px; font-weight:900; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+.testi-name    { font-size:14px; font-weight:700; color:var(--black); }
+.testi-meta    { font-size:12px; color:var(--gray-400); margin-top:2px; display:flex; align-items:center; gap:4px; }
+
+/* ── CTA FINAL ── */
+.cta-final      { background:var(--yellow); padding:72px 0; text-align:center; position: relative; overflow: hidden; }
+/* Neurascapes grain no CTA amarelo também */
+.cta-final::after {
+  content: '';
+  position: absolute; inset: 0; z-index: 0; pointer-events: none;
+  opacity: 0.012;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat; background-size: 200px 200px;
+  animation: noiseShift 0.8s steps(5) infinite;
+}
+.cta-final > .container { position: relative; z-index: 1; }
+.cta-final h2   { font-family:'Nunito',sans-serif; font-size:clamp(28px,3.5vw,42px); font-weight:900; color:var(--black); margin-bottom:12px; letter-spacing:-1px; }
+.cta-final p    { font-size:17px; color:rgba(0,0,0,.6); margin-bottom:28px; }
+.cta-seals      { display:flex; justify-content:center; gap:24px; margin-top:20px; flex-wrap:wrap; }
+.cta-seal       { display:flex; align-items:center; gap:6px; font-size:13px; font-weight:700; color:rgba(0,0,0,.65); }
+
+/* ── FOOTER ── */
+footer           { background:var(--black); color:var(--white); padding:48px 0 24px; }
+.footer-grid     { display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:40px; margin-bottom:36px; }
+.footer-brand    { font-family:'Nunito',sans-serif; font-size:20px; font-weight:900; margin-bottom:12px; display:flex; align-items:center; gap:8px; }
+.footer-brand .mark { width:28px; height:28px; background:var(--yellow); border-radius:6px; display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:900; color:var(--black); }
+.footer-desc     { font-size:14px; color:#777; line-height:1.65; margin-bottom:16px; }
+.footer-email    { display:flex; align-items:center; gap:7px; font-size:13px; color:var(--yellow); font-weight:600; }
+.footer-col h4   { font-family:'Nunito',sans-serif; font-size:11px; font-weight:800; color:#555; letter-spacing:1.5px; text-transform:uppercase; margin-bottom:14px; }
+.footer-col a    { display:block; font-size:14px; color:#777; margin-bottom:10px; transition:color .15s; }
+.footer-col a:hover { color:var(--white); }
+.footer-bottom   { border-top:1px solid #222; padding-top:20px; display:flex; align-items:center; justify-content:space-between; font-size:12px; color:#444; }
+
+/* ============================================================
+   ANTLII — Coreografia de Entrada (Staggered Reveal)
+   Elementos começam invisíveis e entram em cascata
+   ============================================================ */
+/* Estado inicial: todos os elementos animáveis ficam escondidos */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(32px);
+  will-change: opacity, transform;
+}
+/* Variante para títulos com clip-path mask */
+[data-reveal="clip"] {
+  opacity: 0;
+  clip-path: inset(100% 0 0 0);
+  transform: translateY(0);
+}
+/* Variante para o card: entrada bounce */
+[data-reveal="bounce"] {
+  opacity: 0;
+  transform: translateY(60px) scale(0.92);
+}
+/* Estado animado */
+[data-reveal].revealed {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  clip-path: inset(0 0 0 0);
+}
+
+/* ── Scroll Reveal para seções abaixo da dobra ── */
+.reveal-section {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.7s cubic-bezier(0.22, 0.61, 0.36, 1),
+              transform 0.7s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+.reveal-section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ============================================================
+   MOBILE MENU
+   ============================================================ */
+.mobile-only { display: none !important; }
+.mobile-menu { display: none; }
+
+/* ============================================================
+   RESPONSIVIDADE MOBILE
+   ============================================================ */
+@media (max-width: 768px) {
+  .navbar         { padding: 0 16px; }
+  .navbar-links,
+  .nav-seal       { display: none; }
+  .container      { padding: 0 16px; }
+  .hero           { padding-top: 112px; }
+  .hero-inner     { grid-template-columns: 1fr; gap: 0; padding-bottom: 0; }
+  .hero-left      { padding-bottom: 32px; }
+  .hero h1        { font-size: 32px; letter-spacing: -1px; }
+  .hero-card-wrap { display: none; }
+  .hero-actions   { flex-direction: column; }
+  .hero-actions .btn { width: 100%; justify-content: center; }
+  .hero-stats     { gap: 16px; flex-wrap: wrap; }
+  .hero-trust     { flex-direction: column; align-items: flex-start; gap: 6px; }
+  .hero-trust-sep { display: none; }
+  .marquee-track  { animation: none; gap: 8px; }
+  .marquee-viewport { overflow-x:auto; }
+  .pain-inner,
+  .calc-inner,
+  .obj-grid,
+  .plans-grid,
+  .testi-grid,
+  .footer-grid    { grid-template-columns: 1fr; gap: 24px; }
+  .steps          { grid-template-columns: 1fr 1fr; gap: 24px; }
+  .steps::before  { display: none; }
+  .calc-result    { position: static; }
+  .plan-card.featured { transform: scale(1); }
+  .plan-card.featured:hover { transform: translateY(-4px); }
+
+  /* Mobile menu */
+  .mobile-only { display: flex !important; }
+  .mobile-menu {
+    position: fixed; inset: 0;
+    background: rgba(0,0,0,0.4);
+    backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
+    z-index: 1000;
+    display: flex; flex-direction: column;
+    opacity: 0; pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+  .mobile-menu.active { opacity: 1; pointer-events: auto; }
+  .mobile-menu-inner {
+    background: var(--white);
+    width: 85vw; max-width: 320px; height: 100vh;
+    transform: translateX(-100%);
+    transition: transform 0.3s cubic-bezier(0.32, 0.72, 0, 1);
+    display: flex; flex-direction: column;
+    box-shadow: 4px 0 24px rgba(0,0,0,0.1);
+  }
+  .mobile-menu.active .mobile-menu-inner { transform: translateX(0); }
+  .mobile-menu-header {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 20px 24px; border-bottom: 1px solid var(--gray-100);
+  }
+  .mobile-menu-header .btn-ghost { padding: 4px; border: none; min-width: 44px; min-height: 44px; display: flex; align-items: center; justify-content: center; }
+  .mobile-menu-links {
+    flex: 1; list-style: none; padding: 24px;
+    display: flex; flex-direction: column; gap: 16px;
+  }
+  .mobile-menu-links a {
+    font-size: 18px; font-weight: 700; color: var(--black);
+    display: block; padding: 8px 0;
+  }
+  .mobile-menu-footer { padding: 24px; border-top: 1px solid var(--gray-100); }
+}
+
+/* ── Demo badge (canto inferior) ── */
+.demo-badge {
+  position: fixed; bottom: 16px; left: 16px; z-index: 9999;
+  background: var(--black); color: var(--yellow);
+  font-family: 'Nunito', sans-serif; font-size: 11px; font-weight: 800;
+  letter-spacing: 1px; text-transform: uppercase;
+  padding: 8px 16px; border-radius: var(--radius-pill);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  display: flex; align-items: center; gap: 8px;
+}
+.demo-badge .pulse {
+  width: 8px; height: 8px; background: var(--green); border-radius: 50%;
+  animation: dotPulse 2s ease-in-out infinite;
+}
+</style>
+</head>
+<body>
+
+<!-- DEMO BADGE -->
+<div class="demo-badge">
+  <div class="pulse"></div>
+  Motion UI Demo — +Promo
+</div>
+
+<!-- NAVBAR — Liquid Glass (Glassmorphism) -->
+<nav class="navbar" id="glass-nav" data-reveal="nav">
+  <button id="menu-toggle" class="mobile-only" aria-label="Abrir menu">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+  </button>
+  <a href="/" class="navbar-brand">
+    <div class="brand-pill"><svg viewBox="0 0 100 100" width="28" height="28" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="goldGrad-8" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#FFF275"/><stop offset="100%" stop-color="#F7C500"/></linearGradient></defs><circle cx="53" cy="53" r="44" fill="#C49B00"/><circle cx="48" cy="48" r="44" fill="url(#goldGrad-8)"/><path d="M40 26 h16 v16 h16 v16 h-16 v16 h-16 v-16 h-16 v-16 h16 z" fill="rgba(196,155,0,0.4)" transform="translate(3,4)"/><rect x="40" y="24" width="16" height="48" rx="1.5" fill="#1A1A1A"/><rect x="24" y="40" width="48" height="16" rx="1.5" fill="#1A1A1A"/><rect x="40" y="24" width="8" height="48" rx="1.5" fill="#3D3D3D"/><rect x="24" y="40" width="48" height="8" rx="1.5" fill="#3D3D3D"/></svg><span class="brand-pill-text">PROMO</span></div>
+  </a>
+  <ul class="navbar-links">
+    <li><a href="/" class="active">Início</a></li>
+    <li><a href="/parceiros">Parceiros</a></li>
+    <li><a href="/planos">Planos</a></li>
+    <li><a href="/simulador">Simulador</a></li>
+  </ul>
+  <div class="navbar-right">
+    <label class="theme-switch" title="Alternar tema">
+      <input type="checkbox" id="theme-toggle">
+      <div class="track">
+        <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
+        <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+      </div>
+    </label>
+    <div class="nav-seal">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+      SSL Seguro
+    </div>
+    <a href="/login"><button class="btn btn-ghost btn-sm">Entrar</button></a>
+    <a href="/cadastro"><button class="btn btn-yellow btn-sm">Começar grátis</button></a>
+  </div>
+</nav>
+
+<!-- OFF-CANVAS MOBILE MENU -->
+<div class="mobile-menu" id="mobile-menu">
+  <div class="mobile-menu-inner">
+    <div class="mobile-menu-header">
+      <a href="/" class="navbar-brand"><div class="brand-pill"><svg viewBox="0 0 100 100" width="28" height="28" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="goldGrad-9" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#FFF275"/><stop offset="100%" stop-color="#F7C500"/></linearGradient></defs><circle cx="53" cy="53" r="44" fill="#C49B00"/><circle cx="48" cy="48" r="44" fill="url(#goldGrad-9)"/><path d="M40 26 h16 v16 h16 v16 h-16 v16 h-16 v-16 h-16 v-16 h16 z" fill="rgba(196,155,0,0.4)" transform="translate(3,4)"/><rect x="40" y="24" width="16" height="48" rx="1.5" fill="#1A1A1A"/><rect x="24" y="40" width="48" height="16" rx="1.5" fill="#1A1A1A"/><rect x="40" y="24" width="8" height="48" rx="1.5" fill="#3D3D3D"/><rect x="24" y="40" width="48" height="8" rx="1.5" fill="#3D3D3D"/></svg><span class="brand-pill-text">PROMO</span></div></a>
+      <button id="mobile-menu-close" aria-label="Fechar menu" class="btn-ghost">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <ul class="mobile-menu-links">
+      <li><a href="/">Início</a></li>
+      <li><a href="/parceiros">Parceiros</a></li>
+      <li><a href="/planos">Planos</a></li>
+      <li><a href="/simulador">Simulador</a></li>
+    </ul>
+    <div class="mobile-menu-footer">
+      <a href="/login" class="btn btn-ghost btn-full" style="margin-bottom:12px;justify-content:center;">Entrar</a>
+      <a href="/cadastro" class="btn btn-yellow btn-full" style="justify-content:center;">Começar grátis</a>
+    </div>
+  </div>
+</div>
+
+<!-- ══ SEÇÃO 1 — HERO ══ -->
+<section class="hero" aria-label="Apresentação do +Promo">
+  <div class="hero-mesh-overlay"></div>
+  <div class="container">
+    <div class="hero-inner">
+      <div class="hero-left">
+
+        <div class="hero-hook" data-reveal data-delay="200">
+          <div class="dot"></div>
+          Mais de 40 parceiros — supermercado, farmácia, posto e muito mais
+        </div>
+
+        <h1 id="hero-headline" data-reveal="clip" data-delay="400">
+          Seu <u>dinheiro do<br>supermercado</u><br>voltando pra <em>você.</em>
+        </h1>
+
+        <p class="hero-sub" id="hero-sub" data-reveal data-delay="600">
+          Assine o +Promo e ganhe cashback toda vez que comprar em supermercados,
+          farmácias, postos e muito mais. O dinheiro cai na sua conta. Sem complicação.
+        </p>
+
+        <div class="hero-actions" data-reveal data-delay="750">
+          <a href="/cadastro"><button class="btn btn-yellow btn-lg btn-hero-cta" id="hero-cta">Quero meu cashback agora →</button></a>
+          <a href="/simulador"><button class="btn btn-ghost btn-lg">Calcular quanto vou ganhar</button></a>
+        </div>
+
+        <div class="hero-trust" data-reveal data-delay="900">
+          <span class="trust-item">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Cancele quando quiser
+          </span>
+          <div class="hero-trust-sep"></div>
+          <span class="trust-item">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Sem taxa de adesão
+          </span>
+          <div class="hero-trust-sep"></div>
+          <span class="trust-item">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            7 dias de garantia
+          </span>
+        </div>
+
+        <div class="hero-stats" data-reveal data-delay="1050">
+          <div><div class="stat-num">40+</div><div class="stat-lbl">Lojas parceiras</div></div>
+          <div class="stat-sep"></div>
+          <div><div class="stat-num">até 6%</div><div class="stat-lbl">De volta em cada compra</div></div>
+          <div class="stat-sep"></div>
+          <div><div class="stat-num">R$19,90</div><div class="stat-lbl">Para começar</div></div>
+        </div>
+      </div>
+
+      <!-- Hero Card com 3D Tilt (Endlesstools) -->
+      <div class="hero-card-wrap" id="hero-card-wrap" data-reveal="bounce" data-delay="1200">
+        <div class="float-chip chip-yellow chip-1">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="#1A1A1A"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          Plano Plus ativo
+        </div>
+        <div class="float-chip chip-2">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          "Valeu demais!"
+        </div>
+        <div class="hero-card" id="hero-card" aria-hidden="true">
+          <div class="hcard-top">
+            <div class="hcard-label">Seu mês em resumo</div>
+            <span class="badge badge-yellow">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="#1A1A1A"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              Plus
+            </span>
+          </div>
+          <div class="hcard-cashback">
+            <div class="cash-big">+R$<em>234</em></div>
+            <div class="cash-caption">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+              Cashback acumulado em março
+            </div>
+          </div>
+          <div class="hcard-row">
+            <div class="hrow-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg></div>
+            <div><div class="hrow-name">MercadoFácil</div><div class="hrow-detail">Supermercado · 4% cashback</div></div>
+            <div class="hrow-val">+R$7,52</div>
+          </div>
+          <div class="hcard-row">
+            <div class="hrow-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z"/><path d="M8.5 8.5 16 16"/></svg></div>
+            <div><div class="hrow-name">FarmaVida</div><div class="hrow-detail">Farmácia · 8% cashback</div></div>
+            <div class="hrow-val">+R$5,16</div>
+          </div>
+          <div class="hcard-row">
+            <div class="hrow-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 22V5a2 2 0 0 1 2-2h7a2 2 0 0 1 2 2v17"/><path d="M3 11h11"/><path d="M17 22V9l3-3"/><path d="M14 7h5a1 1 0 0 1 1 1v3"/></svg></div>
+            <div><div class="hrow-name">PetroPrime</div><div class="hrow-detail">Combustível · 3% cashback</div></div>
+            <div class="hrow-val">+R$4,50</div>
+          </div>
+          <div class="hcard-row">
+            <div class="hrow-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="15" rx="2" ry="2"/><polyline points="17 2 12 7 7 2"/></svg></div>
+            <div><div class="hrow-name">PlayStream</div><div class="hrow-detail">Streaming incluso no plano</div></div>
+            <div class="hrow-val" style="color:var(--green)">Grátis</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ SEÇÃO 2 — BARRA DE PARCEIROS ══ -->
+<div class="partners-bar reveal-section" aria-label="Parceiros do +Promo">
+  <div class="partners-bar-label-fixed">Ganhe cashback em</div>
+  <div class="marquee-viewport">
+    <div class="marquee-track">
+      <div class="p-logo-pill"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>MercadoFácil</div>
+      <div class="p-logo-pill"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z"/><path d="M8.5 8.5 16 16"/></svg>FarmaVida</div>
+      <div class="p-logo-pill"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 22V5a2 2 0 0 1 2-2h7a2 2 0 0 1 2 2v17"/><path d="M3 11h11"/><path d="M17 22V9l3-3"/><path d="M14 7h5a1 1 0 0 1 1 1v3"/></svg>PetroPrime</div>
+      <div class="p-logo-pill"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"/></svg>BomGarfo</div>
+      <div class="p-logo-pill"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/></svg>AirFlex</div>
+      <div class="p-logo-pill"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.38 3.46 16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.57a1 1 0 0 0 .99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.57a2 2 0 0 0-1.34-2.23z"/></svg>StyleOn</div>
+      <div class="p-logo-pill"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>TechStore</div>
+      <div class="p-logo-pill p-logo-more"><a href="/parceiros" style="color:var(--yellow-d);font-weight:800">+ 33 outros →</a></div>
+      <!-- Set B (duplicate for seamless loop) -->
+      <div class="p-logo-pill"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>MercadoFácil</div>
+      <div class="p-logo-pill"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z"/><path d="M8.5 8.5 16 16"/></svg>FarmaVida</div>
+      <div class="p-logo-pill"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 22V5a2 2 0 0 1 2-2h7a2 2 0 0 1 2 2v17"/><path d="M3 11h11"/><path d="M17 22V9l3-3"/><path d="M14 7h5a1 1 0 0 1 1 1v3"/></svg>PetroPrime</div>
+      <div class="p-logo-pill"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"/></svg>BomGarfo</div>
+      <div class="p-logo-pill"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/></svg>AirFlex</div>
+      <div class="p-logo-pill"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.38 3.46 16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.57a1 1 0 0 0 .99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.57a2 2 0 0 0-1.34-2.23z"/></svg>StyleOn</div>
+      <div class="p-logo-pill"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>TechStore</div>
+      <div class="p-logo-pill p-logo-more"><a href="/parceiros" style="color:var(--yellow-d);font-weight:800">+ 33 outros →</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ SEÇÃO 3 — DOR + SOLUÇÃO ══ -->
+<section class="pain-section reveal-section" aria-label="O problema que o +Promo resolve">
+  <div class="container">
+    <div class="pain-inner">
+      <div class="pain-left">
+        <span class="pain-eyebrow">O problema que todo mundo tem</span>
+        <h2 class="pain-title">O preço subiu.<br>O salário não.<br>E o dinheiro<br><em>some no fim do mês.</em></h2>
+        <p class="pain-desc">Você compra nos mesmos lugares toda semana. Supermercado, farmácia, posto. Mas cada compra vai embora sem deixar nada de volta.</p>
+        <div class="pain-list">
+          <div class="pain-item"><div class="icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#666" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M16 16s-1.5-2-4-2-4 2-4 2"/><line x1="9" y1="9" x2="9.01" y2="9" stroke-width="3"/><line x1="15" y1="9" x2="15.01" y2="9" stroke-width="3"/></svg></div><div>Gasta centenas por mês no supermercado e não recebe nada de volta.</div></div>
+          <div class="pain-item"><div class="icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#666" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M16 16s-1.5-2-4-2-4 2-4 2"/><line x1="9" y1="9" x2="9.01" y2="9" stroke-width="3"/><line x1="15" y1="9" x2="15.01" y2="9" stroke-width="3"/></svg></div><div>Programas de pontos que expiram antes de você poder usar.</div></div>
+          <div class="pain-item"><div class="icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#666" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M16 16s-1.5-2-4-2-4 2-4 2"/><line x1="9" y1="9" x2="9.01" y2="9" stroke-width="3"/><line x1="15" y1="9" x2="15.01" y2="9" stroke-width="3"/></svg></div><div>Cashback de cartão tão pequeno que você nem percebe.</div></div>
+        </div>
+      </div>
+      <div class="solution-box">
+        <h3>E se cada compra do dia a dia te rendesse dinheiro de volta?</h3>
+        <div class="solution-item"><div class="sol-check"></div><div><strong>Supermercado:</strong> ganhe até 6% de cashback toda vez que encher o carrinho.</div></div>
+        <div class="solution-item"><div class="sol-check"></div><div><strong>Farmácia:</strong> 8% de volta em medicamentos e produtos de saúde.</div></div>
+        <div class="solution-item"><div class="sol-check"></div><div><strong>Combustível:</strong> abasteça e veja o cashback cair na conta na hora.</div></div>
+        <div class="solution-item"><div class="sol-check"></div><div><strong>Sem ponto que expira.</strong> É dinheiro real, direto no saldo. Saque quando quiser.</div></div>
+        <div style="margin-top:24px"><a href="/cadastro"><button class="btn btn-black btn-full btn-lg">Quero começar a ganhar →</button></a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ SEÇÃO 4 — COMO FUNCIONA ══ -->
+<section class="how reveal-section" aria-label="Como funciona o +Promo">
+  <div class="container">
+    <div class="how-header">
+      <span class="eyebrow">Sem complicação</span>
+      <h2>Funciona assim</h2>
+    </div>
+    <div class="steps">
+      <div class="step"><div class="step-n">1</div><div class="step-title">Escolhe um plano</div><div class="step-desc">Basic a partir de R$19,90. Sem fidelidade, sem multa. Muda de plano quando quiser.</div><div class="step-time"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>2 minutos</div></div>
+      <div class="step"><div class="step-n">2</div><div class="step-title">Cria sua conta</div><div class="step-desc">Só nome, e-mail e senha. Sem cadastro de cartão, sem CPF obrigatório.</div><div class="step-time"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>1 minuto</div></div>
+      <div class="step"><div class="step-n">3</div><div class="step-title">Compra nos parceiros</div><div class="step-desc">Supermercado, farmácia, posto — o cashback entra automaticamente no seu saldo.</div><div class="step-time"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>No seu ritmo</div></div>
+      <div class="step"><div class="step-n">4</div><div class="step-title">Saca o dinheiro</div><div class="step-desc">Pix, transferência ou desconto na próxima mensalidade. Você escolhe.</div><div class="step-time"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>Quando preferir</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ SEÇÃO 5 — CALCULADORA ══ -->
+<section class="calculator reveal-section" aria-label="Calculadora de economia">
+  <div class="container">
+    <div class="calc-inner">
+      <div class="calc-left">
+        <span class="eyebrow">Calcule o seu ganho</span>
+        <h2>Quanto você ganharia<br>com o +Promo?</h2>
+        <p>Arraste os controles e veja em tempo real quanto cashback você teria acumulado este mês com seus gastos reais.</p>
+        <div class="calc-field">
+          <div class="calc-label"><span style="display:flex;align-items:center;gap:6px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>Supermercado</span><span class="calc-val-tag" id="lbl-super">R$ 600</span></div>
+          <input type="range" class="calc-slider" id="sl-super" min="0" max="3000" step="50" value="600">
+        </div>
+        <div class="calc-field">
+          <div class="calc-label"><span style="display:flex;align-items:center;gap:6px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z"/><path d="M8.5 8.5 16 16"/></svg>Farmácia</span><span class="calc-val-tag" id="lbl-farm">R$ 200</span></div>
+          <input type="range" class="calc-slider" id="sl-farm" min="0" max="1000" step="25" value="200">
+        </div>
+        <div class="calc-field">
+          <div class="calc-label"><span style="display:flex;align-items:center;gap:6px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 22V5a2 2 0 0 1 2-2h7a2 2 0 0 1 2 2v17"/><path d="M3 11h11"/><path d="M17 22V9l3-3"/><path d="M14 7h5a1 1 0 0 1 1 1v3"/></svg>Combustível</span><span class="calc-val-tag" id="lbl-comb">R$ 250</span></div>
+          <input type="range" class="calc-slider" id="sl-comb" min="0" max="1500" step="50" value="250">
+        </div>
+        <div class="calc-field">
+          <div class="calc-label"><span style="display:flex;align-items:center;gap:6px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"/></svg>Restaurantes</span><span class="calc-val-tag" id="lbl-rest">R$ 300</span></div>
+          <input type="range" class="calc-slider" id="sl-rest" min="0" max="2000" step="50" value="300">
+        </div>
+        <p style="font-size:13px;color:var(--gray-400);margin-top:16px">* Cálculo baseado nas taxas do Plano Plus. <a href="/simulador" style="color:var(--yellow-d);font-weight:700">Ver simulador completo →</a></p>
+      </div>
+      <div class="calc-result" aria-live="polite">
+        <h3><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>Seu cashback estimado</h3>
+        <div class="calc-big" id="calc-total">R$ 0</div>
+        <div class="calc-big-sub">por mês com o Plano Plus</div>
+        <div class="calc-row"><span style="display:flex;align-items:center;gap:5px"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>Supermercado (4%)</span><span class="calc-row-val" id="cr-super">R$ 0,00</span></div>
+        <div class="calc-row"><span style="display:flex;align-items:center;gap:5px"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z"/><path d="M8.5 8.5 16 16"/></svg>Farmácia (8%)</span><span class="calc-row-val" id="cr-farm">R$ 0,00</span></div>
+        <div class="calc-row"><span style="display:flex;align-items:center;gap:5px"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 22V5a2 2 0 0 1 2-2h7a2 2 0 0 1 2 2v17"/><path d="M3 11h11"/><path d="M17 22V9l3-3"/><path d="M14 7h5a1 1 0 0 1 1 1v3"/></svg>Combustível (3%)</span><span class="calc-row-val" id="cr-comb">R$ 0,00</span></div>
+        <div class="calc-row"><span style="display:flex;align-items:center;gap:5px"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"/></svg>Restaurantes (6%)</span><span class="calc-row-val" id="cr-rest">R$ 0,00</span></div>
+        <div class="calc-anual">
+          <div class="calc-anual-label"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-1px"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>Em 12 meses você recupera</div>
+          <div class="calc-anual-val" id="calc-anual">R$ 0</div>
+        </div>
+        <div style="margin-top:20px"><a href="/cadastro"><button class="btn btn-black btn-full">Quero esse cashback →</button></a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ SEÇÃO 6 — OBJEÇÕES ══ -->
+<section class="objections reveal-section" aria-label="Dúvidas frequentes">
+  <div class="container">
+    <div class="text-center">
+      <span class="eyebrow">Antes que você pergunte</span>
+      <h2>A gente responde<br>antes de você precisar perguntar</h2>
+    </div>
+    <div class="obj-grid">
+      <div class="obj-card"><div class="obj-q">Tem pegadinha? Letras miúdas?</div><div class="obj-a">Não. O cashback é <strong>dinheiro real</strong>, sem pontos que expiram, sem categorias escondidas. Você vê tudo no painel antes de qualquer cobrança.</div></div>
+      <div class="obj-card"><div class="obj-q">E se eu quiser cancelar?</div><div class="obj-a">Cancela em 1 clique, a qualquer hora, sem precisar ligar pra ninguém. <strong>Sem multa, sem fidelidade.</strong> Se cancelar em até 7 dias, devolvemos tudo.</div></div>
+      <div class="obj-card"><div class="obj-q">O plano Basic vale a pena?</div><div class="obj-a">Com R$1.000/mês em parceiros e 2% de cashback você recupera <strong>R$20/mês</strong> — o plano já se paga. Use nosso simulador para calcular o seu caso.</div></div>
+      <div class="obj-card"><div class="obj-q">Meus dados ficam seguros?</div><div class="obj-a">Usamos o <strong>Firebase do Google</strong> para autenticação e banco de dados. Seus dados são criptografados e nunca são vendidos a terceiros.</div></div>
+      <div class="obj-card"><div class="obj-q">Como recebo o cashback?</div><div class="obj-a">O saldo fica no seu painel. Quando quiser sacar: <strong>Pix, transferência bancária ou abate na próxima mensalidade.</strong> Saque mínimo varia por plano.</div></div>
+      <div class="obj-card"><div class="obj-q">Posso mudar de plano depois?</div><div class="obj-a">Sim, a qualquer momento pelo painel. Subiu de plano? O novo cashback já <strong>vale na próxima compra.</strong> Sem burocracia, sem espera.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ SEÇÃO 7 — PLANOS ══ -->
+<section class="plans reveal-section" aria-label="Planos de assinatura">
+  <div class="container">
+    <div class="plans-header">
+      <span class="eyebrow">Escolha o seu</span>
+      <h2>Sem mensalidade escondida.<br>Sem surpresa no boleto.</h2>
+      <p class="subtitle" style="max-width:500px;margin:12px auto 0">Todos os planos incluem acesso ao painel e histórico de cashback. Muda ou cancela quando quiser.</p>
+    </div>
+    <div class="plans-grid">
+      <div class="plan-card">
+        <div class="plan-tag">Basic</div>
+        <div class="plan-price-row"><span class="pp-cur">R$</span><span class="pp-val">19</span><span class="pp-cts">,90</span></div>
+        <div class="pp-period">por mês · cancele quando quiser</div>
+        <div class="plan-sep"></div>
+        <div class="plan-feat"><span class="fc fc-y"></span>2% de cashback nas compras</div>
+        <div class="plan-feat"><span class="fc fc-y"></span>10 parceiros disponíveis</div>
+        <div class="plan-feat"><span class="fc fc-y"></span>Saque a partir de R$ 30</div>
+        <div class="plan-feat"><span class="fc fc-y"></span>Suporte via chat</div>
+        <div class="plan-feat off"><span class="fc fc-n">–</span>Milhas aéreas</div>
+        <div class="plan-feat off"><span class="fc fc-n">–</span>Cupons mensais</div>
+        <div class="plan-cta"><a href="/cadastro?plano=basic"><button class="btn btn-outline btn-full">Começar com o Basic</button></a></div>
+      </div>
+      <div class="plan-card featured">
+        <div class="plan-ribbon"><svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:-1px"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>Escolha de quem calcula</div>
+        <div class="plan-tag" style="color:var(--yellow-d);margin-top:16px">Plus</div>
+        <div class="plan-price-row"><span class="pp-cur">R$</span><span class="pp-val">39</span><span class="pp-cts">,90</span></div>
+        <div class="pp-period">por mês · cancele quando quiser</div>
+        <div class="plan-sep"></div>
+        <div class="plan-feat"><span class="fc fc-y"></span><strong>4% de cashback — o dobro do Basic</strong></div>
+        <div class="plan-feat"><span class="fc fc-y"></span>25 parceiros disponíveis</div>
+        <div class="plan-feat"><span class="fc fc-y"></span>Saque a partir de R$ 20</div>
+        <div class="plan-feat"><span class="fc fc-y"></span>Suporte chat + e-mail</div>
+        <div class="plan-feat"><span class="fc fc-y"></span><strong>0,5 milha por R$1 gasto</strong></div>
+        <div class="plan-feat"><span class="fc fc-y"></span>1 cupom exclusivo por mês</div>
+        <div class="plan-cta"><a href="/cadastro?plano=plus"><button class="btn btn-yellow btn-full">Assinar o Plus agora</button></a></div>
+      </div>
+      <div class="plan-card">
+        <div class="plan-tag">Premium</div>
+        <div class="plan-price-row"><span class="pp-cur">R$</span><span class="pp-val">69</span><span class="pp-cts">,90</span></div>
+        <div class="pp-period">por mês · cancele quando quiser</div>
+        <div class="plan-sep"></div>
+        <div class="plan-feat"><span class="fc fc-y"></span><strong>6% de cashback — o máximo</strong></div>
+        <div class="plan-feat"><span class="fc fc-y"></span>Todos os 40+ parceiros</div>
+        <div class="plan-feat"><span class="fc fc-y"></span>Saque a partir de R$ 10</div>
+        <div class="plan-feat"><span class="fc fc-y"></span>Suporte prioritário 24h</div>
+        <div class="plan-feat"><span class="fc fc-y"></span><strong>1 milha por R$1 gasto</strong></div>
+        <div class="plan-feat"><span class="fc fc-y"></span>3 cupons exclusivos por mês</div>
+        <div class="plan-cta"><a href="/cadastro?plano=premium"><button class="btn btn-black btn-full">Assinar o Premium</button></a></div>
+      </div>
+    </div>
+    <div class="guarantee">
+      <div class="guarantee-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--yellow-d)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+      <div class="guarantee-text"><strong>Garantia incondicional de 7 dias.</strong> Assinou, não gostou por qualquer motivo — devolvemos 100% do que você pagou, sem perguntas, sem enrolação.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ SEÇÃO 8 — DEPOIMENTOS ══ -->
+<section class="testimonials reveal-section" aria-label="Depoimentos de assinantes">
+  <div class="container">
+    <div class="testi-header">
+      <span class="eyebrow">Quem já usa</span>
+      <h2>O que acontece depois<br>que as pessoas assinam</h2>
+    </div>
+    <div class="testi-grid">
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"Em 3 meses juntei <mark>R$ 180 de cashback</mark> só no supermercado e na farmácia. Já pagou 4 mensalidades. Agora não consigo imaginar comprar sem o +Promo."</p>
+        <div class="testi-foot">
+          <div class="testi-avatar" style="background:#F97316;color:#fff">MC</div>
+          <div><div class="testi-name">Mariana Castilho</div><div class="testi-meta"><svg width="12" height="12" viewBox="0 0 24 24" fill="#F7C500" style="vertical-align:-1px"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>Plus · Professora · São Paulo, SP</div></div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"Acumulei <mark>14.000 milhas</mark> em 6 meses comprando onde eu já comprava antes. Usei pra pagar metade da passagem das minhas férias. Isso não tem preço."</p>
+        <div class="testi-foot">
+          <div class="testi-avatar" style="background:#6366F1;color:#fff">RM</div>
+          <div><div class="testi-name">Ricardo Mendonça</div><div class="testi-meta"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-1px"><polyline points="8 21 12 17 16 21"/><line x1="12" y1="17" x2="12" y2="11"/><path d="M8 5H6a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h1"/><path d="M16 5h2a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2h-1"/><rect x="8" y="2" width="8" height="4" rx="1"/></svg>Premium · Autônomo · Curitiba, PR</div></div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"Fui cética no começo, achei que era mais um programa de pontos inútil. No primeiro mês recuperei <mark>R$ 22</mark> — já paguei o Basic. To pensando em subir pro Plus."</p>
+        <div class="testi-foot">
+          <div class="testi-avatar" style="background:#10B981;color:#fff">FR</div>
+          <div><div class="testi-name">Fernanda Rocha</div><div class="testi-meta"><svg width="12" height="12" viewBox="0 0 24 24" fill="#3B82F6" style="vertical-align:-1px"><circle cx="12" cy="12" r="10"/></svg>Basic · Estudante · BH, MG</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ SEÇÃO 9 — CTA FINAL ══ -->
+<section class="cta-final reveal-section" aria-label="Chamada para ação final">
+  <div class="container">
+    <h2>Você já vai ao supermercado.<br>Por que não ganhar dinheiro nisso?</h2>
+    <p>Junte-se ao +Promo e faça cada compra do dia a dia render mais.<br>Começa em R$19,90. Para quando quiser.</p>
+    <a href="/cadastro"><button class="btn btn-black btn-lg">Criar minha conta grátis →</button></a>
+    <div class="cta-seals">
+      <div class="cta-seal"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>Dados protegidos</div>
+      <div class="cta-seal"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Cancele quando quiser</div>
+      <div class="cta-seal"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>7 dias de garantia</div>
+      <div class="cta-seal"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>Sem taxa de adesão</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand"><div class="mark">+</div>+PRO<span style="color:var(--yellow)">MO</span></div>
+        <div class="footer-desc">Plataforma de assinaturas com cashback, milhas e descontos em parceiros do dia a dia. Feita para quem quer fazer o dinheiro render mais.</div>
+        <div class="footer-email"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--yellow)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg><a href="mailto:sacmaispromo@gmail.com">sacmaispromo@gmail.com</a></div>
+      </div>
+      <div class="footer-col"><h4>Produto</h4><a href="/planos">Ver planos</a><a href="/parceiros">Parceiros</a><a href="/simulador">Simulador</a></div>
+      <div class="footer-col"><h4>Conta</h4><a href="/login">Entrar</a><a href="/cadastro">Criar conta</a><a href="/dashboard">Meu painel</a></div>
+      <div class="footer-col"><h4>Legal</h4><a href="/legal/termos">Termos de uso</a><a href="/legal/privacidade">Privacidade</a><a href="/legal/cancelamento">Política de cancelamento</a></div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 +Promo. Todos os direitos reservados.</span>
+      <span style="color:#444;display:flex;align-items:center;gap:5px">Feito com
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="#F7C500" stroke="none"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        no Brasil
+      </span>
+    </div>
+  </div>
+</footer>
+
+<!-- ============================================================
+     SCRIPTS — VANILLA JS PURO
+     4 Pilares de Motion UI:
+     1. Magic Animator — Elasticidade (cubic-bezier nos botões/cards)
+     2. Endlesstools  — Profundidade Pseudo-3D (tilt + acelerômetro)
+     3. Antlii        — Coreografia de Entrada (staggered reveal)
+     4. Neurascapes   — Fundo Orgânico (noise grain no CSS acima)
+     ============================================================ -->
+<script>
+(function() {
+  'use strict';
+
+  /* ─────────────────────────────────────────────────
+     UTILITÁRIOS
+  ───────────────────────────────────────────────── */
+  const isMobile = () => window.innerWidth <= 768;
+  const prefersReducedMotion = () =>
+    window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ─────────────────────────────────────────────────
+     PILAR 3: ANTLII — COREOGRAFIA DE ENTRADA
+     Staggered cascade reveal com curvas elásticas.
+     Ordem: Navbar Glass → Título (clip-path) →
+     Subtítulo → Botões → Trust → Stats → Card (bounce)
+  ───────────────────────────────────────────────── */
+  function initCoreografia() {
+    if (prefersReducedMotion()) {
+      // Se motion reduzido, mostra tudo imediatamente
+      document.querySelectorAll('[data-reveal]').forEach(el => {
+        el.classList.add('revealed');
+        el.style.transition = 'none';
+      });
+      const nav = document.getElementById('glass-nav');
+      if (nav) { nav.style.transform = 'translateY(0)'; nav.style.opacity = '1'; }
+      return;
+    }
+
+    const nav = document.getElementById('glass-nav');
+    const revealEls = document.querySelectorAll('[data-reveal]');
+
+    // 1. Navbar Glass desce (delay 100ms após load)
+    setTimeout(() => {
+      if (nav) nav.classList.add('anim-in');
+    }, 100);
+
+    // 2. Elementos do hero entram em cascata
+    revealEls.forEach(el => {
+      const delay = parseInt(el.dataset.delay || '0', 10);
+      const type  = el.dataset.reveal;
+
+      // Definir transição com curva elástica e delay
+      const elasticBezier = 'cubic-bezier(0.34, 1.56, 0.64, 1)';
+      const duration = type === 'bounce' ? '0.9s' : type === 'clip' ? '0.8s' : '0.65s';
+
+      if (type === 'clip') {
+        el.style.transition = `opacity ${duration} ${elasticBezier} ${delay}ms, clip-path ${duration} ${elasticBezier} ${delay}ms`;
+      } else if (type === 'bounce') {
+        el.style.transition = `opacity ${duration} ${elasticBezier} ${delay}ms, transform ${duration} ${elasticBezier} ${delay}ms`;
+      } else {
+        el.style.transition = `opacity ${duration} ${elasticBezier} ${delay}ms, transform ${duration} ${elasticBezier} ${delay}ms`;
+      }
+    });
+
+    // Trigger após pintar
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        revealEls.forEach(el => el.classList.add('revealed'));
+      });
+    });
+  }
+
+  /* ─────────────────────────────────────────────────
+     SCROLL REVEAL para seções abaixo da dobra
+  ───────────────────────────────────────────────── */
+  function initScrollReveal() {
+    const sections = document.querySelectorAll('.reveal-section');
+    if (!sections.length) return;
+
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          obs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.08 });
+
+    sections.forEach(el => obs.observe(el));
+  }
+
+  /* ─────────────────────────────────────────────────
+     PILAR 2: ENDLESSTOOLS — PROFUNDIDADE PSEUDO-3D
+     Tilt 3D sutil no hero card que segue o mouse (Desktop)
+     e reage ao acelerômetro/scroll (Mobile).
+  ───────────────────────────────────────────────── */
+  function initCardTilt3D() {
+    const wrap = document.getElementById('hero-card-wrap');
+    const card = document.getElementById('hero-card');
+    const hero = document.querySelector('.hero');
+    if (!wrap || !card || !hero) return;
+
+    const MAX_TILT = 12;  // graus máximos
+    const LERP     = 0.06; // suavidade (lower = smoother)
+
+    let targetX = 0, targetY = 0;
+    let currentX = 0, currentY = 0;
+    let ticking = false;
+
+    // ── Desktop: mousemove com interpolação suave ──
+    if (!isMobile()) {
+      hero.addEventListener('mousemove', (e) => {
+        const r  = wrap.getBoundingClientRect();
+        const cx = r.left + r.width / 2;
+        const cy = r.top + r.height / 2;
+        // Normalizar entre -1 e 1
+        const nx = (e.clientX - cx) / (r.width / 2);
+        const ny = (e.clientY - cy) / (r.height / 2);
+        // Clampar
+        targetY = Math.max(-1, Math.min(1, nx)) * MAX_TILT;
+        targetX = Math.max(-1, Math.min(1, ny)) * -MAX_TILT;
+        wrap.classList.add('tilting');
+      });
+
+      hero.addEventListener('mouseleave', () => {
+        targetX = 0;
+        targetY = 0;
+        // Delay para remover a classe tilting e restaurar a flutuação
+        setTimeout(() => {
+          if (targetX === 0 && targetY === 0 && Math.abs(currentX) < 0.5 && Math.abs(currentY) < 0.5) {
+            wrap.classList.remove('tilting');
+          }
+        }, 800);
+      });
+    }
+
+    // ── Mobile: acelerômetro (se disponível) ou scroll parallax ──
+    if (isMobile()) {
+      let hasAccelerometer = false;
+
+      // Tentar acelerômetro
+      if (window.DeviceOrientationEvent) {
+        const onOrientation = (e) => {
+          if (e.gamma !== null && e.beta !== null) {
+            hasAccelerometer = true;
+            targetY = Math.max(-1, Math.min(1, (e.gamma || 0) / 30)) * MAX_TILT * 0.6;
+            targetX = Math.max(-1, Math.min(1, ((e.beta || 0) - 45) / 30)) * -MAX_TILT * 0.6;
+            wrap.classList.add('tilting');
+          }
+        };
+
+        // iOS 13+ precisa de permissão
+        if (typeof DeviceOrientationEvent.requestPermission === 'function') {
+          // Acelerômetro só ativa com gesto do usuário — usamos scroll como fallback
+        } else {
+          window.addEventListener('deviceorientation', onOrientation, { passive: true });
+        }
+      }
+
+      // Fallback mobile: scroll-linked tilt sutil
+      if (!hasAccelerometer) {
+        window.addEventListener('scroll', () => {
+          const r = wrap.getBoundingClientRect();
+          const viewH = window.innerHeight;
+          const progress = (r.top + r.height / 2) / viewH; // 0 a 1
+          targetX = (progress - 0.5) * MAX_TILT * 0.4;
+          wrap.classList.add('tilting');
+        }, { passive: true });
+      }
+    }
+
+    // ── Loop de animação com interpolação linear ──
+    function tick() {
+      currentX += (targetX - currentX) * LERP;
+      currentY += (targetY - currentY) * LERP;
+
+      // Arredondar para evitar sub-pixel jitter
+      const rx = Math.round(currentX * 100) / 100;
+      const ry = Math.round(currentY * 100) / 100;
+
+      wrap.style.transform = `perspective(800px) rotateX(${rx}deg) rotateY(${ry}deg)`;
+
+      // Efeito de luz/sombra dinâmica baseado no tilt
+      const shadowX = ry * 0.5;
+      const shadowY = rx * -0.5;
+      card.style.boxShadow = `${shadowX}px ${8 + shadowY}px 48px rgba(0,0,0,${0.11 + Math.abs(rx + ry) * 0.003})`;
+
+      requestAnimationFrame(tick);
+    }
+    tick();
+  }
+
+  /* ─────────────────────────────────────────────────
+     PILAR 1: MAGIC ANIMATOR — ELASTICIDADE
+     Magnetic CTA com pull elástico + ripple nos botões
+  ───────────────────────────────────────────────── */
+  function initMagneticCTA() {
+    const cta = document.getElementById('hero-cta');
+    if (!cta || isMobile()) return;
+
+    const PULL = 0.3;  // intensidade do pull magnético
+    const ELASTIC = 'cubic-bezier(0.34, 1.56, 0.64, 1)';
+
+    cta.addEventListener('mousemove', (e) => {
+      const r  = cta.getBoundingClientRect();
+      const cx = r.left + r.width / 2;
+      const cy = r.top + r.height / 2;
+      const dx = (e.clientX - cx) * PULL;
+      const dy = (e.clientY - cy) * PULL;
+      cta.style.transition = 'transform 0.1s linear';
+      cta.style.transform = `translate(${dx}px, ${dy}px) scale(1.05)`;
+    });
+
+    cta.addEventListener('mouseleave', () => {
+      cta.style.transition = `transform 0.5s ${ELASTIC}`;
+      cta.style.transform = '';
+    });
+  }
+
+  function initRipple() {
+    document.querySelectorAll('.btn').forEach(btn => {
+      btn.addEventListener('click', function(e) {
+        const r   = btn.getBoundingClientRect();
+        const sz  = Math.max(r.width, r.height);
+        const x   = e.clientX - r.left - sz / 2;
+        const y   = e.clientY - r.top - sz / 2;
+        const rip = document.createElement('span');
+        rip.className = 'ripple-wave';
+        rip.style.cssText = `width:${sz}px;height:${sz}px;left:${x}px;top:${y}px`;
+        btn.appendChild(rip);
+        rip.addEventListener('animationend', () => rip.remove());
+      });
+    });
+  }
+
+  /* ─────────────────────────────────────────────────
+     CALCULADORA (idêntica ao original)
+  ───────────────────────────────────────────────── */
+  function initCalculadora() {
+    const RATES = { super: 0.04, farm: 0.08, comb: 0.03, rest: 0.06 };
+    const IDS   = ['super', 'farm', 'comb', 'rest'];
+
+    function fmt(v) { return 'R$ ' + v.toFixed(2).replace('.', ','); }
+
+    function calcular() {
+      let total = 0;
+      IDS.forEach(id => {
+        const sl = document.getElementById('sl-' + id);
+        if (!sl) return;
+        const val  = +sl.value;
+        const cash = val * RATES[id];
+        total += cash;
+        const cr  = document.getElementById('cr-'  + id);
+        const lbl = document.getElementById('lbl-' + id);
+        if (cr)  cr.textContent  = fmt(cash);
+        if (lbl) lbl.textContent = 'R$ ' + val.toLocaleString('pt-BR');
+      });
+      const totalEl = document.getElementById('calc-total');
+      const anualEl = document.getElementById('calc-anual');
+      if (totalEl) totalEl.textContent = fmt(total);
+      if (anualEl) anualEl.textContent = fmt(total * 12);
+    }
+
+    IDS.forEach(id => {
+      const el = document.getElementById('sl-' + id);
+      if (el) el.addEventListener('input', calcular);
+    });
+    calcular();
+  }
+
+  /* ─────────────────────────────────────────────────
+     MOBILE MENU
+  ───────────────────────────────────────────────── */
+  function initMobileMenu() {
+    const menuBtn = document.getElementById('menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const closeMenuBtn = document.getElementById('mobile-menu-close');
+    if (menuBtn && mobileMenu && closeMenuBtn) {
+      menuBtn.addEventListener('click', () => mobileMenu.classList.add('active'));
+      closeMenuBtn.addEventListener('click', () => mobileMenu.classList.remove('active'));
+    }
+  }
+
+  /* ─────────────────────────────────────────────────
+     INIT — Orquestração
+  ───────────────────────────────────────────────── */
+  function init() {
+    initCoreografia();    // Antlii — staggered reveal
+    initScrollReveal();   // Seções abaixo da dobra
+    initCardTilt3D();     // Endlesstools — pseudo-3D tilt
+    initMagneticCTA();    // Magic Animator — pull magnético
+    initRipple();         // Magic Animator — ripple wave
+    initCalculadora();    // Calculadora funcional
+    initMobileMenu();     // Menu mobile
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+
+})();
+</script>
+
+</body>
+</html>

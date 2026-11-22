@@ -1,0 +1,2083 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Dashboard — +PROMO</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap"
+    rel="stylesheet">
+
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#F7C500">
+  <meta name="mobile-web-app-capable" content="yes">
+
+  <link rel="stylesheet" href="/css/style.css?v=1.4">
+  <link rel="stylesheet" href="/css/promo-elite.css?v=1.4">
+  <link rel="stylesheet" href="/css/dashboard.css?v=3.0.1">
+
+  <!-- html5-qrcode — Scanner NFC-e -->
+  <script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
+
+  <!-- ============================================================
+       VITRINE IA — Clean Tech CSS (gerado pelo Lovable, integrado aqui)
+       Escopo principal via #view-catalogo; tokens próprios isolados.
+  ============================================================ -->
+  <style>
+    /* =========================================================
+   VITRINE IA — +PROMO  ·  Clean Tech (Vanilla CSS, zero frameworks)
+   ========================================================= */
+
+    :root {
+      --vt-bg: #0E0E12;
+      --vt-surface: #15151B;
+      --vt-surface-2: #1B1C24;
+      --vt-text: #F5F5F7;
+      --vt-text-2: #9BA0AB;
+      --vt-text-3: #6B6F78;
+      --vt-yellow: #F7C500;
+      --vt-yellow-soft: rgba(247, 197, 0, 0.12);
+      --vt-yellow-glow: rgba(247, 197, 0, 0.22);
+      --vt-success: #4ADE80;
+      --vt-border: 1px solid rgba(255, 255, 255, 0.05);
+      --vt-border-hover: 1px solid rgba(255, 255, 255, 0.1);
+      --vt-shadow-1: 0 1px 2px rgba(0, 0, 0, .35), 0 0 0 1px rgba(255, 255, 255, .02);
+      --vt-shadow-2: 0 6px 24px rgba(0, 0, 0, .45), 0 1px 2px rgba(0, 0, 0, .35), 0 0 0 1px rgba(255, 255, 255, .03);
+      --vt-shadow-3: 0 24px 48px rgba(0, 0, 0, .55), 0 8px 16px rgba(0, 0, 0, .4), 0 0 0 1px rgba(255, 255, 255, .04);
+      --vt-radius: 16px;
+      --vt-radius-lg: 20px;
+      --vt-ease: cubic-bezier(.22, 1, .36, 1);
+      --vt-font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, sans-serif;
+      --vt-font-mono: "JetBrains Mono", ui-monospace, "SF Mono", monospace;
+    }
+
+    /* RESET — escopo restrito à view para não afetar o resto do dashboard */
+    #view-catalogo,
+    #view-catalogo *,
+    #view-catalogo *::before,
+    #view-catalogo *::after {
+      box-sizing: border-box;
+    }
+
+    /* ================== VIEW WRAPPER ================== */
+    #view-catalogo {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 32px 20px 56px;
+      font-family: var(--vt-font-sans);
+      color: var(--vt-text);
+    }
+
+    /* ================== HEADER ================== */
+    .vitrine-head {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 24px;
+      margin-bottom: 28px;
+      flex-wrap: wrap;
+    }
+
+    .vitrine-eyebrow {
+      margin: 0 0 8px;
+      font-size: 11px;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--vt-text-3);
+      font-weight: 600;
+    }
+
+    .vitrine-title {
+      margin: 0;
+      font-size: clamp(28px, 4vw, 40px);
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      font-weight: 600;
+      color: var(--vt-text);
+    }
+
+    .vitrine-title .accent {
+      color: var(--vt-yellow);
+    }
+
+    .vitrine-sub {
+      margin: 10px 0 0;
+      color: var(--vt-text-2);
+      font-size: 14px;
+    }
+
+    .vitrine-head-r {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    /* GEO PILL */
+    .geo-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      height: 36px;
+      padding: 0 12px;
+      border-radius: 999px;
+      background: var(--vt-surface);
+      border: var(--vt-border);
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--vt-text-2);
+      transition: border-color .24s var(--vt-ease), color .24s var(--vt-ease);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .geo-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--vt-text-3);
+      box-shadow: 0 0 0 0 transparent;
+      transition: background .24s var(--vt-ease), box-shadow .24s var(--vt-ease);
+    }
+
+    .geo-pill[data-state="locating"] .geo-dot {
+      background: var(--vt-yellow);
+      animation: geo-pulse 1.2s ease-in-out infinite;
+    }
+
+    .geo-pill[data-state="gps"] {
+      color: var(--vt-text);
+      border: 1px solid rgba(74, 222, 128, .25);
+    }
+
+    .geo-pill[data-state="gps"] .geo-dot {
+      background: var(--vt-success);
+      box-shadow: 0 0 0 4px rgba(74, 222, 128, .15);
+    }
+
+    .geo-pill[data-state="fallback"] .geo-dot {
+      background: var(--vt-text-3);
+    }
+
+    .geo-pill[data-state="denied"] .geo-dot {
+      background: #ef4444;
+    }
+
+    @keyframes geo-pulse {
+
+      0%,
+      100% {
+        opacity: 1;
+      }
+
+      50% {
+        opacity: .35;
+      }
+    }
+
+    /* REFRESH BUTTON */
+    .btn-refresh {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      height: 36px;
+      padding: 0 14px;
+      border-radius: 10px;
+      border: var(--vt-border);
+      background: var(--vt-surface);
+      color: var(--vt-text);
+      font-family: inherit;
+      font-size: 12px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: transform .24s var(--vt-ease), border-color .24s var(--vt-ease), background .24s var(--vt-ease);
+    }
+
+    .btn-refresh:hover {
+      border: var(--vt-border-hover);
+      background: var(--vt-surface-2);
+      transform: translateY(-1px);
+    }
+
+    .btn-refresh:active {
+      transform: translateY(0);
+    }
+
+    .btn-refresh:disabled {
+      opacity: .5;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .btn-refresh svg {
+      transition: transform .6s var(--vt-ease);
+    }
+
+    .btn-refresh:hover svg {
+      transform: rotate(180deg);
+    }
+
+    /* ================== BENTO GRID ================== */
+    .bento {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      grid-auto-rows: 180px;
+      gap: 14px;
+    }
+
+    @media (min-width: 720px) {
+      .bento {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        grid-auto-rows: 200px;
+        gap: 16px;
+      }
+    }
+
+    /* CELL */
+    .bento-cell {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 18px;
+      border-radius: var(--vt-radius);
+      background: var(--vt-surface);
+      border: var(--vt-border);
+      box-shadow: var(--vt-shadow-1);
+      overflow: hidden;
+      isolation: isolate;
+      cursor: pointer;
+      opacity: 0;
+      transform: translateY(8px);
+      animation: cell-enter .5s var(--vt-ease) forwards;
+      animation-delay: var(--enter-delay, 0ms);
+      transition:
+        transform .28s var(--vt-ease),
+        border-color .28s var(--vt-ease),
+        box-shadow .28s var(--vt-ease),
+        background .28s var(--vt-ease);
+    }
+
+    .bento-cell::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      background: radial-gradient(420px circle at var(--mx, 50%) var(--my, 0%),
+          var(--vt-yellow-soft), transparent 60%);
+      opacity: 0;
+      transition: opacity .28s var(--vt-ease);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .bento-cell>* {
+      position: relative;
+      z-index: 1;
+    }
+
+    .bento-cell:hover {
+      transform: translateY(-3px);
+      border: var(--vt-border-hover);
+      box-shadow: var(--vt-shadow-3);
+      background: var(--vt-surface-2);
+    }
+
+    .bento-cell:hover::before {
+      opacity: 1;
+    }
+
+    @keyframes cell-enter {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* FEATURED — primeira célula ocupa 2x2 em desktop */
+    @media (min-width: 720px) {
+      .bento-cell.is-featured {
+        grid-column: span 2;
+        grid-row: span 2;
+        padding: 26px;
+      }
+
+      .bento-cell.is-featured .cell-name {
+        font-size: 22px;
+      }
+
+      .bento-cell.is-featured .cb-num {
+        font-size: 56px;
+      }
+    }
+
+    /* NEAR — glow yellow sutil quando < 1km */
+    .bento-cell.is-near {
+      border: 1px solid rgba(247, 197, 0, .22);
+      box-shadow:
+        var(--vt-shadow-2),
+        0 0 0 1px rgba(247, 197, 0, .08),
+        0 12px 32px -12px var(--vt-yellow-glow);
+    }
+
+    .bento-cell.is-near .cell-distance {
+      color: var(--vt-yellow);
+      border-color: rgba(247, 197, 0, .25);
+    }
+
+    /* CELL CONTENT */
+    .cell-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .cell-icon {
+      display: inline-grid;
+      place-items: center;
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      background: var(--vt-surface-2);
+      border: var(--vt-border);
+      color: var(--vt-text);
+      transition: color .24s var(--vt-ease), background .24s var(--vt-ease);
+    }
+
+    .bento-cell:hover .cell-icon {
+      color: var(--vt-yellow);
+      background: var(--vt-yellow-soft);
+    }
+
+    .cell-icon svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    .cell-distance {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      height: 24px;
+      padding: 0 9px;
+      border-radius: 999px;
+      border: var(--vt-border);
+      font-size: 11px;
+      font-weight: 600;
+      font-family: var(--vt-font-mono);
+      color: var(--vt-text-2);
+      letter-spacing: -0.01em;
+    }
+
+    .cell-mid {
+      padding: 8px 0;
+    }
+
+    .cell-name {
+      margin: 0 0 4px;
+      font-size: 16px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      color: var(--vt-text);
+      line-height: 1.2;
+    }
+
+    .cell-insight {
+      margin: 0;
+      font-size: 12px;
+      color: var(--vt-text-3);
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      font-weight: 500;
+    }
+
+    .cell-bot {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+    }
+
+    .cell-cashback {
+      display: inline-flex;
+      align-items: baseline;
+      gap: 2px;
+      color: var(--vt-yellow);
+      font-family: var(--vt-font-mono);
+      letter-spacing: -0.03em;
+      line-height: 1;
+    }
+
+    .cb-num {
+      font-size: 32px;
+      font-weight: 600;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .cb-unit {
+      font-size: 14px;
+      font-weight: 500;
+      opacity: .85;
+    }
+
+    .cell-cta {
+      display: inline-grid;
+      place-items: center;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.04);
+      border: var(--vt-border);
+      color: var(--vt-text-2);
+      transition: background .24s var(--vt-ease), color .24s var(--vt-ease), transform .28s var(--vt-ease);
+    }
+
+    .bento-cell:hover .cell-cta {
+      background: var(--vt-yellow);
+      color: #0E0E12;
+      transform: translateX(2px);
+    }
+
+    /* ================== SKELETON SHIMMER ================== */
+    .bento-cell.skeleton {
+      cursor: default;
+      background:
+        linear-gradient(90deg,
+          rgba(255, 255, 255, 0.02) 0%,
+          rgba(255, 255, 255, 0.05) 50%,
+          rgba(255, 255, 255, 0.02) 100%);
+      background-size: 200% 100%;
+      animation: shimmer 1.4s linear infinite, cell-enter .5s var(--vt-ease) forwards;
+    }
+
+    .bento-cell.skeleton:hover {
+      transform: translateY(0);
+      background:
+        linear-gradient(90deg,
+          rgba(255, 255, 255, 0.02) 0%,
+          rgba(255, 255, 255, 0.05) 50%,
+          rgba(255, 255, 255, 0.02) 100%);
+    }
+
+    .bento-cell.skeleton::before {
+      display: none;
+    }
+
+    @keyframes shimmer {
+      0% {
+        background-position: 200% 0;
+      }
+
+      100% {
+        background-position: -200% 0;
+      }
+    }
+
+    /* EMPTY */
+    .bento-empty {
+      grid-column: 1 / -1;
+      padding: 40px;
+      text-align: center;
+      color: var(--vt-text-3);
+      border: 1px dashed rgba(255, 255, 255, 0.08);
+      border-radius: var(--vt-radius);
+      background: var(--vt-surface);
+    }
+
+    /* ================== FOOT ================== */
+    .vitrine-foot {
+      margin: 28px 0 0;
+      font-size: 12px;
+      color: var(--vt-text-3);
+      text-align: center;
+    }
+
+    /* ================== A11Y: REDUCED MOTION ================== */
+    @media (prefers-reduced-motion: reduce) {
+
+      #view-catalogo *,
+      #view-catalogo *::before,
+      #view-catalogo *::after {
+        animation-duration: .001ms !important;
+        transition-duration: .001ms !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div id="page-loader">
+    <div class="loader-brand">
+      <div class="brand-pill"><svg viewBox="0 0 100 100" width="28" height="28" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="goldGrad-4" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#FFF275"/><stop offset="100%" stop-color="#F7C500"/></linearGradient></defs><circle cx="53" cy="53" r="44" fill="#C49B00"/><circle cx="48" cy="48" r="44" fill="url(#goldGrad-4)"/><path d="M40 26 h16 v16 h16 v16 h-16 v16 h-16 v-16 h-16 v-16 h16 z" fill="rgba(196,155,0,0.4)" transform="translate(3,4)"/><rect x="40" y="24" width="16" height="48" rx="1.5" fill="#1A1A1A"/><rect x="24" y="40" width="48" height="16" rx="1.5" fill="#1A1A1A"/><rect x="40" y="24" width="8" height="48" rx="1.5" fill="#3D3D3D"/><rect x="24" y="40" width="48" height="8" rx="1.5" fill="#3D3D3D"/></svg><span class="brand-pill-text">PROMO</span></div>
+    </div>
+  </div>
+  <div id="toast-container"></div>
+
+  <!-- â•â•â•â• OVERLAY: VERIFICACAO DE E-MAIL (Glassmorphism Gate) â•â•â•â• -->
+  <div class="verify-gate" id="verify-gate" style="display:none">
+    <div class="verify-card">
+      <div class="verify-icon-wrap">
+        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="4" width="20" height="16" rx="2" />
+          <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+        </svg>
+      </div>
+      <h2 class="verify-title">Verifique seu e-mail</h2>
+      <p class="verify-sub">Enviamos um link de verificacao para:</p>
+      <div class="verify-email" id="verify-email-display">carregando...</div>
+      <p class="verify-desc">Abra sua caixa de entrada (ou pasta de spam) e clique no link para ativar sua conta. Apos
+        confirmar, clique em "Verificar agora".</p>
+      <div class="verify-actions">
+        <button class="btn btn-yellow btn-full btn-lg" id="btn-verify-check" type="button">Verificar agora</button>
+        <button class="btn btn-ghost btn-full" id="btn-verify-resend" type="button">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12a9 9 0 1 1-3-6.7" />
+            <path d="M21 4v5h-5" />
+          </svg>
+          Reenviar link de verificacao
+        </button>
+      </div>
+      <div class="verify-feedback" id="verify-feedback"></div>
+      <div class="verify-footer">
+        <button class="verify-logout" id="btn-verify-logout" type="button">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+            <polyline points="16 17 21 12 16 7" />
+            <line x1="21" y1="12" x2="9" y2="12" />
+          </svg>
+          Sair e usar outra conta
+        </button>
+      </div>
+      <div class="verify-seal">
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+        </svg>
+        Verificacao de identidade requerida pela politica de seguranca
+      </div>
+    </div>
+  </div>
+
+  <div class="sidebar-backdrop" id="sidebar-backdrop"></div>
+
+  <div id="print-area" style="display:none">
+    <div class="print-header">
+      <div class="print-logo">+PROMO<span>Comprovante</span></div>
+      <div class="print-titulo">Resgate Confirmado</div>
+    </div>
+    
+    <div class="print-valor" id="print-valor">R$ 0,00</div>
+    
+    <div class="print-details">
+      <div class="print-row"><span>Método de Transferência</span><span id="print-metodo">Pix</span></div>
+      <div class="print-row"><span>Data da Solicitação</span><span id="print-data"></span></div>
+      <div class="print-row"><span>Prazo de Processamento</span><span>Até 3 dias úteis</span></div>
+      <div class="print-row"><span>Titular da Conta</span><span id="print-nome"></span></div>
+      <div class="print-row"><span>Plano +PROMO Ativo</span><span id="print-plano"></span></div>
+    </div>
+    
+    <div class="print-protocolo-box">
+      <div class="print-protocolo-lbl">Protocolo da Transação</div>
+      <div class="print-protocolo" id="print-protocolo">PROMO-000000</div>
+    </div>
+    
+    <div class="print-footer">
+      Este comprovante é válido como recibo de solicitação de resgate na plataforma +PROMO.<br>
+      O crédito será processado no prazo estipulado.<br><br>
+      <strong>maispromo.site</strong> · sacmaispromo@gmail.com
+    </div>
+  </div>
+
+  <!-- ---- MODAL SAQUE ---- -->
+  <div class="modal-overlay" id="modal-saque">
+    <div class="modal">
+      <div class="modal-header">
+        <div class="modal-title">Resgatar saldo</div>
+        <button class="modal-close" id="close-saque" aria-label="Fechar"></button>
+      </div>
+      <div class="saque-saldo">
+        <div class="saque-val" id="saque-val-display">R$ 0,00</div>
+        <div class="saque-lbl">Saldo disponível para resgate</div>
+      </div>
+
+      <!-- Valor customizável -->
+      <div class="saque-valor-wrap">
+        <label class="form-label">Quanto você quer sacar?</label>
+        <div class="saque-valor-input-row">
+          <span class="saque-valor-prefix">R$</span>
+          <input type="number" id="saque-valor-input" class="form-input saque-valor-field"
+                 placeholder="0,00" min="0" step="0.01" inputmode="decimal">
+          <button type="button" class="saque-valor-max-btn" id="btn-saque-valor-max" title="Sacar tudo">MAX</button>
+        </div>
+        <div class="saque-valor-feedback" id="saque-valor-feedback"></div>
+        <div class="saque-valor-hint">
+          Mínimo: <strong id="saque-min-hint">R$ 10,00</strong> ·
+          Máximo diário: <strong id="saque-max-hint">R$ 500,00</strong>
+        </div>
+      </div>
+
+      <p style="font-size:14px;font-weight:600;color:var(--text-secondary);margin-bottom:12px">Como você quer receber?</p>
+      <div class="saque-opts" id="saque-opts">
+        <div class="saque-opt selected" data-metodo="pix">
+          <div class="saque-opt-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+              fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+            </svg></div>
+          <div class="saque-opt-label">Pix</div>
+          <div class="saque-opt-sub">Instante</div>
+        </div>
+        <div class="saque-opt" data-metodo="ted">
+          <div class="saque-opt-icon"></div>
+          <div class="saque-opt-label">TED</div>
+          <div class="saque-opt-sub">1 dia útil</div>
+        </div>
+        <div class="saque-opt" data-metodo="desconto">
+          <div class="saque-opt-icon"></div>
+          <div class="saque-opt-label">Desconto</div>
+          <div class="saque-opt-sub">Próxima fatura</div>
+        </div>
+      </div>
+      <div class="form-group" id="saque-chave-wrap">
+        <label class="form-label">Chave Pix</label>
+        <input class="form-input" id="saque-chave" placeholder="CPF, e-mail ou telefone">
+      </div>
+      <button class="btn btn-yellow btn-full btn-lg" id="btn-confirmar-saque" disabled>Confirmar resgate ↗</button>
+      <p style="font-size:12px;color:var(--text-muted);text-align:center;margin-top:10px">
+        Saldo mínimo por plano: R$30 (Basic) · R$20 (Plus) · R$10 (Premium)
+      </p>
+    </div>
+  </div>
+
+  <!-- ---- MODAL MFA PIN VERIFICATION ---- -->
+  <div class="modal-overlay mfa-overlay" id="modal-mfa-pin">
+    <div class="modal mfa-modal">
+      <div class="modal-header">
+        <div class="modal-title mfa-title">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+          </svg>
+          Verificação de Segurança
+        </div>
+        <button class="modal-close" id="close-mfa-pin" aria-label="Fechar"></button>
+      </div>
+
+      <div class="mfa-body">
+        <div class="mfa-icon-wrap">
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="4" width="20" height="16" rx="2" />
+            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+          </svg>
+        </div>
+        <p class="mfa-instruction">
+          Enviamos um código de 6 dígitos para o seu e-mail cadastrado. Insira o código abaixo para confirmar o saque.
+        </p>
+
+        <div class="mfa-pin-container" id="mfa-pin-container">
+          <input type="text" maxlength="1" class="mfa-pin-input" data-pin-index="0" inputmode="numeric" autocomplete="off" aria-label="Dígito 1">
+          <input type="text" maxlength="1" class="mfa-pin-input" data-pin-index="1" inputmode="numeric" autocomplete="off" aria-label="Dígito 2">
+          <input type="text" maxlength="1" class="mfa-pin-input" data-pin-index="2" inputmode="numeric" autocomplete="off" aria-label="Dígito 3">
+          <div class="mfa-pin-separator"></div>
+          <input type="text" maxlength="1" class="mfa-pin-input" data-pin-index="3" inputmode="numeric" autocomplete="off" aria-label="Dígito 4">
+          <input type="text" maxlength="1" class="mfa-pin-input" data-pin-index="4" inputmode="numeric" autocomplete="off" aria-label="Dígito 5">
+          <input type="text" maxlength="1" class="mfa-pin-input" data-pin-index="5" inputmode="numeric" autocomplete="off" aria-label="Dígito 6">
+        </div>
+
+        <div class="mfa-feedback" id="mfa-feedback"></div>
+
+        <button class="btn btn-yellow btn-full btn-lg mfa-confirm-btn" id="btn-mfa-confirm" disabled>
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+            <polyline points="9 12 12 15 16 10" />
+          </svg>
+          Confirmar Saque
+        </button>
+
+        <button class="btn btn-ghost btn-full mfa-cancel-btn" id="btn-mfa-cancel">Cancelar</button>
+
+        <button class="btn btn-ghost btn-full mfa-resend-btn" id="btn-mfa-resend" disabled>
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="23 4 23 10 17 10" />
+            <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10" />
+          </svg>
+          <span id="mfa-resend-label">Reenviar código em <strong id="mfa-resend-timer">60</strong>s</span>
+        </button>
+
+        <div class="mfa-seal">
+          <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+            <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+          </svg>
+          Transação protegida por verificação em duas etapas
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ---- MODAL COMPROVANTE ---- -->
+  <div class="modal-overlay" id="modal-comprovante">
+    <div class="modal recibo-modal">
+      <div class="modal-header">
+        <button class="modal-close" id="close-comprovante" aria-label="Fechar"></button>
+      </div>
+      <div class="recibo-content-wrap">
+        <div class="recibo-header">
+          <div class="recibo-logo">
+            <div class="mark">+</div>+PROMO
+          </div>
+          <div class="recibo-titulo">Comprovante de Resgate</div>
+          <div class="recibo-valor" id="comp-valor">R$ 0,00</div>
+        </div>
+        
+        <div class="recibo-divider"></div>
+        
+        <div class="recibo-details">
+          <div class="recibo-linha"><span class="recibo-linha-label">Método</span><span class="recibo-linha-val" id="comp-metodo">Pix</span></div>
+          <div class="recibo-linha"><span class="recibo-linha-label">Data</span><span class="recibo-linha-val" id="comp-data"></span></div>
+          <div class="recibo-linha"><span class="recibo-linha-label">Prazo</span><span class="recibo-linha-val" style="color:#18B96A">Até 3 dias úteis</span></div>
+          <div class="recibo-linha"><span class="recibo-linha-label">Titular</span><span class="recibo-linha-val" id="comp-nome">—</span></div>
+          <div class="recibo-linha"><span class="recibo-linha-label">Plano</span><span class="recibo-linha-val" id="comp-plano">—</span></div>
+        </div>
+        
+        <div class="recibo-protocolo-wrap">
+          <div class="recibo-protocolo-lbl">Protocolo da Transação</div>
+          <div class="recibo-protocolo" id="comp-protocolo">PROMO-000000</div>
+        </div>
+        
+        <div class="recibo-footer-text">
+          Dúvidas sobre o seu resgate? Entre em contato com <strong><a href="mailto:sacmaispromo@gmail.com">sacmaispromo@gmail.com</a></strong>
+        </div>
+      </div>
+      
+      <div class="recibo-btns">
+        <button class="btn btn-black" id="btn-imprimir-comprovante">Baixar PDF</button>
+        <button class="btn btn-ghost" id="close-comprovante-2">Fechar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ---- MODAL DEMO ---- -->
+  <div class="modal-overlay" id="modal-demo">
+    <div class="modal">
+      <div class="modal-header">
+        <div class="modal-title"> Modo Apresentação</div>
+        <button class="modal-close" id="close-demo" aria-label="Fechar"></button>
+      </div>
+      <p style="font-size:14px;color:var(--text-muted);line-height:1.6;margin-bottom:4px">
+        Configure os dados de demonstração do dashboard.
+      </p>
+      <div class="demo-modal-grid">
+        <div><label class="demo-label">Cashback (R$)</label><input type="number" class="demo-input" id="d-cashback"
+            value="234.50"></div>
+        <div><label class="demo-label">Milhas</label><input type="number" class="demo-input" id="d-milhas" value="4820">
+        </div>
+        <div><label class="demo-label">Supermercado (R$)</label><input type="number" class="demo-input" id="d-super"
+            value="600"></div>
+        <div><label class="demo-label">Farmácia (R$)</label><input type="number" class="demo-input" id="d-farm"
+            value="300"></div>
+        <div><label class="demo-label">Restaurantes (R$)</label><input type="number" class="demo-input" id="d-rest"
+            value="400"></div>
+        <div><label class="demo-label">Combustível (R$)</label><input type="number" class="demo-input" id="d-comb"
+            value="250"></div>
+        <div><label class="demo-label">Pontos de nível</label><input type="number" class="demo-input" id="d-pontos"
+            value="620"></div>
+        <div><label class="demo-label">Plano ativo</label>
+          <select class="demo-select" id="d-plano">
+            <option value="basic">Plano Basic</option>
+            <option value="plus" selected>Plano Plus</option>
+            <option value="premium">Plano Premium</option>
+          </select>
+        </div>
+      </div>
+      <div class="demo-result" id="demo-preview"></div>
+      <div style="display:flex;gap:10px;margin-top:16px">
+        <button class="btn btn-yellow btn-full" id="btn-aplicar-demo">Aplicar dados ↗</button>
+        <button class="btn btn-ghost" id="btn-resetar-demo" style="white-space:nowrap">Dados reais</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ---- APP ---- -->
+  <div class="app">
+
+    <!-- ---- SIDEBAR ---- -->
+    <div class="sidebar" id="sidebar">
+      <div class="sb-brand">
+        <div class="brand-pill"><svg viewBox="0 0 100 100" width="28" height="28" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="goldGrad-5" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#FFF275"/><stop offset="100%" stop-color="#F7C500"/></linearGradient></defs><circle cx="53" cy="53" r="44" fill="#C49B00"/><circle cx="48" cy="48" r="44" fill="url(#goldGrad-5)"/><path d="M40 26 h16 v16 h16 v16 h-16 v16 h-16 v-16 h-16 v-16 h16 z" fill="rgba(196,155,0,0.4)" transform="translate(3,4)"/><rect x="40" y="24" width="16" height="48" rx="1.5" fill="#1A1A1A"/><rect x="24" y="40" width="48" height="16" rx="1.5" fill="#1A1A1A"/><rect x="40" y="24" width="8" height="48" rx="1.5" fill="#3D3D3D"/><rect x="24" y="40" width="48" height="8" rx="1.5" fill="#3D3D3D"/></svg><span class="brand-pill-text">PROMO</span></div>
+      </div>
+      <div class="sb-nav">
+        <div class="sb-section" style="margin-top:6px">Descobertas</div>
+
+        <button class="sb-item catalogo-cta" data-view="catalogo">
+          <span class="sb-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24">
+              <path d="M12 2L2 7l10 5 10-5-10-5z" />
+              <path d="M2 17l10 5 10-5" />
+              <path d="M2 12l10 5 10-5" />
+            </svg>
+          </span>
+          Vitrine para Mim
+          <span class="sb-badge">Novo</span>
+        </button>
+
+        <div class="sb-section">Menu</div>
+
+        <button class="sb-item on" data-view="dashboard">
+          <span class="sb-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24">
+              <rect x="3" y="3" width="7" height="7" rx="1.5" />
+              <rect x="14" y="3" width="7" height="7" rx="1.5" />
+              <rect x="14" y="14" width="7" height="7" rx="1.5" />
+              <rect x="3" y="14" width="7" height="7" rx="1.5" />
+            </svg>
+          </span>
+          Dashboard
+        </button>
+
+        <a href="/parceiros" class="sb-item">
+          <span class="sb-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24">
+              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+              <polyline points="9 22 9 12 15 12 15 22" />
+            </svg>
+          </span>
+          Parceiros
+        </a>
+
+        <a href="/planos" class="sb-item">
+          <span class="sb-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24">
+              <polygon
+                points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+            </svg>
+          </span>
+          Planos
+        </a>
+
+        <a href="/simulador" class="sb-item">
+          <span class="sb-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24">
+              <rect x="4" y="2" width="16" height="20" rx="2" />
+              <line x1="8" y1="10" x2="16" y2="10" />
+              <line x1="8" y1="14" x2="16" y2="14" />
+              <line x1="8" y1="18" x2="12" y2="18" />
+            </svg>
+          </span>
+          Simulador
+        </a>
+
+        <div class="sb-section">Minha conta</div>
+
+        <button class="sb-item" data-view="cupons">
+          <span class="sb-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24">
+              <path d="M20 12V22H4V12" />
+              <path d="M22 7H2v5h20V7z" />
+              <path d="M12 22V7" />
+              <path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z" />
+              <path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z" />
+            </svg>
+          </span>
+          Cupons
+          <span class="sb-badge" id="sb-cupons-badge">2</span>
+        </button>
+
+        <button class="sb-item" data-view="extrato">
+          <span class="sb-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24">
+              <line x1="8" y1="6" x2="21" y2="6" />
+              <line x1="8" y1="12" x2="21" y2="12" />
+              <line x1="8" y1="18" x2="21" y2="18" />
+              <line x1="3" y1="6" x2="3.01" y2="6" />
+              <line x1="3" y1="12" x2="3.01" y2="12" />
+              <line x1="3" y1="18" x2="3.01" y2="18" />
+            </svg>
+          </span>
+          Extrato
+        </button>
+
+        <button class="sb-item scanner-cta" id="sb-btn-scanner">
+          <span class="sb-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24">
+              <path d="M3 7V5a2 2 0 0 1 2-2h2" />
+              <path d="M17 3h2a2 2 0 0 1 2 2v2" />
+              <path d="M21 17v2a2 2 0 0 1-2 2h-2" />
+              <path d="M7 21H5a2 2 0 0 1-2-2v-2" />
+              <line x1="7" y1="12" x2="17" y2="12" />
+            </svg>
+          </span>
+          Ler Nota Fiscal
+          <span class="sb-badge">Novo</span>
+        </button>
+
+        <button class="sb-item" data-view="resgatar">
+          <span class="sb-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24">
+              <circle cx="12" cy="12" r="10" />
+              <polyline points="8 12 12 16 16 12" />
+              <line x1="12" y1="8" x2="12" y2="16" />
+            </svg>
+          </span>
+          Resgatar
+        </button>
+
+        <button class="sb-item" data-view="notificacoes">
+          <span class="sb-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24">
+              <polyline points="22 12 16 12 14 15 10 15 8 12 2 12" />
+              <path
+                d="M5.45 5.11L2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z" />
+            </svg>
+          </span>
+          Caixa de Entrada
+          <span class="sb-badge sb-badge-red" id="sb-notif-badge" style="display:none">0</span>
+        </button>
+
+        <button class="sb-item" data-view="indicacoes">
+          <span class="sb-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+              <circle cx="9" cy="7" r="4" />
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+              <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+            </svg>
+          </span>
+          Indicações
+          <span class="sb-badge sb-badge-green">R$15</span>
+        </button>
+
+        <button class="sb-item" data-view="seguranca">
+          <span class="sb-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+              <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+            </svg>
+          </span>
+          Segurança
+        </button>
+        
+        <!-- Mobile only demo button inside sidebar -->
+        <button class="sb-item mobile-only" id="sb-btn-open-demo" style="color: var(--yellow-d);">
+          <span class="sb-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M2 12h4l3-9 5 18 3-9h5"/>
+            </svg>
+          </span>
+          Modo Demo
+        </button>
+      </div>
+
+      <div class="sb-user">
+        <div class="sb-avatar" id="sb-avatar">?</div>
+        <div>
+          <div class="sb-uname" id="sb-nome">Carregando...</div>
+          <div class="sb-uplan" id="sb-plano">...</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ---- MAIN ---- -->
+    <div class="dash-main">
+      <div class="dash-header">
+        <div>
+          <button id="menu-toggle" aria-label="Abrir menu">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+              stroke-linecap="round">
+              <line x1="3" y1="6" x2="21" y2="6" />
+              <line x1="3" y1="12" x2="21" y2="12" />
+              <line x1="3" y1="18" x2="21" y2="18" />
+            </svg>
+          </button>
+          <div class="dash-greeting" id="dash-greeting">Olá! <svg xmlns="http://www.w3.org/2000/svg" width="16"
+              height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 11V6a2 2 0 0 0-2-2 2 2 0 0 0-2 2" />
+              <path d="M14 10V4a2 2 0 0 0-2-2 2 2 0 0 0-2 2v2" />
+              <path d="M10 10.5V6a2 2 0 0 0-2-2 2 2 0 0 0-2 2v8" />
+              <path
+                d="M18 8a2 2 0 1 1 4 0v6a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15" />
+            </svg></div>
+          <div class="dash-date" id="dash-date"></div>
+        </div>
+        <div class="header-actions">
+          <label class="theme-switch" title="Alternar tema">
+            <input type="checkbox" id="theme-toggle">
+            <div class="track">
+              <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
+              <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+            </div>
+          </label>
+          <button class="btn-demo-sm" id="btn-open-demo" aria-label="Modo Demo" onclick="document.getElementById('modal-demo').classList.add('open')">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M2 12h4l3-9 5 18 3-9h5"/>
+            </svg>
+          </button>
+          <button class="btn btn-yellow btn-sm" id="btn-open-saque">Resgatar</button>
+          <button class="btn btn-ghost btn-sm" id="btn-logout" style="display:flex;align-items:center;gap:6px;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+              <polyline points="16 17 21 12 16 7" />
+              <line x1="21" y1="12" x2="9" y2="12" />
+            </svg>
+            <span class="btn-sair-text">Sair</span>
+          </button>
+        </div>
+      </div>
+
+      <div id="alertas-wrap"></div>
+
+      <!-- VIEW: DASHBOARD -->
+      <div class="view active" id="view-dashboard">
+
+        <div class="bento-grid">
+          <div class="kpi hl clickable" id="kpi-card-cashback">
+            <div>
+              <div class="kpi-top">
+                <div class="kpi-lbl">Cashback disponível</div>
+                <div class="kpi-icon on-yellow"><svg width="20" height="20" viewBox="0 0 24 24">
+                    <rect x="1" y="4" width="22" height="16" rx="2" ry="2" />
+                    <line x1="1" y1="10" x2="23" y2="10" />
+                  </svg></div>
+              </div>
+              <div class="kpi-hero-badge">
+                <div class="kpi-hero-dot"></div>Saldo ativo
+              </div>
+              <div class="kpi-val" id="kpi-cashback">R$ 0,00</div>
+            </div>
+            <button class="kpi-hero-cta" id="kpi-hero-cta-btn">
+              <svg width="20" height="20" viewBox="0 0 24 24">
+                <line x1="12" y1="5" x2="12" y2="19" />
+                <polyline points="19 12 12 19 5 12" />
+              </svg>
+              Sacar agora
+            </button>
+          </div>
+          <div class="kpi clickable" id="kpi-card-milhas">
+            <div class="kpi-top">
+              <div class="kpi-lbl">Milhas acumuladas</div>
+              <div class="kpi-icon on-default"><svg width="20" height="20" viewBox="0 0 24 24">
+                  <path
+                    d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z" />
+                </svg></div>
+            </div>
+            <div class="kpi-val" id="kpi-milhas">0</div>
+            <div class="kpi-sub">Total acumulado</div>
+          </div>
+          <div class="kpi clickable" id="kpi-card-gasto">
+            <div class="kpi-top">
+              <div class="kpi-lbl">Gasto no mês</div>
+              <div class="kpi-icon on-default"><svg width="20" height="20" viewBox="0 0 24 24">
+                  <circle cx="9" cy="21" r="1" />
+                  <circle cx="20" cy="21" r="1" />
+                  <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
+                </svg></div>
+            </div>
+            <div class="kpi-val" id="kpi-gasto">R$ 0</div>
+            <div class="kpi-sub" id="kpi-tx">0 transações</div>
+          </div>
+          <div class="kpi">
+            <div class="kpi-top">
+              <div class="kpi-lbl">Nível atual</div>
+              <div class="kpi-icon on-default"><svg width="20" height="20" viewBox="0 0 24 24">
+                  <polyline points="17 21 17 13" />
+                  <polyline points="12 21 12 9" />
+                  <polyline points="7 21 7 17" />
+                  <polyline points="2 21 2 15 7 15 7 21" />
+                  <polyline points="7 9 12 9 12 21" />
+                  <polyline points="12 3 17 3 17 21" />
+                </svg></div>
+            </div>
+            <div class="kpi-val" id="kpi-nivel" style="font-size:18px">-</div>
+            <div class="kpi-sub" id="kpi-nivel-sub">-</div>
+          </div>
+        </div>
+
+        <div class="charts-row">
+          <div class="card">
+            <div class="card-title">Cashback acumulado</div>
+            <div class="card-sub">Últimos 6 meses</div>
+            <div class="bars" id="bar-chart"></div>
+            <div class="level-card">
+              <div class="lv-top">
+                <div class="lv-name">Progressão de Nível</div>
+                <div class="lv-badge" id="lv-badge">-</div>
+              </div>
+              <div class="lv-track">
+                <div class="lv-fill" id="lv-fill" style="width:0%"></div>
+              </div>
+              <div class="lv-info"><span id="lv-pts">0 pts</span><span id="lv-next">Próximo nível</span></div>
+              <div class="nivel-beneficios" id="nivel-chips"></div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-title">Gastos por categoria</div>
+            <div class="card-sub">Este mês</div>
+            <div class="donut-wrap">
+              <svg width="110" height="110" viewBox="0 0 100 100">
+                <circle cx="50" cy="50" r="36" fill="none" stroke="var(--border)" stroke-width="16" />
+                <circle id="dc-super" cx="50" cy="50" r="36" fill="none" stroke="#F7C500" stroke-width="16"
+                  stroke-dasharray="86 140" stroke-dashoffset="0" transform="rotate(-90 50 50)" />
+                <circle id="dc-rest" cx="50" cy="50" r="36" fill="none" stroke="#1A1A1A" stroke-width="16"
+                  stroke-dasharray="50 176" stroke-dashoffset="-86" transform="rotate(-90 50 50)" />
+                <circle id="dc-farm" cx="50" cy="50" r="36" fill="none" stroke="#E0B000" stroke-width="16"
+                  stroke-dasharray="57 169" stroke-dashoffset="-136" transform="rotate(-90 50 50)" />
+                <circle id="dc-comb" cx="50" cy="50" r="36" fill="none" stroke="#D6D6D6" stroke-width="16"
+                  stroke-dasharray="33 193" stroke-dashoffset="-193" transform="rotate(-90 50 50)" />
+              </svg>
+              <div class="donut-legend">
+                <div class="dl-row">
+                  <div class="dl-dot" style="background:#F7C500"></div>Supermercado<div class="dl-pct" id="dp-super">38%
+                  </div>
+                </div>
+                <div class="dl-row">
+                  <div class="dl-dot" style="background:#1A1A1A"></div>Restaurantes<div class="dl-pct" id="dp-rest">25%
+                  </div>
+                </div>
+                <div class="dl-row">
+                  <div class="dl-dot" style="background:#E0B000"></div>Farmácia<div class="dl-pct" id="dp-farm">22%
+                  </div>
+                </div>
+                <div class="dl-row">
+                  <div class="dl-dot" style="background:#D6D6D6"></div>Combustível<div class="dl-pct" id="dp-comb">15%
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card tx-card">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:3px">
+            <div class="card-title">Últimas transações</div>
+            <button class="btn btn-ghost btn-sm" data-view-btn="extrato">Ver tudo →</button>
+          </div>
+          <div class="card-sub">Compras recentes em parceiros</div>
+          <div id="tx-list-dash"></div>
+        </div>
+      </div>
+
+      <!-- VIEW: CUPONS -->
+      <div class="view" id="view-cupons">
+        <div class="card" style="margin-bottom:0">
+          <div class="card-title">Meus Cupons</div>
+          <div class="card-sub">Cupons exclusivos do seu plano</div>
+        </div>
+        <div style="height:16px"></div>
+        <div class="cupons-grid" id="cupons-grid"></div>
+      </div>
+
+      <!-- VIEW: EXTRATO -->
+      <div class="view" id="view-extrato">
+        <div class="card" style="margin-bottom:16px">
+          <div class="card-title">Extrato completo</div>
+          <div class="card-sub">Histórico de transações com busca em tempo real</div>
+          <div class="extrato-toolbar">
+            <input type="text" class="extrato-search" id="extrato-busca"
+              placeholder="Buscar por parceiro, categoria ou valor...">
+            <button class="btn-export" id="btn-export-csv">↓ Exportar CSV</button>
+          </div>
+          <div class="extrato-filters" id="extrato-filters">
+            <div class="ef-chip on" data-cat="todos">Todos</div>
+            <div class="ef-chip" data-cat="Supermercado">Supermercado</div>
+            <div class="ef-chip" data-cat="Farmácia">Farmácia</div>
+            <div class="ef-chip" data-cat="Restaurante">Restaurante</div>
+            <div class="ef-chip" data-cat="Combustível">Combustível</div>
+          </div>
+          <div class="extrato-total">
+            <div class="et-card">
+              <div class="et-val" id="et-total-gasto">R$ 0</div>
+              <div class="et-lbl">Total gasto</div>
+            </div>
+            <div class="et-card" style="background:var(--yellow-bg);border-color:var(--yellow)">
+              <div class="et-val" id="et-total-cash" style="color:#18B96A">R$ 0</div>
+              <div class="et-lbl">Cashback ganho</div>
+            </div>
+            <div class="et-card">
+              <div class="et-val" id="et-total-tx">0</div>
+              <div class="et-lbl">Transações</div>
+            </div>
+          </div>
+          <div id="extrato-list"></div>
+        </div>
+      </div>
+
+      <!-- VIEW: RESGATAR -->
+      <div class="view" id="view-resgatar">
+        <div class="resgatar-hero">
+          <div class="rh-left">
+            <h3>Seu saldo está esperando</h3>
+            <p>Pix, desconto na fatura ou transferência bancária.</p>
+          </div>
+          <div class="rh-val">
+            <div class="rh-saldo" id="rh-saldo">R$ 0</div>
+            <div class="rh-lbl">disponível</div>
+          </div>
+        </div>
+        <div class="resgatar-opts">
+          <div class="res-opt active" data-tipo="pix">
+            <div class="res-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+              </svg></div>
+            <div class="res-name">Pix</div>
+            <div class="res-desc">Receba na hora.</div>
+            <div class="res-min">Mín: R$ 10,00</div>
+          </div>
+          <div class="res-opt" data-tipo="ted">
+            <div class="res-icon"></div>
+            <div class="res-name">TED</div>
+            <div class="res-desc">Em até 1 dia útil.</div>
+            <div class="res-min">Mín: R$ 20,00</div>
+          </div>
+          <div class="res-opt" data-tipo="desconto">
+            <div class="res-icon"></div>
+            <div class="res-name">Desconto na fatura</div>
+            <div class="res-desc">Abate na mensalidade.</div>
+            <div class="res-min">Sem mínimo</div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-title">Suas Milhas</div>
+          <div class="card-sub">Acumuladas com parceiros de viagem</div>
+          <div
+            style="background:linear-gradient(135deg,#0F3460,#1A5276);border-radius:16px;padding:22px;color:#fff;display:flex;align-items:center;justify-content:space-between;margin-bottom:14px">
+            <div>
+              <h4 style="font-family:'Nunito',sans-serif;font-size:16px;font-weight:800;margin-bottom:4px">Saldo de
+                Milhas</h4>
+              <p style="font-size:13px;color:rgba(255,255,255,.6)">Use para passagens e upgrades.</p>
+            </div>
+            <div style="text-align:right">
+              <div class="kpi-val" id="mc-milhas" style="font-size:36px;color:var(--yellow)">0</div>
+              <div style="font-size:11px;color:rgba(255,255,255,.5);margin-top:2px">milhas</div>
+            </div>
+          </div>
+          <button class="btn btn-black btn-full" id="btn-transferir-milhas">Transferir milhas →</button>
+        </div>
+      </div>
+
+      <!-- VIEW: NOTIFICAÇÕES -->
+      <div class="view" id="view-notificacoes">
+        <div class="card" style="margin-bottom:16px">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:3px">
+            <div class="card-title">Caixa de Entrada</div>
+            <button class="btn btn-ghost btn-sm" id="btn-marcar-todas-lidas">Marcar todas como lidas</button>
+          </div>
+          <div class="card-sub">Notificações sobre resgates, cupons e atualizações da sua conta</div>
+          <div class="notif-list" id="notif-list"></div>
+        </div>
+      </div>
+
+      <!-- VIEW: INDICAÇÕES -->
+      <div class="view" id="view-indicacoes">
+        <div class="indic-hero">
+          <h3>Indique amigos e ganhe R$15</h3>
+          <p>Para cada amigo que assinar, você recebe R$15 de cashback bônus!</p>
+          <div class="link-box">
+            <div class="link-text" id="indic-link">maispromo.site/ref/...</div>
+            <button class="btn btn-yellow btn-sm" id="btn-copiar-link">Copiar</button>
+          </div>
+        </div>
+        <div class="indic-stats">
+          <div class="is-card">
+            <div class="is-val" id="is-indicados">0</div>
+            <div class="is-lbl">Amigos indicados</div>
+          </div>
+          <div class="is-card" style="background:var(--yellow-bg);border-color:var(--yellow)">
+            <div class="is-val" id="is-ganho">R$ 0</div>
+            <div class="is-lbl">Total ganho</div>
+          </div>
+          <div class="is-card">
+            <div class="is-val" id="is-pendentes">0</div>
+            <div class="is-lbl">Pendentes</div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-title">Como funciona</div>
+          <div class="indic-como" style="margin-top:12px">
+            <div class="como-item">
+              <div class="como-num">1</div>
+              <div class="como-text"><strong>Copie seu link único</strong> — gerado com seu ID.</div>
+            </div>
+            <div class="como-item">
+              <div class="como-num">2</div>
+              <div class="como-text"><strong>Compartilhe</strong> via WhatsApp, Instagram ou e-mail.</div>
+            </div>
+            <div class="como-item">
+              <div class="como-num">3</div>
+              <div class="como-text"><strong>Ganhe R$15</strong> quando o amigo assinar qualquer plano.</div>
+            </div>
+          </div>
+          <div style="margin-top:16px;display:flex;gap:10px">
+            <button class="btn btn-yellow" id="btn-whatsapp"> WhatsApp</button>
+            <button class="btn btn-ghost" id="btn-copiar-link-2">Copiar link</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- VIEW: SEGURANÇA / PERFIL -->
+      <div class="view" id="view-seguranca">
+        <div class="sec-header">
+          <h2 class="sec-title">Centro de Segurança</h2>
+          <p class="sec-sub">Gerencie credenciais e proteções da sua conta</p>
+        </div>
+
+        <!-- Secao: Dados de Acesso (Design Glassmorphism Premium) -->
+        <div class="security-card">
+          <div class="sc-title">
+            <svg width="20" height="20" viewBox="0 0 24 24">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+            </svg>
+            Dados de Acesso
+          </div>
+
+          <div class="sc-field-group">
+            <div class="sc-field">
+              <div class="sc-label">E-mail Pessoal</div>
+              <div class="sc-val">
+                <span id="settings-email" class="sc-email-masked">carregando...</span>
+                <div class="settings-verify-status" id="settings-verify-status">
+                  <span class="verify-status-dot"></span><span class="verify-status-text">Verificando...</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="sc-action-row" id="email-action-row">
+              <button class="btn btn-ghost btn-sm" id="btn-toggle-email-edit">Alterar E-mail</button>
+            </div>
+            <div class="settings-feedback" id="settings-email-feedback" style="margin-top: 8px;"></div>
+
+            <!-- Input oculto elegante para troca de email -->
+            <div class="sc-email-edit" id="sc-email-edit" style="display:none;">
+              <p class="sc-desc">Sua segurança é nossa prioridade. Para trocar o seu endereço, confira os passos no
+                e-mail atual.</p>
+              <div class="form-group" style="margin-bottom:12px;">
+                <input class="form-input" type="email" id="settings-new-email" placeholder="Novo endereço de e-mail">
+              </div>
+              <div style="display:flex;gap:10px;">
+                <button class="btn btn-yellow" id="btn-change-email" type="button">Confirmar alteração</button>
+                <button class="btn btn-ghost" id="btn-cancel-email-edit" type="button">Cancelar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Secao: Histórico de Acesso -->
+        <div class="security-card">
+          <div class="sc-title">
+            <svg width="20" height="20" viewBox="0 0 24 24">
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+              <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+            </svg>
+            Sessão Atual
+          </div>
+          <div class="sc-field">
+            <div class="sc-label">Método de Autenticação</div>
+            <div class="sc-val" id="settings-provider">--</div>
+          </div>
+          <div class="sc-field" style="border-bottom:none;padding-bottom:0;">
+            <div class="sc-label">Último Login Seguro</div>
+            <div class="sc-val" id="settings-last-login">--</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============================================================
+         VIEW: VITRINE IA — Bento Box Clean Tech (Lovable v2)
+         Substituição cirúrgica do componente legado.
+    ============================================================ -->
+      <section class="view" id="view-catalogo" aria-labelledby="vitrine-title">
+
+        <header class="vitrine-head">
+          <div class="vitrine-head-l">
+            <p class="vitrine-eyebrow">Vitrine IA</p>
+            <h2 id="vitrine-title" class="vitrine-title">
+              Oportunidades <span class="accent">em tempo real</span>
+            </h2>
+            <p class="vitrine-sub" id="vitrine-sub">A localizar parceiros próximos…</p>
+          </div>
+
+          <div class="vitrine-head-r">
+            <div class="geo-pill" id="geo-pill" data-state="idle" aria-live="polite">
+              <span class="geo-dot"></span>
+              <span class="geo-pill-label" id="geo-pill-label">GPS inativo</span>
+            </div>
+            <button type="button" class="btn-refresh" id="btn-refresh-vitrine" aria-label="Recalcular vitrine">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5"
+                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M21 12a9 9 0 1 1-3-6.7" />
+                <path d="M21 4v5h-5" />
+              </svg>
+              <span>Recalcular</span>
+            </button>
+          </div>
+        </header>
+
+        <!-- BENTO GRID -->
+        <div class="bento" id="vitrine-grid" role="list" aria-busy="true">
+          <article class="bento-cell skeleton" role="listitem"></article>
+          <article class="bento-cell skeleton" role="listitem"></article>
+          <article class="bento-cell skeleton" role="listitem"></article>
+          <article class="bento-cell skeleton" role="listitem"></article>
+        </div>
+
+        <p class="vitrine-foot" id="vitrine-foot">
+          Análise gerada com base na sua proximidade. Atualizado pela IA do +Promo.
+        </p>
+      </section><!-- /#view-catalogo -->
+
+    </div><!-- /dash-main -->
+  </div><!-- /app -->
+
+  <!-- ---- MODAL QUIZ DE INTERESSES ---- -->
+  <div class="modal-overlay" id="modal-quiz">
+    <div class="modal quiz-modal-inner">
+      <div class="modal-header">
+        <div>
+          <div class="modal-title">Quiz de Interesses</div>
+          <div style="font-size:12px;color:var(--text-muted);margin-top:2px">Leva 30 segundos — personaliza toda sua
+            vitrine</div>
+        </div>
+        <button class="modal-close" id="close-quiz" aria-label="Fechar"></button>
+      </div>
+      <div class="quiz-progress">
+        <div class="quiz-prog-dot done" id="qprog-0"></div>
+        <div class="quiz-prog-dot" id="qprog-1"></div>
+        <div class="quiz-prog-dot" id="qprog-2"></div>
+      </div>
+      <div class="quiz-steps">
+        <div class="quiz-step on" id="quiz-step-0">
+          <div class="quiz-step-title">Onde você mais gasta?</div>
+          <div class="quiz-step-sub">Selecione até 2 categorias onde seu dinheiro vai com mais frequência.</div>
+          <div class="quiz-options">
+            <button class="quiz-opt" data-interest="super"><span class="quiz-opt-emoji"><svg
+                  xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="9" cy="21" r="1" />
+                  <circle cx="20" cy="21" r="1" />
+                  <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
+                </svg></span>Supermercado</button>
+            <button class="quiz-opt" data-interest="viagens"><span class="quiz-opt-emoji"><svg
+                  xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path
+                    d="M17.8 19.2L16 11l3.5-3.5C21 6 21 4 19 2c-2-2-4-2-5.5-.5L10 5 1.8 6.2l4.8 4.8-1 5.2 5.2-1 4.8 4.8z" />
+                </svg></span>Viagens</button>
+            <button class="quiz-opt" data-interest="moda"><span class="quiz-opt-emoji"><svg
+                  xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path
+                    d="M20.38 3.46L16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.57a1 1 0 0 0 .99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.57a2 2 0 0 0-1.34-2.23z" />
+                </svg></span>Moda</button>
+            <button class="quiz-opt" data-interest="farm"><span class="quiz-opt-emoji"><svg
+                  xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path
+                    d="M10.5 20H4a2 2 0 0 1-2-2V5c0-1.1.9-2 2-2h3.93a2 2 0 0 1 1.66.9l.82 1.2a2 2 0 0 0 1.66.9H20a2 2 0 0 1 2 2v3" />
+                  <circle cx="18" cy="18" r="3" />
+                  <path d="M20.5 15.5 15.5 20.5" />
+                </svg></span>Farmácia</button>
+            <button class="quiz-opt" data-interest="rest"><span class="quiz-opt-emoji"><svg
+                  xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2" />
+                  <path d="M7 2v20" />
+                  <path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3zm0 0v7" />
+                </svg></span>Restaurantes</button>
+            <button class="quiz-opt" data-interest="tech"><span class="quiz-opt-emoji"><svg
+                  xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="5" y="2" width="14" height="20" rx="2" ry="2" />
+                  <line x1="12" y1="18" x2="12.01" y2="18" />
+                </svg></span>Eletrônicos</button>
+          </div>
+          <div class="quiz-nav"><button class="btn btn-yellow" id="quiz-next-0">Próximo →</button></div>
+        </div>
+        <div class="quiz-step" id="quiz-step-1">
+          <div class="quiz-step-title">Com que frequência você viaja?</div>
+          <div class="quiz-step-sub">Isso nos ajuda a calibrar as recomendações de viagem.</div>
+          <div class="quiz-options" style="grid-template-columns:1fr 1fr">
+            <button class="quiz-opt" data-freq="nunca"><span class="quiz-opt-emoji"><svg
+                  xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+                  <polyline points="9 22 9 12 15 12 15 22" />
+                </svg></span>Raramente</button>
+            <button class="quiz-opt" data-freq="ocas"><span class="quiz-opt-emoji"><svg
+                  xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6" />
+                  <line x1="8" y1="2" x2="8" y2="18" />
+                  <line x1="16" y1="6" x2="16" y2="22" />
+                </svg></span>Às vezes</button>
+            <button class="quiz-opt" data-freq="freq"><span class="quiz-opt-emoji"><svg
+                  xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="2" y="7" width="20" height="14" rx="2" ry="2" />
+                  <path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2" />
+                  <line x1="12" y1="12" x2="12" y2="16" />
+                  <line x1="10" y1="14" x2="14" y2="14" />
+                </svg></span>Todo mês</button>
+            <button class="quiz-opt" data-freq="sempre"><span class="quiz-opt-emoji"><svg
+                  xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10" />
+                  <line x1="2" y1="12" x2="22" y2="12" />
+                  <path
+                    d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+                </svg></span>Toda semana</button>
+          </div>
+          <div class="quiz-nav">
+            <button class="btn btn-ghost" id="quiz-back-1">â† Voltar</button>
+            <button class="btn btn-yellow" id="quiz-next-1">Próximo →</button>
+          </div>
+        </div>
+        <div class="quiz-step" id="quiz-step-2">
+          <div class="quiz-step-title">Qual seu objetivo principal com o cashback?</div>
+          <div class="quiz-step-sub">Vamos priorizar parceiros alinhados ao seu objetivo.</div>
+          <div class="quiz-options" style="grid-template-columns:1fr 1fr">
+            <button class="quiz-opt" data-goal="economizar"><span class="quiz-opt-emoji"><svg
+                  xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="12" y1="1" x2="12" y2="23" />
+                  <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+                </svg></span>Economizar no dia a dia</button>
+            <button class="quiz-opt" data-goal="viajar"><span class="quiz-opt-emoji"></span>Juntar para viagens</button>
+            <button class="quiz-opt" data-goal="estilo"><span class="quiz-opt-emoji"><svg
+                  xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <polygon
+                    points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                </svg></span>Comprar com mais estilo</button>
+            <button class="quiz-opt" data-goal="saude"><span class="quiz-opt-emoji"></span>Saúde e bem-estar</button>
+          </div>
+          <div class="quiz-nav">
+            <button class="btn btn-ghost" id="quiz-back-2">â† Voltar</button>
+            <button class="btn btn-yellow" id="quiz-confirmar"><svg xmlns="http://www.w3.org/2000/svg" width="16"
+                height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10" />
+                <circle cx="12" cy="12" r="6" />
+                <circle cx="12" cy="12" r="2" />
+              </svg> Ver minha vitrine</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <nav class="bottom-nav" id="bottom-nav" aria-label="Navegação principal">
+    <button class="bn-item on" data-bn-view="dashboard" aria-label="Dashboard">
+      <span class="bn-icon"><svg width="20" height="20" viewBox="0 0 24 24">
+          <rect x="3" y="3" width="7" height="7" rx="1.5" />
+          <rect x="14" y="3" width="7" height="7" rx="1.5" />
+          <rect x="14" y="14" width="7" height="7" rx="1.5" />
+          <rect x="3" y="14" width="7" height="7" rx="1.5" />
+        </svg></span>
+      Dashboard
+    </button>
+    <button class="bn-item" data-bn-view="catalogo" aria-label="Vitrine IA">
+      <span class="bn-icon"><svg width="20" height="20" viewBox="0 0 24 24">
+          <path d="M12 2L2 7l10 5 10-5-10-5z" />
+          <path d="M2 17l10 5 10-5" />
+          <path d="M2 12l10 5 10-5" />
+        </svg></span>
+      Vitrine IA
+    </button>
+    <button class="bn-item bn-scanner" id="bn-scanner" aria-label="Ler Nota Fiscal">
+      <span class="bn-icon"><svg width="20" height="20" viewBox="0 0 24 24">
+          <path d="M3 7V5a2 2 0 0 1 2-2h2" />
+          <path d="M17 3h2a2 2 0 0 1 2 2v2" />
+          <path d="M21 17v2a2 2 0 0 1-2 2h-2" />
+          <path d="M7 21H5a2 2 0 0 1-2-2v-2" />
+          <line x1="7" y1="12" x2="17" y2="12" />
+        </svg></span>
+      Scanner
+      <span class="bn-fab-dot"></span>
+    </button>
+    <button class="bn-item" data-bn-view="extrato" aria-label="Extrato">
+      <span class="bn-icon"><svg width="20" height="20" viewBox="0 0 24 24">
+          <line x1="8" y1="6" x2="21" y2="6" />
+          <line x1="8" y1="12" x2="21" y2="12" />
+          <line x1="8" y1="18" x2="21" y2="18" />
+          <line x1="3" y1="6" x2="3.01" y2="6" />
+          <line x1="3" y1="12" x2="3.01" y2="12" />
+          <line x1="3" y1="18" x2="3.01" y2="18" />
+        </svg></span>
+      Extrato
+    </button>
+    <button class="bn-item" id="bn-mais" aria-label="Mais opções">
+      <span class="bn-icon"><svg width="20" height="20" viewBox="0 0 24 24">
+          <circle cx="12" cy="5" r="1.5" fill="currentColor" stroke="none" />
+          <circle cx="12" cy="12" r="1.5" fill="currentColor" stroke="none" />
+          <circle cx="12" cy="19" r="1.5" fill="currentColor" stroke="none" />
+        </svg></span>
+      Menu
+      <span class="bn-badge" id="bn-notif-badge" style="display:none">0</span>
+    </button>
+  </nav>
+
+  <!-- ============================================================
+     VITRINE IA — Motor de Geolocalização (Lovable v2)
+     IIFE isolada · expõe window.PromoVitrine para integração
+     com o router do main.js via MutationObserver (ver abaixo).
+============================================================ -->
+  <script>
+    (function () {
+      "use strict";
+
+      // ====== CONFIG ======
+      const WORKER_URL = "https://maispromo-ia.sacmaispromo.workers.dev";
+      const GEO_TIMEOUT_MS = 6000;
+      const FALLBACK_LOCATION = { lat: -22.7389, lng: -47.3323 }; // Campinas-SP
+
+      // ====== ÍCONES SVG INLINE (Lucide 1.5) ======
+      const ICONS = {
+        supermercado: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>',
+        farmacia: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12h6"/><path d="M12 9v6"/><rect x="3" y="3" width="18" height="18" rx="3"/></svg>',
+        restaurante: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 2v7a3 3 0 0 0 6 0V2"/><path d="M6 2v20"/><path d="M18 2c-2 2-3 4-3 7s1 4 3 4v9"/></svg>',
+        combustivel: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18"/><path d="M3 14h12"/><path d="M15 7h2a3 3 0 0 1 3 3v6a2 2 0 0 0 2 2 2 2 0 0 0 2-2V9l-3-3"/></svg>',
+        tech: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/></svg>',
+        transporte: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 17h2v-5l-2-5H5L3 12v5h2"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/></svg>',
+        default: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 1 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>'
+      };
+
+      // ====== ESTADO ======
+      var state = {
+        location: null,
+        locationSource: null,
+        loading: false,
+        items: []
+      };
+
+      // ====== ELEMENTOS ======
+      var $grid = document.getElementById("vitrine-grid");
+      var $sub = document.getElementById("vitrine-sub");
+      var $foot = document.getElementById("vitrine-foot");
+      var $pill = document.getElementById("geo-pill");
+      var $pillLbl = document.getElementById("geo-pill-label");
+      var $refresh = document.getElementById("btn-refresh-vitrine");
+
+      // ====== UI HELPERS ======
+      function setGeoPill(stateName, label) {
+        $pill.dataset.state = stateName;
+        $pillLbl.textContent = label;
+      }
+
+      function vitrineShimmerOn() {
+        state.loading = true;
+        $grid.setAttribute("aria-busy", "true");
+        $grid.innerHTML =
+          '<article class="bento-cell skeleton"></article>' +
+          '<article class="bento-cell skeleton"></article>' +
+          '<article class="bento-cell skeleton"></article>' +
+          '<article class="bento-cell skeleton"></article>';
+        $sub.textContent = "A IA está a calcular as melhores oportunidades…";
+        $refresh.disabled = true;
+      }
+
+      function vitrineShimmerOff() {
+        state.loading = false;
+        $grid.setAttribute("aria-busy", "false");
+        $refresh.disabled = false;
+      }
+
+      // ====== RENDER ======
+      function renderVitrine(items) {
+        if (!Array.isArray(items) || items.length === 0) {
+          $grid.innerHTML =
+            '<div class="bento-empty">Nenhuma oportunidade encontrada por perto.</div>';
+          return;
+        }
+        var html = items.slice(0, 4).map(function (loja, i) {
+          var cat = String(loja.categoria || "default").toLowerCase();
+          var icon = ICONS[cat] || ICONS.default;
+          var cashback = formatCashback(loja.cashback);
+          var distancia = String(loja.distancia || "");
+          var isNear = parseDistanceMeters(distancia) < 1000;
+          var featured = i === 0;
+          var insight = String(loja.insight || "");
+          var nome = String(loja.nome || "Parceiro");
+
+          return [
+            '<article class="bento-cell',
+            featured ? ' is-featured' : '',
+            isNear ? ' is-near' : '',
+            '" role="listitem" style="--enter-delay:', (i * 70), 'ms">',
+            '<div class="cell-top">',
+            '<span class="cell-icon" aria-hidden="true">', icon, '</span>',
+            '<span class="cell-distance">',
+            '<svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 1 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>',
+            escapeHTML(distancia),
+            '</span>',
+            '</div>',
+            '<div class="cell-mid">',
+            '<h3 class="cell-name">', escapeHTML(nome), '</h3>',
+            '<p class="cell-insight">', escapeHTML(insight), '</p>',
+            '</div>',
+            '<div class="cell-bot">',
+            '<span class="cell-cashback">',
+            '<span class="cb-num">', escapeHTML(cashback.value), '</span>',
+            '<span class="cb-unit">', escapeHTML(cashback.unit), '</span>',
+            '</span>',
+            '<span class="cell-cta" aria-hidden="true">',
+            '<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg>',
+            '</span>',
+            '</div>',
+            '</article>'
+          ].join("");
+        }).join("");
+
+        $grid.innerHTML = html;
+
+        var near = items.filter(function (l) {
+          return parseDistanceMeters(l.distancia) < 1000;
+        }).length;
+        $sub.textContent = near > 0
+          ? near + (near === 1 ? " parceiro" : " parceiros") + " a menos de 1 km de si"
+          : items.length + " parceiros recomendados pela IA";
+      }
+
+      function formatCashback(raw) {
+        if (raw == null) return { value: "—", unit: "" };
+        var s = String(raw).trim();
+        if (s.indexOf("%") !== -1) return { value: s.replace("%", "").trim(), unit: "%" };
+        if (!isNaN(Number(s))) return { value: s, unit: "%" };
+        return { value: s, unit: "" };
+      }
+
+      function parseDistanceMeters(d) {
+        if (!d) return Infinity;
+        var s = String(d).toLowerCase().replace(",", ".");
+        var n = parseFloat(s);
+        if (isNaN(n)) return Infinity;
+        if (s.indexOf("km") !== -1) return n * 1000;
+        return n;
+      }
+
+      function escapeHTML(s) {
+        return String(s).replace(/[&<>"']/g, function (c) {
+          return ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c];
+        });
+      }
+
+      // ====== GEOLOCALIZAÇÃO ======
+      function captureLocation() {
+        return new Promise(function (resolve) {
+          if (!("geolocation" in navigator)) {
+            setGeoPill("fallback", "GPS indisponível");
+            resolve({ coords: FALLBACK_LOCATION, source: "fallback" });
+            return;
+          }
+          setGeoPill("locating", "A localizar…");
+          var settled = false;
+          var timer = setTimeout(function () {
+            if (settled) return;
+            settled = true;
+            setGeoPill("fallback", "Localização aproximada");
+            resolve({ coords: FALLBACK_LOCATION, source: "fallback" });
+          }, GEO_TIMEOUT_MS);
+
+          navigator.geolocation.getCurrentPosition(
+            function (pos) {
+              if (settled) return;
+              settled = true;
+              clearTimeout(timer);
+              var c = { lat: pos.coords.latitude, lng: pos.coords.longitude };
+              setGeoPill("gps", "GPS ativo");
+              resolve({ coords: c, source: "gps" });
+            },
+            function () {
+              if (settled) return;
+              settled = true;
+              clearTimeout(timer);
+              setGeoPill("denied", "Permissão negada");
+              resolve({ coords: FALLBACK_LOCATION, source: "fallback" });
+            },
+            { enableHighAccuracy: true, timeout: GEO_TIMEOUT_MS, maximumAge: 60000 }
+          );
+        });
+      }
+
+      // ====== FETCH IA ======
+      async function fetchVitrineIA(userData) {
+        var ctrl = new AbortController();
+        var t = setTimeout(function () { ctrl.abort(); }, 12000);
+        try {
+          var res = await fetch(WORKER_URL, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ userData: userData }),
+            signal: ctrl.signal
+          });
+          clearTimeout(t);
+          if (!res.ok) throw new Error("HTTP " + res.status);
+          var data = await res.json();
+          var items = (data && Array.isArray(data.locaisProximos)) ? data.locaisProximos : [];
+          if (items.length === 0) throw new Error("empty");
+          return items;
+        } catch (err) {
+          clearTimeout(t);
+          console.warn("[Vitrine] fallback offline:", err && err.message);
+          return getOfflineFallback();
+        }
+      }
+
+      function getOfflineFallback() {
+        return [
+          { nome: "Mercado Pleno", categoria: "supermercado", cashback: 8, distancia: "650m", insight: "Perto de si" },
+          { nome: "Drogaria Vitalis", categoria: "farmacia", cashback: 5, distancia: "1.2 km", insight: "Compra recorrente" },
+          { nome: "Bistrô Andares", categoria: "restaurante", cashback: "12%", distancia: "900m", insight: "Perfil Mestre-Cuca" },
+          { nome: "Posto Trilha", categoria: "combustivel", cashback: 4, distancia: "1.8 km", insight: "Rota habitual" }
+        ];
+      }
+
+      // ====== ORQUESTRAÇÃO ======
+      async function refreshVitrine() {
+        if (state.loading) return;
+        vitrineShimmerOn();
+
+        var geo = await captureLocation();
+        state.location = geo.coords;
+        state.locationSource = geo.source;
+
+        var userData = {
+          arquetipo: window.PROMO_USER && window.PROMO_USER.arquetipo ? window.PROMO_USER.arquetipo : "explorador-urbano",
+          frequViajem: window.PROMO_USER && window.PROMO_USER.frequViajem ? window.PROMO_USER.frequViajem : "media",
+          location: { lat: geo.coords.lat, lng: geo.coords.lng }
+        };
+
+        var items = await fetchVitrineIA(userData);
+        state.items = items;
+        renderVitrine(items);
+        vitrineShimmerOff();
+
+        $foot.textContent = geo.source === "gps"
+          ? "Análise gerada a partir da sua localização atual."
+          : "Localização aproximada — ative o GPS para resultados mais precisos.";
+      }
+
+      // ====== EVENTOS ======
+      $refresh.addEventListener("click", refreshVitrine);
+
+      // Boot inicial
+      refreshVitrine();
+
+      // ====== API PÚBLICA ======
+      window.PromoVitrine = {
+        refresh: refreshVitrine,
+        getState: function () { return JSON.parse(JSON.stringify(state)); }
+      };
+    })();
+  </script>
+
+  <!-- ============================================================
+     ROUTER BRIDGE — integração com main.js (módulo externo)
+     Observa quando #view-catalogo recebe a classe "active"
+     e chama window.PromoVitrine.refresh() automaticamente.
+     Nenhuma modificação no main.js é necessária.
+============================================================ -->
+  <script>
+    (function () {
+      "use strict";
+      var catalogoEl = document.getElementById("view-catalogo");
+      if (!catalogoEl) return;
+
+      var observer = new MutationObserver(function (mutations) {
+        mutations.forEach(function (m) {
+          if (m.type === "attributes" && m.attributeName === "class") {
+            var isActive = catalogoEl.classList.contains("active");
+            if (isActive && window.PromoVitrine) {
+              window.PromoVitrine.refresh();
+            }
+          }
+        });
+      });
+
+      observer.observe(catalogoEl, { attributes: true, attributeFilter: ["class"] });
+    })();
+  </script>
+
+  <!-- â•â•â•â• MODAL: REAUTENTICACAO DE SEGURANCA â•â•â•â• -->
+  <div class="modal-overlay" id="modal-reauth">
+    <div class="modal">
+      <div class="modal-header">
+        <div class="modal-title">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
+            style="vertical-align:-3px;margin-right:6px">
+            <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+            <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+          </svg>
+          Confirmacao de identidade
+        </div>
+        <button class="modal-close" id="close-reauth" aria-label="Fechar"></button>
+      </div>
+      <p style="font-size:14px;color:var(--text-muted);line-height:1.6;margin-bottom:20px">
+        Para alterar credenciais sensiveis, confirme sua senha atual. Esta medida protege sua conta contra alteracoes
+        nao autorizadas.
+      </p>
+      <div class="form-group">
+        <label class="form-label">Senha atual</label>
+        <input class="form-input" type="password" id="reauth-password" placeholder="Sua senha atual">
+      </div>
+      <button class="btn btn-yellow btn-full btn-lg" id="btn-confirm-reauth" type="button">Confirmar e
+        continuar</button>
+      <div class="settings-feedback" id="reauth-feedback"></div>
+      <div
+        style="display:flex;align-items:center;justify-content:center;gap:6px;margin-top:16px;font-size:11px;font-weight:700;color:var(--text-muted)">
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
+          style="color:var(--green)">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+        </svg>
+        Operacao protegida por reautenticacao Firebase
+      </div>
+    </div>
+  </div>
+
+  <!-- ╔═══ MODAL: SCANNER NFC-e (Fullscreen Mobile) ═══╗ -->
+  <div class="scanner-overlay" id="modal-scanner">
+    <div class="scanner-header">
+      <div class="scanner-title">
+        <svg viewBox="0 0 24 24"><path d="M3 7V5a2 2 0 0 1 2-2h2"/><path d="M17 3h2a2 2 0 0 1 2 2v2"/><path d="M21 17v2a2 2 0 0 1-2 2h-2"/><path d="M7 21H5a2 2 0 0 1-2-2v-2"/><line x1="7" y1="12" x2="17" y2="12"/></svg>
+        Scanner NFC-e
+      </div>
+      <button class="scanner-close" id="scanner-close" aria-label="Fechar scanner">
+        <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+
+    <div class="scanner-body">
+      <div class="scanner-viewfinder">
+        <div class="scanner-corners"></div>
+        <div id="scanner-reader"></div>
+        <div class="scanner-scanline" id="scanner-scanline"></div>
+
+        <!-- Estado: Loading -->
+        <div class="scanner-states" id="scanner-state-loading">
+          <div class="scanner-spinner"></div>
+          <div class="scanner-state-title">Consultando SEFAZ...</div>
+          <div class="scanner-state-sub">Validando nota fiscal e calculando seu cashback</div>
+        </div>
+
+        <!-- Estado: Sucesso -->
+        <div class="scanner-states" id="scanner-state-success">
+          <div class="scanner-state-icon success">
+            <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <div class="scanner-state-title" id="scanner-success-title">Cashback creditado!</div>
+          <div class="scanner-state-sub" id="scanner-success-sub">O valor foi adicionado ao seu saldo</div>
+          <div class="scanner-result-card" id="scanner-result-card">
+            <div class="scanner-result-row">
+              <span class="scanner-result-label">Estabelecimento</span>
+              <span class="scanner-result-value" id="sr-estabelecimento">—</span>
+            </div>
+            <div class="scanner-result-row">
+              <span class="scanner-result-label">Valor da nota</span>
+              <span class="scanner-result-value" id="sr-valor">—</span>
+            </div>
+            <div class="scanner-result-row">
+              <span class="scanner-result-label">Itens</span>
+              <span class="scanner-result-value" id="sr-itens">—</span>
+            </div>
+            <div class="scanner-result-row">
+              <span class="scanner-result-label">Cashback (5%)</span>
+              <span class="scanner-result-value cashback" id="sr-cashback">—</span>
+            </div>
+          </div>
+          <div class="scanner-result-actions">
+            <button class="scanner-btn-primary" id="scanner-btn-fechar">Voltar ao Dashboard</button>
+            <button class="scanner-btn-secondary" id="scanner-btn-nova">Nova leitura</button>
+          </div>
+        </div>
+
+        <!-- Estado: Erro -->
+        <div class="scanner-states" id="scanner-state-error">
+          <div class="scanner-state-icon error">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+          </div>
+          <div class="scanner-state-title" id="scanner-error-title">Erro na leitura</div>
+          <div class="scanner-state-sub" id="scanner-error-sub">Não foi possível processar esta nota fiscal</div>
+          <div class="scanner-result-actions">
+            <button class="scanner-btn-primary" id="scanner-btn-retry">Tentar novamente</button>
+            <button class="scanner-btn-secondary" id="scanner-btn-cancel">Fechar</button>
+          </div>
+        </div>
+
+        <!-- Estado: Inserção Manual -->
+        <div class="scanner-states" id="scanner-state-manual">
+          <div class="scanner-state-icon manual">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 1 1 3 3L12 15l-4 1 1-4z"/></svg>
+          </div>
+          <div class="scanner-state-title">Digitar Chave de Acesso</div>
+          <div class="scanner-state-sub">Digite os 44 números da chave NFC-e</div>
+          
+          <div class="scanner-manual-box">
+            <input type="text" 
+                   id="scanner-manual-input" 
+                   class="scanner-manual-input" 
+                   placeholder="0000 0000 0000 0000 0000 ..." 
+                   maxlength="44" 
+                   inputmode="numeric" 
+                   pattern="\d*"
+                   autocomplete="off">
+            <div class="scanner-manual-counter" id="scanner-manual-counter">0 / 44</div>
+          </div>
+
+          <div class="scanner-result-actions">
+            <button class="scanner-btn-primary" id="scanner-btn-manual-submit" disabled>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              Validar Nota
+            </button>
+            <button class="scanner-btn-secondary" id="scanner-btn-manual-back">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+              Voltar para câmara
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="scanner-hint" id="scanner-hint">Aponte a câmara para o QR Code da nota fiscal</div>
+
+      <!-- Alerta Vermelho Visual — Erro de Câmara (injected dynamically, starts hidden) -->
+      <div class="scanner-camera-error" id="scanner-camera-error">
+        <div class="scanner-camera-error-header">
+          <div class="scanner-camera-error-icon">
+            <svg viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+          </div>
+          <div class="scanner-camera-error-title" id="scanner-camera-error-title">Falha na câmara</div>
+        </div>
+        <p class="scanner-camera-error-msg" id="scanner-camera-error-msg">Não foi possível acessar a câmara. Por favor, use a digitação manual.</p>
+      </div>
+      
+      <button class="scanner-btn-manual-trigger" id="scanner-btn-manual-trigger">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2" ry="2"/><line x1="3" y1="10" x2="21" y2="10"/><line x1="7" y1="15" x2="7.01" y2="15"/><line x1="11" y1="15" x2="13" y2="15"/></svg>
+        Digitar código manualmente
+      </button>
+
+      <pre id="scanner-debug-log" class="scanner-debug-log" style="display: none;"></pre>
+    </div>
+
+    <div class="scanner-footer">
+      <div class="scanner-footer-text">
+        <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        Leitura protegida por validação anti-fraude
+      </div>
+    </div>
+  </div>
+
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+  <script type="module" src="/js/dashboard/main.js?v=3.0.1"></script>
+</body>
+
+</html>

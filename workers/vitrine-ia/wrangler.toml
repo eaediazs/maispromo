@@ -1,0 +1,14 @@
+name = "maispromo-ia"
+main = "worker.js"
+compatibility_date = "2024-12-01"
+account_id = "6a95cb1279367b7f8514ae94b1708ad4"
+
+# ╔════════════════════════════════════════════════════════════╗
+# ║  +PROMO — Vitrine IA (Agregador Híbrido O2O + E-commerce) ║
+# ║                                                            ║
+# ║  Deploy: maispromo-ia.sacmaispromo.workers.dev             ║
+# ║  Endpoint GET que recebe lat/lng e retorna ofertas locais  ║
+# ║  + globais com cashback embutido.                          ║
+# ║                                                            ║
+# ║  Sem variáveis secretas necessárias para mock.             ║
+# ╚════════════════════════════════════════════════════════════╝

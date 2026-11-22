@@ -1,0 +1,11 @@
+name = "mfa-pin"
+main = "worker.js"
+compatibility_date = "2024-12-01"
+
+# ╔════════════════════════════════════════════════════════════╗
+# ║  VARIÁVEIS SECRETAS (configurar via Cloudflare Dashboard  ║
+# ║  ou via: wrangler secret put RESEND_API_KEY)               ║
+# ║                                                            ║
+# ║  - RESEND_API_KEY  → Chave da API Resend (re_xxxxxxxx)     ║
+# ║  - MFA_SECRET      → Segredo HMAC (openssl rand -hex 32)  ║
+# ╚════════════════════════════════════════════════════════════╝

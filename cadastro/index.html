@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+<link rel="manifest" href="/manifest.json">
+<meta name="theme-color" content="#F7C500">
+<link rel="stylesheet" href="/css/promo-elite.css?v=1.4"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Criar Conta — +PROMO</title>
+  <link rel="stylesheet" href="/css/style.css?v=1.4">
+  <link rel="stylesheet" href="/css/cadastro.css?v=1.4">
+</head>
+<body>
+<div id="page-loader"><div class="loader-brand"><div class="brand-pill"><svg viewBox="0 0 100 100" width="28" height="28" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="goldGrad-1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#FFF275"/><stop offset="100%" stop-color="#F7C500"/></linearGradient></defs><circle cx="53" cy="53" r="44" fill="#C49B00"/><circle cx="48" cy="48" r="44" fill="url(#goldGrad-1)"/><path d="M40 26 h16 v16 h16 v16 h-16 v16 h-16 v-16 h-16 v-16 h16 z" fill="rgba(196,155,0,0.4)" transform="translate(3,4)"/><rect x="40" y="24" width="16" height="48" rx="1.5" fill="#1A1A1A"/><rect x="24" y="40" width="48" height="16" rx="1.5" fill="#1A1A1A"/><rect x="40" y="24" width="8" height="48" rx="1.5" fill="#3D3D3D"/><rect x="24" y="40" width="48" height="8" rx="1.5" fill="#3D3D3D"/></svg><span class="brand-pill-text">PROMO</span></div></div></div>
+<div id="toast-container"></div>
+<nav class="navbar">
+  <a href="/" class="navbar-brand"><div class="brand-pill"><svg viewBox="0 0 100 100" width="28" height="28" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="goldGrad-2" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#FFF275"/><stop offset="100%" stop-color="#F7C500"/></linearGradient></defs><circle cx="53" cy="53" r="44" fill="#C49B00"/><circle cx="48" cy="48" r="44" fill="url(#goldGrad-2)"/><path d="M40 26 h16 v16 h16 v16 h-16 v16 h-16 v-16 h-16 v-16 h16 z" fill="rgba(196,155,0,0.4)" transform="translate(3,4)"/><rect x="40" y="24" width="16" height="48" rx="1.5" fill="#1A1A1A"/><rect x="24" y="40" width="48" height="16" rx="1.5" fill="#1A1A1A"/><rect x="40" y="24" width="8" height="48" rx="1.5" fill="#3D3D3D"/><rect x="24" y="40" width="48" height="8" rx="1.5" fill="#3D3D3D"/></svg><span class="brand-pill-text">PROMO</span></div></a>
+  <ul class="navbar-links">
+    <li><a href="/">Início</a></li>
+    <li><a href="/planos">Planos</a></li>
+  </ul>
+  <div class="navbar-right">
+<label class="theme-switch" title="Alternar tema">
+  <input type="checkbox" id="theme-toggle">
+  <div class="track">
+    <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
+    <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+  </div>
+</label>
+    <a href="/login"><button class="btn btn-ghost btn-sm">Já tenho conta</button></a>
+  </div>
+</nav>
+
+<div class="auth-wrap">
+  <!-- ESQUERDA -->
+  <div class="auth-left">
+    <div class="auth-brand"><div class="brand-pill"><svg viewBox="0 0 100 100" width="28" height="28" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="goldGrad-3" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#FFF275"/><stop offset="100%" stop-color="#F7C500"/></linearGradient></defs><circle cx="53" cy="53" r="44" fill="#C49B00"/><circle cx="48" cy="48" r="44" fill="url(#goldGrad-3)"/><path d="M40 26 h16 v16 h16 v16 h-16 v16 h-16 v-16 h-16 v-16 h16 z" fill="rgba(196,155,0,0.4)" transform="translate(3,4)"/><rect x="40" y="24" width="16" height="48" rx="1.5" fill="#1A1A1A"/><rect x="24" y="40" width="48" height="16" rx="1.5" fill="#1A1A1A"/><rect x="40" y="24" width="8" height="48" rx="1.5" fill="#3D3D3D"/><rect x="24" y="40" width="48" height="8" rx="1.5" fill="#3D3D3D"/></svg><span class="brand-pill-text">PROMO</span></div></div>
+    <div class="auth-tagline">Junte-se a milhares de pessoas que já economizam com cashback, milhas e descontos exclusivos.</div>
+    <div class="auth-perk"><div class="ap-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>Cashback real em 40+ parceiros</div>
+    <div class="auth-perk"><div class="ap-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17.8 19.2L16 11l3.5-3.5C21 6 21 4 19 2c-2-2-4-2-5.5-.5L10 5 1.8 6.2l4.8 4.8-1 5.2 5.2-1 4.8 4.8z"/></svg></div>Acumule milhas e viaje mais barato</div>
+    <div class="auth-perk"><div class="ap-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"/><path d="M13 5v2"/><path d="M13 17v2"/><path d="M13 11v2"/></svg></div>Cupons exclusivos todo mês</div>
+    <div class="auth-perk"><div class="ap-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20V10"/><path d="M18 20V4"/><path d="M6 20v-4"/></svg></div>Programa de níveis com recompensas</div>
+    <!-- Escolha de plano na lateral -->
+    <div class="plan-highlight">
+      <h4>Escolha seu plano</h4>
+      <label class="plan-opt">
+        <input type="radio" name="plano-side" value="basic"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> Plano Basic
+        <span class="plan-price">R$19,90/mês</span>
+      </label>
+      <label class="plan-opt selected">
+        <input type="radio" name="plano-side" value="plus" checked> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg> Plano Plus
+        <span class="plan-price">R$39,90/mês</span>
+      </label>
+      <label class="plan-opt">
+        <input type="radio" name="plano-side" value="premium"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="8 22 12 17 16 22"/><path d="M17 2H7a2 2 0 0 0 0 4h10a2 2 0 0 0 0-4z"/><path d="M12 17V6"/></svg> Plano Premium
+        <span class="plan-price">R$69,90/mês</span>
+      </label>
+    </div>
+  </div>
+
+  <!-- DIREITA -->
+  <div class="auth-right">
+    <div class="auth-title">Criar sua conta</div>
+    <div class="auth-sub">Preencha os dados abaixo para começar agora.</div>
+
+    <form id="cadastro-form">
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Nome</label>
+          <div class="input-wrap">
+            <svg class="input-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            <input class="form-input with-icon" type="text" id="nome" placeholder="Seu nome" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Sobrenome</label>
+          <div class="input-wrap">
+            <svg class="input-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            <input class="form-input with-icon" type="text" id="sobrenome" placeholder="Sobrenome" required>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">E-mail</label>
+        <div class="input-wrap">
+          <svg class="input-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+          <input class="form-input with-icon" type="email" id="email" placeholder="seu@email.com" required>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Senha</label>
+        <div class="input-wrap">
+          <svg class="input-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          <input class="form-input with-icon" type="password" id="senha" placeholder="Mínimo 8 caracteres" required>
+          <button type="button" class="btn-eye" id="toggle-senha">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0"/><circle cx="12" cy="12" r="3"/></svg>
+          </button>
+        </div>
+        <div class="password-strength"><div class="ps-fill" id="ps-fill"></div></div>
+        <div class="ps-label" id="ps-label" style="color:var(--gray-400)">Digite sua senha</div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Plano escolhido</label>
+        <select class="form-select" id="plano-select">
+          <option value="basic">⚡ Basic — R$ 19,90/mês</option>
+          <option value="plus" selected>⭐ Plus — R$ 39,90/mês (recomendado)</option>
+          <option value="premium">ðŸ† Premium — R$ 69,90/mês</option>
+        </select>
+      </div>
+
+      <div class="terms-check">
+        <input type="checkbox" id="termos" required>
+        <label for="termos">Concordo com os <a href="/legal/termos" target="_blank">Termos de Uso</a> e a <a href="/legal/privacidade" target="_blank">Política de Privacidade</a> da +Promo.</label>
+      </div>
+
+      <button type="submit" class="btn btn-yellow btn-full btn-lg" id="btn-cadastro">
+        Criar conta e assinar →
+      </button>
+    </form>
+<div class="form-seals">
+  <span><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg> SSL 256-bit · Autenticação Segura</span>
+  <span class="seal-dot"></span>
+  <span><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg> Proteção LGPD</span>
+</div>
+
+    <div class="divider">ou</div>
+
+    <!-- Google Sign-Up -->
+    <button class="btn-google" id="btn-google">
+      <svg width="20" height="20" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"><path d="M44.5 20H24v8.5h11.8C34.7 33.9 30.1 37 24 37c-7.2 0-13-5.8-13-13s5.8-13 13-13c3.1 0 5.9 1.1 8.1 2.9l6.4-6.4C34.6 4.1 29.6 2 24 2 11.8 2 2 11.8 2 24s9.8 22 22 22c11 0 21-8 21-22 0-1.3-.2-2.7-.5-4z" fill="#4285F4"/><clipPath id="g2"><path d="M44.5 20H24v8.5h11.8C34.7 33.9 30.1 37 24 37c-7.2 0-13-5.8-13-13s5.8-13 13-13c3.1 0 5.9 1.1 8.1 2.9l6.4-6.4C34.6 4.1 29.6 2 24 2 11.8 2 2 11.8 2 24s9.8 22 22 22c11 0 21-8 21-22 0-1.3-.2-2.7-.5-4z"/></clipPath><g clip-path="url(#g2)"><path d="M0 37V11l17 13z" fill="#FBBC05"/><path d="M0 11l17 13 7-6.1L48 14V0H0z" fill="#EA4335"/><path d="M0 37l30-23 7.9 1L48 0v48H0z" fill="#34A853"/><path d="M48 48L17 24l-4-3 35-10z" fill="#4285F4"/></g></svg>
+      Cadastrar com Google
+    </button>
+
+    <div class="auth-footer-link">Já tem conta? <a href="/login">Fazer login</a></div>
+  </div>
+</div>
+
+<script type="module" src="/js/promo-elite.js?v=1.2"></script>
+<script type="module" src="/js/auth/cadastro.js?v=1.2"></script>
+</body>
+</html>

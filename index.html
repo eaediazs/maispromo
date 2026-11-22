@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>+Promo — Seu dinheiro do supermercado voltando pra você todo mês</title>
+  <meta name="description" content="Assine o +Promo e ganhe cashback de verdade no supermercado, farmácia, combustível e muito mais. A partir de R$19,90/mês. Cancele quando quiser.">
+
+  <!-- Open Graph -->
+  <meta property="og:type"        content="website">
+  <meta property="og:url"         content="https://maispromo.site">
+  <meta property="og:title"       content="+Promo — Cashback de verdade no dia a dia">
+  <meta property="og:description" content="Assine o +Promo a partir de R$19,90 e ganhe dinheiro de volta em cada compra. Cancele quando quiser.">
+  <meta property="og:image"       content="https://maispromo.site/og-image.png">
+
+  <!-- PWA -->
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#F7C500">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Nunito+Sans:wght@300;400;500;600;700&display=swap">
+
+  <link rel="stylesheet" href="/css/style.css?v=1.4">
+  <link rel="stylesheet" href="/css/promo-elite.css?v=1.4">
+</head>
+<body>
+
+<div id="page-loader"><div class="loader-brand"><div class="brand-pill"><svg viewBox="0 0 100 100" width="28" height="28" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="goldGrad-7" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#FFF275"/><stop offset="100%" stop-color="#F7C500"/></linearGradient></defs><circle cx="53" cy="53" r="44" fill="#C49B00"/><circle cx="48" cy="48" r="44" fill="url(#goldGrad-7)"/><path d="M40 26 h16 v16 h16 v16 h-16 v16 h-16 v-16 h-16 v-16 h16 z" fill="rgba(196,155,0,0.4)" transform="translate(3,4)"/><rect x="40" y="24" width="16" height="48" rx="1.5" fill="#1A1A1A"/><rect x="24" y="40" width="48" height="16" rx="1.5" fill="#1A1A1A"/><rect x="40" y="24" width="8" height="48" rx="1.5" fill="#3D3D3D"/><rect x="24" y="40" width="48" height="8" rx="1.5" fill="#3D3D3D"/></svg><span class="brand-pill-text">PROMO</span></div></div></div>
+<div id="toast-container"></div>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <button id="menu-toggle" class="mobile-only" aria-label="Abrir menu">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+  </button>
+
+  <a href="/" class="navbar-brand">
+    <div class="brand-pill">
+      <svg viewBox="0 0 100 100" width="28" height="28" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#FFF275"/><stop offset="100%" stop-color="#F7C500"/></linearGradient></defs><circle cx="53" cy="53" r="44" fill="#C49B00"/><circle cx="48" cy="48" r="44" fill="url(#goldGrad)"/><path d="M40 26 h16 v16 h16 v16 h-16 v16 h-16 v-16 h-16 v-16 h16 z" fill="rgba(196,155,0,0.4)" transform="translate(3,4)"/><rect x="40" y="24" width="16" height="48" rx="1.5" fill="#1A1A1A"/><rect x="24" y="40" width="48" height="16" rx="1.5" fill="#1A1A1A"/><rect x="40" y="24" width="8" height="48" rx="1.5" fill="#3D3D3D"/><rect x="24" y="40" width="48" height="8" rx="1.5" fill="#3D3D3D"/></svg>
+      <span class="brand-pill-text">PROMO</span>
+    </div>
+  </a>
+
+  <ul class="navbar-links desktop-navbar">
+    <li><a href="/" class="active">Início</a></li>
+    <li><a href="/parceiros">Parceiros</a></li>
+    <li><a href="/planos">Planos</a></li>
+    <li><a href="/simulador">Simulador</a></li>
+  </ul>
+
+
+  <div class="navbar-right" id="nav-right">
+    <label class="theme-switch" title="Alternar tema claro/escuro">
+      <input type="checkbox" id="theme-toggle">
+      <div class="track">
+    <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
+    <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+  </div>
+    </label>
+
+    <div class="nav-seal">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+      SSL Seguro
+    </div>
+
+    <a href="/login"><button class="btn btn-ghost btn-sm">Entrar</button></a>
+    <a href="/cadastro"><button class="btn btn-yellow btn-sm">Começar grátis</button></a>
+  </div>
+</nav>
+
+<!-- â•â• OFF-CANVAS MOBILE MENU â•â• -->
+<div class="mobile-menu mobile-menu-wrapper" id="mobile-menu">
+  <div class="mobile-menu-inner">
+    <div class="mobile-menu-header">
+      <a href="/" class="navbar-brand">
+        <div class="brand-pill">
+          <svg viewBox="0 0 100 100" width="28" height="28" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="goldGradMobile" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#FFF275"/><stop offset="100%" stop-color="#F7C500"/></linearGradient></defs><circle cx="53" cy="53" r="44" fill="#C49B00"/><circle cx="48" cy="48" r="44" fill="url(#goldGradMobile)"/><path d="M40 26 h16 v16 h16 v16 h-16 v16 h-16 v-16 h-16 v-16 h16 z" fill="rgba(196,155,0,0.4)" transform="translate(3,4)"/><rect x="40" y="24" width="16" height="48" rx="1.5" fill="#1A1A1A"/><rect x="24" y="40" width="48" height="16" rx="1.5" fill="#1A1A1A"/><rect x="40" y="24" width="8" height="48" rx="1.5" fill="#3D3D3D"/><rect x="24" y="40" width="48" height="8" rx="1.5" fill="#3D3D3D"/></svg>
+          <span class="brand-pill-text">PROMO</span>
+        </div>
+      </a>
+      <button id="mobile-menu-close" aria-label="Fechar menu" class="btn-ghost">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <ul class="mobile-menu-links">
+      <li><a href="/">Início</a></li>
+      <li><a href="/parceiros">Parceiros</a></li>
+      <li><a href="/planos">Planos</a></li>
+      <li><a href="/simulador">Simulador</a></li>
+    </ul>
+    <div class="mobile-menu-footer">
+      <a href="/login" class="btn btn-ghost btn-full" style="margin-bottom: 12px; justify-content: center;">Entrar</a>
+      <a href="/cadastro" class="btn btn-yellow btn-full" style="justify-content: center;">Começar grátis</a>
+    </div>
+  </div>
+</div>
+
+<!-- â•â• SEÇÃO 1 — HERO â•â• -->
+<section class="hero reveal" aria-label="Apresentação do +Promo">
+  <!-- Feature 1: Animated Mesh Gradient BG (rendered via ::before in CSS) -->
+  <div class="hero-mesh-overlay"></div>
+  <div class="container">
+    <div class="hero-inner">
+      <div class="hero-left">
+
+        <div class="hero-hook">
+          <div class="dot"></div>
+          Mais de 40 parceiros — supermercado, farmácia, posto e muito mais
+        </div>
+
+        <!-- Feature 2: JS Word Reveal targets this h1 -->
+        <h1 id="hero-headline">
+          Seu <u>dinheiro do<br><span class="word-cycler" id="word-cycler" data-active-word="supermercado"><span class="word-cycler-item active">supermercado</span><span class="word-cycler-item" aria-hidden="true">posto</span><span class="word-cycler-item" aria-hidden="true">delivery</span><span class="word-cycler-item" aria-hidden="true">shopping</span><span class="word-cycler-item" aria-hidden="true">aplicativo</span><span class="word-cycler-item" aria-hidden="true">restaurante</span><span class="word-cycler-item" aria-hidden="true">cafezinho</span></span></u><br>voltando pra <em>você.</em>
+        </h1>
+
+        <p class="hero-sub" id="hero-sub">
+          Assine o +Promo e ganhe cashback toda vez que comprar em supermercados,
+          farmácias, postos e muito mais. O dinheiro cai na sua conta. Sem complicação.
+        </p>
+
+        <div class="hero-actions">
+          <!-- Feature 4: shimmer effect applied via CSS on .btn-yellow -->
+          <a href="/cadastro"><button class="btn btn-yellow btn-lg btn-hero-cta" id="hero-cta">Quero meu cashback agora →</button></a>
+          <a href="/simulador"><button class="btn btn-ghost btn-lg">Calcular quanto vou ganhar</button></a>
+        </div>
+
+        <div class="hero-trust">
+          <span class="trust-item">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Cancele quando quiser
+          </span>
+          <div class="hero-trust-sep"></div>
+          <span class="trust-item">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Sem taxa de adesão
+          </span>
+          <div class="hero-trust-sep"></div>
+          <span class="trust-item">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            7 dias de garantia
+          </span>
+        </div>
+
+        <div class="hero-stats">
+          <div><div class="stat-num" data-count="40" data-suffix="+">40+</div><div class="stat-lbl">Lojas parceiras</div></div>
+          <div class="stat-sep"></div>
+          <div><div class="stat-num">até 6%</div><div class="stat-lbl">De volta em cada compra</div></div>
+          <div class="stat-sep"></div>
+          <div><div class="stat-num">R$19,90</div><div class="stat-lbl">Para começar</div></div>
+        </div>
+      </div>
+
+      <!-- Feature 5: Hero Card Float + Mouse Tilt -->
+      <div class="hero-card-wrap" id="hero-card-wrap">
+        <div class="float-chip chip-yellow chip-1">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="#1A1A1A"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          Plano Plus ativo
+        </div>
+        <div class="float-chip chip-2">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          "Valeu demais!"
+        </div>
+        <div class="hero-card" id="hero-card" aria-hidden="true">
+          <div class="hcard-top">
+            <div class="hcard-label">Seu mês em resumo</div>
+            <span class="badge badge-yellow">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="#1A1A1A"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              Plus
+            </span>
+          </div>
+          <div class="hcard-cashback">
+            <div class="cash-big">+R$<em>234</em></div>
+            <div class="cash-caption">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+              Cashback acumulado em março
+            </div>
+          </div>
+          <div class="hcard-row">
+            <div class="hrow-icon">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+            </div>
+            <div><div class="hrow-name">MercadoFácil</div><div class="hrow-detail">Supermercado · 4% cashback</div></div>
+            <div class="hrow-val">+R$7,52</div>
+          </div>
+          <div class="hcard-row">
+            <div class="hrow-icon">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z"/><path d="M8.5 8.5 16 16"/></svg>
+            </div>
+            <div><div class="hrow-name">FarmaVida</div><div class="hrow-detail">Farmácia · 8% cashback</div></div>
+            <div class="hrow-val">+R$5,16</div>
+          </div>
+          <div class="hcard-row">
+            <div class="hrow-icon">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 22V5a2 2 0 0 1 2-2h7a2 2 0 0 1 2 2v17"/><path d="M3 11h11"/><path d="M17 22V9l3-3"/><path d="M14 7h5a1 1 0 0 1 1 1v3"/></svg>
+            </div>
+            <div><div class="hrow-name">PetroPrime</div><div class="hrow-detail">Combustível · 3% cashback</div></div>
+            <div class="hrow-val">+R$4,50</div>
+          </div>
+          <div class="hcard-row">
+            <div class="hrow-icon">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="15" rx="2" ry="2"/><polyline points="17 2 12 7 7 2"/></svg>
+            </div>
+            <div><div class="hrow-name">PlayStream</div><div class="hrow-detail">Streaming incluso no plano</div></div>
+            <div class="hrow-val" style="color:var(--green)">Grátis</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- â•â• SEÇÃO 2 — BARRA DE PARCEIROS (Feature 3: Infinite Marquee) â•â• -->
+<div class="partners-bar" aria-label="Parceiros do +Promo">
+  <div class="partners-bar-label-fixed">Ganhe cashback em</div>
+  <div class="marquee-viewport">
+    <div class="marquee-track">
+      <!-- Set A -->
+      <div class="p-logo-pill">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+        MercadoFácil
+      </div>
+      <div class="p-logo-pill">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z"/><path d="M8.5 8.5 16 16"/></svg>
+        FarmaVida
+      </div>
+      <div class="p-logo-pill">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 22V5a2 2 0 0 1 2-2h7a2 2 0 0 1 2 2v17"/><path d="M3 11h11"/><path d="M17 22V9l3-3"/><path d="M14 7h5a1 1 0 0 1 1 1v3"/></svg>
+        PetroPrime
+      </div>
+      <div class="p-logo-pill">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"/></svg>
+        BomGarfo
+      </div>
+      <div class="p-logo-pill">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/></svg>
+        AirFlex
+      </div>
+      <div class="p-logo-pill">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.38 3.46 16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.57a1 1 0 0 0 .99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.57a2 2 0 0 0-1.34-2.23z"/></svg>
+        StyleOn
+      </div>
+      <div class="p-logo-pill">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+        TechStore
+      </div>
+      <div class="p-logo-pill p-logo-more"><a href="/parceiros" style="color:var(--yellow-d);font-weight:800">+ 33 outros →</a></div>
+      <!-- Set B (duplicate for seamless loop) -->
+      <div class="p-logo-pill">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+        MercadoFácil
+      </div>
+      <div class="p-logo-pill">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z"/><path d="M8.5 8.5 16 16"/></svg>
+        FarmaVida
+      </div>
+      <div class="p-logo-pill">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 22V5a2 2 0 0 1 2-2h7a2 2 0 0 1 2 2v17"/><path d="M3 11h11"/><path d="M17 22V9l3-3"/><path d="M14 7h5a1 1 0 0 1 1 1v3"/></svg>
+        PetroPrime
+      </div>
+      <div class="p-logo-pill">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"/></svg>
+        BomGarfo
+      </div>
+      <div class="p-logo-pill">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/></svg>
+        AirFlex
+      </div>
+      <div class="p-logo-pill">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.38 3.46 16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.57a1 1 0 0 0 .99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.57a2 2 0 0 0-1.34-2.23z"/></svg>
+        StyleOn
+      </div>
+      <div class="p-logo-pill">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+        TechStore
+      </div>
+      <div class="p-logo-pill p-logo-more"><a href="/parceiros" style="color:var(--yellow-d);font-weight:800">+ 33 outros →</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- â•â• SEÇÃO 3 — DOR + SOLUÇÃO â•â• -->
+<section class="pain-section reveal" aria-label="O problema que o +Promo resolve">
+  <div class="container">
+    <div class="pain-inner">
+      <div class="pain-left">
+        <span class="pain-eyebrow">O problema que todo mundo tem</span>
+        <h2 class="pain-title">O preço subiu.<br>O salário não.<br>E o dinheiro<br><em>some no fim do mês.</em></h2>
+        <p class="pain-desc">Você compra nos mesmos lugares toda semana. Supermercado, farmácia, posto. Mas cada compra vai embora sem deixar nada de volta.</p>
+        <div class="pain-list">
+          <div class="pain-item">
+            <div class="icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#666" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M16 16s-1.5-2-4-2-4 2-4 2"/><line x1="9" y1="9" x2="9.01" y2="9" stroke-width="3"/><line x1="15" y1="9" x2="15.01" y2="9" stroke-width="3"/></svg>
+            </div>
+            <div>Gasta centenas por mês no supermercado e não recebe nada de volta.</div>
+          </div>
+          <div class="pain-item">
+            <div class="icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#666" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M16 16s-1.5-2-4-2-4 2-4 2"/><line x1="9" y1="9" x2="9.01" y2="9" stroke-width="3"/><line x1="15" y1="9" x2="15.01" y2="9" stroke-width="3"/></svg>
+            </div>
+            <div>Programas de pontos que expiram antes de você poder usar.</div>
+          </div>
+          <div class="pain-item">
+            <div class="icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#666" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M16 16s-1.5-2-4-2-4 2-4 2"/><line x1="9" y1="9" x2="9.01" y2="9" stroke-width="3"/><line x1="15" y1="9" x2="15.01" y2="9" stroke-width="3"/></svg>
+            </div>
+            <div>Cashback de cartão tão pequeno que você nem percebe.</div>
+          </div>
+        </div>
+      </div>
+      <div class="solution-box">
+        <h3>E se cada compra do dia a dia te rendesse dinheiro de volta?</h3>
+        <div class="solution-item"><div class="sol-check"></div><div><strong>Supermercado:</strong> ganhe até 6% de cashback toda vez que encher o carrinho.</div></div>
+        <div class="solution-item"><div class="sol-check"></div><div><strong>Farmácia:</strong> 8% de volta em medicamentos e produtos de saúde.</div></div>
+        <div class="solution-item"><div class="sol-check"></div><div><strong>Combustível:</strong> abasteça e veja o cashback cair na conta na hora.</div></div>
+        <div class="solution-item"><div class="sol-check"></div><div><strong>Sem ponto que expira.</strong> É dinheiro real, direto no saldo. Saque quando quiser.</div></div>
+        <div style="margin-top:24px"><a href="/cadastro"><button class="btn btn-black btn-full btn-lg">Quero começar a ganhar →</button></a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- â•â• SEÇÃO 4 — COMO FUNCIONA â•â• -->
+<section class="how reveal" aria-label="Como funciona o +Promo">
+  <div class="container">
+    <div class="how-header">
+      <span class="eyebrow">Sem complicação</span>
+      <h2>Funciona assim</h2>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-n">1</div>
+        <div class="step-title">Escolhe um plano</div>
+        <div class="step-desc">Basic a partir de R$19,90. Sem fidelidade, sem multa. Muda de plano quando quiser.</div>
+        <div class="step-time">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          2 minutos
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-n">2</div>
+        <div class="step-title">Cria sua conta</div>
+        <div class="step-desc">Só nome, e-mail e senha. Sem cadastro de cartão, sem CPF obrigatório.</div>
+        <div class="step-time">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          1 minuto
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-n">3</div>
+        <div class="step-title">Compra nos parceiros</div>
+        <div class="step-desc">Supermercado, farmácia, posto — o cashback entra automaticamente no seu saldo.</div>
+        <div class="step-time">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+          No seu ritmo
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-n">4</div>
+        <div class="step-title">Saca o dinheiro</div>
+        <div class="step-desc">Pix, transferência ou desconto na próxima mensalidade. Você escolhe.</div>
+        <div class="step-time">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+          Quando preferir
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- â•â• SEÇÃO 5 — CALCULADORA â•â• -->
+<section class="calculator reveal" aria-label="Calculadora de economia">
+  <div class="container">
+    <div class="calc-inner">
+      <div class="calc-left">
+        <span class="eyebrow">Calcule o seu ganho</span>
+        <h2>Quanto você ganharia<br>com o +Promo?</h2>
+        <p>Arraste os controles e veja em tempo real quanto cashback você teria acumulado este mês com seus gastos reais.</p>
+        <div class="calc-field">
+          <div class="calc-label">
+            <span style="display:flex;align-items:center;gap:6px">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+              Supermercado
+            </span>
+            <span class="calc-val-tag" id="lbl-super">R$ 600</span>
+          </div>
+          <input type="range" class="calc-slider" id="sl-super" min="0" max="3000" step="50" value="600">
+        </div>
+        <div class="calc-field">
+          <div class="calc-label">
+            <span style="display:flex;align-items:center;gap:6px">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z"/><path d="M8.5 8.5 16 16"/></svg>
+              Farmácia
+            </span>
+            <span class="calc-val-tag" id="lbl-farm">R$ 200</span>
+          </div>
+          <input type="range" class="calc-slider" id="sl-farm" min="0" max="1000" step="25" value="200">
+        </div>
+        <div class="calc-field">
+          <div class="calc-label">
+            <span style="display:flex;align-items:center;gap:6px">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 22V5a2 2 0 0 1 2-2h7a2 2 0 0 1 2 2v17"/><path d="M3 11h11"/><path d="M17 22V9l3-3"/><path d="M14 7h5a1 1 0 0 1 1 1v3"/></svg>
+              Combustível
+            </span>
+            <span class="calc-val-tag" id="lbl-comb">R$ 250</span>
+          </div>
+          <input type="range" class="calc-slider" id="sl-comb" min="0" max="1500" step="50" value="250">
+        </div>
+        <div class="calc-field">
+          <div class="calc-label">
+            <span style="display:flex;align-items:center;gap:6px">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"/></svg>
+              Restaurantes
+            </span>
+            <span class="calc-val-tag" id="lbl-rest">R$ 300</span>
+          </div>
+          <input type="range" class="calc-slider" id="sl-rest" min="0" max="2000" step="50" value="300">
+        </div>
+        <p style="font-size:13px;color:var(--gray-400);margin-top:16px">* Cálculo baseado nas taxas do Plano Plus. <a href="/simulador" style="color:var(--yellow-d);font-weight:700">Ver simulador completo →</a></p>
+      </div>
+
+      <div class="calc-result" aria-live="polite">
+        <h3>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+          Seu cashback estimado
+        </h3>
+        <div class="calc-big" id="calc-total">R$ 0</div>
+        <div class="calc-big-sub">por mês com o Plano Plus</div>
+        <div class="calc-row">
+          <span style="display:flex;align-items:center;gap:5px">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+            Supermercado (4%)
+          </span>
+          <span class="calc-row-val" id="cr-super">R$ 0,00</span>
+        </div>
+        <div class="calc-row">
+          <span style="display:flex;align-items:center;gap:5px">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z"/><path d="M8.5 8.5 16 16"/></svg>
+            Farmácia (8%)
+          </span>
+          <span class="calc-row-val" id="cr-farm">R$ 0,00</span>
+        </div>
+        <div class="calc-row">
+          <span style="display:flex;align-items:center;gap:5px">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 22V5a2 2 0 0 1 2-2h7a2 2 0 0 1 2 2v17"/><path d="M3 11h11"/><path d="M17 22V9l3-3"/><path d="M14 7h5a1 1 0 0 1 1 1v3"/></svg>
+            Combustível (3%)
+          </span>
+          <span class="calc-row-val" id="cr-comb">R$ 0,00</span>
+        </div>
+        <div class="calc-row">
+          <span style="display:flex;align-items:center;gap:5px">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"/></svg>
+            Restaurantes (6%)
+          </span>
+          <span class="calc-row-val" id="cr-rest">R$ 0,00</span>
+        </div>
+        <div class="calc-anual">
+          <div class="calc-anual-label">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-1px"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            Em 12 meses você recupera
+          </div>
+          <div class="calc-anual-val" id="calc-anual">R$ 0</div>
+        </div>
+        <div style="margin-top:20px"><a href="/cadastro"><button class="btn btn-black btn-full">Quero esse cashback →</button></a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- â•â• SEÇÃO 6 — QUEBRA DE OBJEÇÕES â•â• -->
+<section class="objections reveal" aria-label="Dúvidas frequentes">
+  <div class="container">
+    <div class="text-center">
+      <span class="eyebrow">Antes que você pergunte</span>
+      <h2>A gente responde<br>antes de você precisar perguntar</h2>
+    </div>
+    <div class="obj-grid">
+      <div class="obj-card"><div class="obj-q">Tem pegadinha? Letras miúdas?</div><div class="obj-a">Não. O cashback é <strong>dinheiro real</strong>, sem pontos que expiram, sem categorias escondidas. Você vê tudo no painel antes de qualquer cobrança.</div></div>
+      <div class="obj-card"><div class="obj-q">E se eu quiser cancelar?</div><div class="obj-a">Cancela em 1 clique, a qualquer hora, sem precisar ligar pra ninguém. <strong>Sem multa, sem fidelidade.</strong> Se cancelar em até 7 dias, devolvemos tudo.</div></div>
+      <div class="obj-card"><div class="obj-q">O plano Basic vale a pena?</div><div class="obj-a">Com R$1.000/mês em parceiros e 2% de cashback você recupera <strong>R$20/mês</strong> — o plano já se paga. Use nosso simulador para calcular o seu caso.</div></div>
+      <div class="obj-card"><div class="obj-q">Meus dados ficam seguros?</div><div class="obj-a">Usamos o <strong>Firebase do Google</strong> para autenticação e banco de dados. Seus dados são criptografados e nunca são vendidos a terceiros.</div></div>
+      <div class="obj-card"><div class="obj-q">Como recebo o cashback?</div><div class="obj-a">O saldo fica no seu painel. Quando quiser sacar: <strong>Pix, transferência bancária ou abate na próxima mensalidade.</strong> Saque mínimo varia por plano.</div></div>
+      <div class="obj-card"><div class="obj-q">Posso mudar de plano depois?</div><div class="obj-a">Sim, a qualquer momento pelo painel. Subiu de plano? O novo cashback já <strong>vale na próxima compra.</strong> Sem burocracia, sem espera.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- â•â• SEÇÃO 7 — PLANOS â•â• -->
+<section class="plans reveal" aria-label="Planos de assinatura">
+  <div class="container">
+    <div class="plans-header">
+      <span class="eyebrow">Escolha o seu</span>
+      <h2>Sem mensalidade escondida.<br>Sem surpresa no boleto.</h2>
+      <p class="subtitle" style="max-width:500px;margin:12px auto 0">Todos os planos incluem acesso ao painel e histórico de cashback. Muda ou cancela quando quiser.</p>
+    </div>
+    <div class="plans-grid">
+      <div class="plan-card">
+        <div class="plan-tag">Basic</div>
+        <div class="plan-price-row"><span class="pp-cur">R$</span><span class="pp-val">19</span><span class="pp-cts">,90</span></div>
+        <div class="pp-period">por mês · cancele quando quiser</div>
+        <div class="plan-sep"></div>
+        <div class="plan-feat"><span class="fc fc-y"></span>2% de cashback nas compras</div>
+        <div class="plan-feat"><span class="fc fc-y"></span>10 parceiros disponíveis</div>
+        <div class="plan-feat"><span class="fc fc-y"></span>Saque a partir de R$ 30</div>
+        <div class="plan-feat"><span class="fc fc-y"></span>Suporte via chat</div>
+        <div class="plan-feat off"><span class="fc fc-n">–</span>Milhas aéreas</div>
+        <div class="plan-feat off"><span class="fc fc-n">–</span>Cupons mensais</div>
+        <div class="plan-cta"><a href="/cadastro?plano=basic"><button class="btn btn-outline btn-full">Começar com o Basic</button></a></div>
+      </div>
+
+      <div class="plan-card featured">
+        <div class="plan-ribbon">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:-1px"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          Escolha de quem calcula
+        </div>
+        <div class="plan-tag" style="color:var(--yellow-d);margin-top:16px">Plus</div>
+        <div class="plan-price-row"><span class="pp-cur">R$</span><span class="pp-val">39</span><span class="pp-cts">,90</span></div>
+        <div class="pp-period">por mês · cancele quando quiser</div>
+        <div class="plan-sep"></div>
+        <div class="plan-feat"><span class="fc fc-y"></span><strong>4% de cashback — o dobro do Basic</strong></div>
+        <div class="plan-feat"><span class="fc fc-y"></span>25 parceiros disponíveis</div>
+        <div class="plan-feat"><span class="fc fc-y"></span>Saque a partir de R$ 20</div>
+        <div class="plan-feat"><span class="fc fc-y"></span>Suporte chat + e-mail</div>
+        <div class="plan-feat"><span class="fc fc-y"></span><strong>0,5 milha por R$1 gasto</strong></div>
+        <div class="plan-feat"><span class="fc fc-y"></span>1 cupom exclusivo por mês</div>
+        <div class="plan-cta"><a href="/cadastro?plano=plus"><button class="btn btn-yellow btn-full">Assinar o Plus agora</button></a></div>
+      </div>
+
+      <div class="plan-card">
+        <div class="plan-tag">Premium</div>
+        <div class="plan-price-row"><span class="pp-cur">R$</span><span class="pp-val">69</span><span class="pp-cts">,90</span></div>
+        <div class="pp-period">por mês · cancele quando quiser</div>
+        <div class="plan-sep"></div>
+        <div class="plan-feat"><span class="fc fc-y"></span><strong>6% de cashback — o máximo</strong></div>
+        <div class="plan-feat"><span class="fc fc-y"></span>Todos os 40+ parceiros</div>
+        <div class="plan-feat"><span class="fc fc-y"></span>Saque a partir de R$ 10</div>
+        <div class="plan-feat"><span class="fc fc-y"></span>Suporte prioritário 24h</div>
+        <div class="plan-feat"><span class="fc fc-y"></span><strong>1 milha por R$1 gasto</strong></div>
+        <div class="plan-feat"><span class="fc fc-y"></span>3 cupons exclusivos por mês</div>
+        <div class="plan-cta"><a href="/cadastro?plano=premium"><button class="btn btn-black btn-full">Assinar o Premium</button></a></div>
+      </div>
+    </div>
+    <div class="guarantee">
+      <div class="guarantee-icon">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--yellow-d)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      </div>
+      <div class="guarantee-text"><strong>Garantia incondicional de 7 dias.</strong> Assinou, não gostou por qualquer motivo — devolvemos 100% do que você pagou, sem perguntas, sem enrolação.</div>
+    </div>
+  </div>
+</section>
+
+<!-- â•â• SEÇÃO 8 — DEPOIMENTOS â•â• -->
+<section class="testimonials reveal" aria-label="Depoimentos de assinantes">
+  <div class="container">
+    <div class="testi-header">
+      <span class="eyebrow">Quem já usa</span>
+      <h2>O que acontece depois<br>que as pessoas assinam</h2>
+    </div>
+    <div class="testi-grid">
+      <div class="testi-card">
+        <div class="testi-stars"></div>
+        <p class="testi-text">"Em 3 meses juntei <mark>R$ 180 de cashback</mark> só no supermercado e na farmácia. Já pagou 4 mensalidades. Agora não consigo imaginar comprar sem o +Promo."</p>
+        <div class="testi-foot">
+          <div class="testi-avatar" style="background:#F97316;color:#fff">MC</div>
+          <div>
+            <div class="testi-name">Mariana Castilho</div>
+            <div class="testi-meta">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="#F7C500" style="vertical-align:-1px"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              Plus · Professora · São Paulo, SP
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars"></div>
+        <p class="testi-text">"Acumulei <mark>14.000 milhas</mark> em 6 meses comprando onde eu já comprava antes. Usei pra pagar metade da passagem das minhas férias. Isso não tem preço."</p>
+        <div class="testi-foot">
+          <div class="testi-avatar" style="background:#6366F1;color:#fff">RM</div>
+          <div>
+            <div class="testi-name">Ricardo Mendonça</div>
+            <div class="testi-meta">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-1px"><polyline points="8 21 12 17 16 21"/><line x1="12" y1="17" x2="12" y2="11"/><path d="M8 5H6a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h1"/><path d="M16 5h2a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2h-1"/><rect x="8" y="2" width="8" height="4" rx="1"/></svg>
+              Premium · Autônomo · Curitiba, PR
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars"></div>
+        <p class="testi-text">"Fui cética no começo, achei que era mais um programa de pontos inútil. No primeiro mês recuperei <mark>R$ 22</mark> — já paguei o Basic. To pensando em subir pro Plus."</p>
+        <div class="testi-foot">
+          <div class="testi-avatar" style="background:#10B981;color:#fff">FR</div>
+          <div>
+            <div class="testi-name">Fernanda Rocha</div>
+            <div class="testi-meta">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="#3B82F6" style="vertical-align:-1px"><circle cx="12" cy="12" r="10"/></svg>
+              Basic · Estudante · BH, MG
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- â•â• SEÇÃO 9 — CTA FINAL â•â• -->
+<section class="cta-final reveal" aria-label="Chamada para ação final">
+  <div class="container">
+    <h2>Você já vai ao supermercado.<br>Por que não ganhar dinheiro nisso?</h2>
+    <p>Junte-se ao +Promo e faça cada compra do dia a dia render mais.<br>Começa em R$19,90. Para quando quiser.</p>
+    <a href="/cadastro"><button class="btn btn-black btn-lg">Criar minha conta grátis →</button></a>
+    <div class="cta-seals">
+      <div class="cta-seal">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        Dados protegidos
+      </div>
+      <div class="cta-seal">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        Cancele quando quiser
+      </div>
+      <div class="cta-seal">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        7 dias de garantia
+      </div>
+      <div class="cta-seal">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        Sem taxa de adesão
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand"><div class="mark">+</div>+PRO<span style="color:var(--yellow)">MO</span></div>
+        <div class="footer-desc">Plataforma de assinaturas com cashback, milhas e descontos em parceiros do dia a dia. Feita para quem quer fazer o dinheiro render mais.</div>
+        <div class="footer-email">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--yellow)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          <a href="mailto:sacmaispromo@gmail.com">sacmaispromo@gmail.com</a>
+        </div>
+      </div>
+      <div class="footer-col"><h4>Produto</h4><a href="/planos">Ver planos</a><a href="/parceiros">Parceiros</a><a href="/simulador">Simulador</a></div>
+      <div class="footer-col"><h4>Conta</h4><a href="/login">Entrar</a><a href="/cadastro">Criar conta</a><a href="/dashboard">Meu painel</a></div>
+      <div class="footer-col"><h4>Legal</h4><a href="/legal/termos">Termos de uso</a><a href="/legal/privacidade">Privacidade</a><a href="/legal/cancelamento">Política de cancelamento</a></div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 +Promo. Todos os direitos reservados.</span>
+      <span style="color:#444;display:flex;align-items:center;gap:5px">Feito com
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="#F7C500" stroke="none"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        no Brasil
+      </span>
+    </div>
+  </div>
+</footer>
+
+<!-- Calculadora -->
+<script>
+  const RATES = { super: 0.04, farm: 0.08, comb: 0.03, rest: 0.06 };
+  const IDS   = ['super', 'farm', 'comb', 'rest'];
+
+  function fmt(v) { return 'R$ ' + v.toFixed(2).replace('.', ','); }
+
+  function calcular() {
+    let total = 0;
+    IDS.forEach(id => {
+      const val  = +document.getElementById('sl-' + id).value;
+      const cash = val * RATES[id];
+      total += cash;
+      const cr  = document.getElementById('cr-'  + id);
+      const lbl = document.getElementById('lbl-' + id);
+      if (cr)  cr.textContent  = fmt(cash);
+      if (lbl) lbl.textContent = 'R$ ' + val.toLocaleString('pt-BR');
+    });
+    document.getElementById('calc-total').textContent = fmt(total);
+    document.getElementById('calc-anual').textContent = fmt(total * 12);
+  }
+
+  IDS.forEach(id => {
+    const el = document.getElementById('sl-' + id);
+    if (el) el.addEventListener('input', calcular);
+  });
+  calcular();
+</script>
+
+<!-- Firebase Auth — detecção de sessão ativa -->
+<script type="module">
+  import { auth } from '/js/firebase-config.js';
+  import { onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js';
+
+  window.addEventListener('load', () => {
+    document.getElementById('page-loader').classList.add('hide');
+  });
+
+  onAuthStateChanged(auth, (user) => {
+    if (!user) return;
+    const nav = document.getElementById('nav-right');
+    const ini = user.displayName
+      ? user.displayName.split(' ').map(n => n[0]).join('').slice(0, 2).toUpperCase()
+      : user.email[0].toUpperCase();
+    nav.innerHTML = `
+      <label class="theme-switch" title="Alternar tema claro/escuro">
+        <input type="checkbox" id="theme-toggle">
+        <div class="track">
+    <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
+    <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+  </div>
+      </label>
+      <a href="/dashboard"><div class="nav-avatar">${ini}</div></a>
+    `;
+    // Re-bind dark mode toggle for injected element
+    const t = document.getElementById('theme-toggle');
+    if (t) {
+      t.checked = document.documentElement.classList.contains('dark');
+      t.addEventListener('change', () => document.documentElement.classList.toggle('dark', t.checked));
+    }
+  });
+</script>
+
+<!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+     SPRINT 1 — 5 FUNCIONALIDADES PREMIUM (Vanilla JS)
+     â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+<script>
+(function() {
+  'use strict';
+
+  /* ── Dark Mode Toggle ── */
+  const toggle = document.getElementById('theme-toggle');
+  if (toggle) {
+    const saved = localStorage.getItem('promo-theme');
+    if (saved === 'dark') {
+      document.documentElement.classList.add('dark');
+      toggle.checked = true;
+    }
+    toggle.addEventListener('change', () => {
+      const isDark = toggle.checked;
+      document.documentElement.classList.toggle('dark', isDark);
+      localStorage.setItem('promo-theme', isDark ? 'dark' : 'light');
+    });
+  }
+
+  /* ── Scroll Reveal ── */
+  const revealEls = document.querySelectorAll('.reveal');
+  const revealObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); revealObs.unobserve(e.target); } });
+  }, { threshold: 0.08 });
+  revealEls.forEach(el => revealObs.observe(el));
+
+  /* ── Mobile Menu ── */
+  const menuBtn = document.getElementById('menu-toggle');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const closeMenuBtn = document.getElementById('mobile-menu-close');
+  if (menuBtn && mobileMenu && closeMenuBtn) {
+    menuBtn.addEventListener('click', () => mobileMenu.classList.add('active'));
+    closeMenuBtn.addEventListener('click', () => mobileMenu.classList.remove('active'));
+  }
+
+  /* ─────────────────────────────────────────────────
+     FEATURE 2: STAGGERED WORD REVEAL (Hero H1)
+     Each line clips upward with staggered CSS delays.
+  ───────────────────────────────────────────────── */
+  function initWordReveal() {
+    const headline = document.getElementById('hero-headline');
+    const sub      = document.getElementById('hero-sub');
+    if (!headline) return;
+
+    // We animate the whole hero-left children staggered
+    const heroLeft = document.querySelector('.hero-left');
+    if (!heroLeft) return;
+
+    const children = heroLeft.querySelectorAll(
+      '.hero-hook, h1, .hero-sub, .hero-actions, .hero-trust, .hero-stats'
+    );
+
+    children.forEach((el, i) => {
+      el.style.opacity    = '0';
+      el.style.transform  = 'translateY(28px)';
+      el.style.transition = `opacity 0.6s cubic-bezier(.22,.61,.36,1) ${i * 110}ms,
+                             transform 0.6s cubic-bezier(.22,.61,.36,1) ${i * 110}ms`;
+    });
+
+    // Trigger after a brief paint delay
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        children.forEach(el => {
+          el.style.opacity   = '1';
+          el.style.transform = 'translateY(0)';
+        });
+      });
+    });
+  }
+
+  /* ─────────────────────────────────────────────────
+     FEATURE 2B: WORD CYCLER (Hero H1)
+     Rotates through category words every 2.5s with
+     a smooth slide-up/fade transition.
+  ───────────────────────────────────────────────── */
+  function initWordCycler() {
+    const cycler = document.getElementById('word-cycler');
+    if (!cycler) return;
+    const items = cycler.querySelectorAll('.word-cycler-item');
+    if (items.length < 2) return;
+
+    let current = 0;
+
+    const sync = (i) => {
+      items.forEach((el, idx) => el.setAttribute('aria-hidden', idx === i ? 'false' : 'true'));
+      cycler.dataset.activeWord = items[i].textContent;
+    };
+    sync(0);
+
+    setInterval(() => {
+      const prev = current;
+      current = (current + 1) % items.length;
+
+      items[prev].classList.replace('active', 'exit');
+      items[current].classList.remove('exit');
+      items[current].classList.add('active');
+      sync(current);
+
+      setTimeout(() => items[prev].classList.remove('exit'), 500);
+    }, 2500);
+  }
+
+  /* ─────────────────────────────────────────────────
+     FEATURE 4: SHIMMER SWEEP — handled in CSS via
+     .btn-yellow::after. JS adds the ripple on click.
+  ───────────────────────────────────────────────── */
+  function initRipple() {
+    document.querySelectorAll('.btn').forEach(btn => {
+      btn.addEventListener('click', function(e) {
+        const r   = btn.getBoundingClientRect();
+        const sz  = Math.max(r.width, r.height);
+        const x   = e.clientX - r.left - sz / 2;
+        const y   = e.clientY - r.top  - sz / 2;
+        const rip = document.createElement('span');
+        rip.className = 'ripple-wave';
+        rip.style.cssText = `width:${sz}px;height:${sz}px;left:${x}px;top:${y}px`;
+        btn.appendChild(rip);
+        rip.addEventListener('animationend', () => rip.remove());
+      });
+    });
+  }
+
+  /* ─────────────────────────────────────────────────
+     FEATURE 5: HERO CARD 3D MOUSE TILT
+     Perspective tilt on mouse move over the hero.
+  ───────────────────────────────────────────────── */
+  function initCardTilt() {
+    const wrap = document.getElementById('hero-card-wrap');
+    const card = document.getElementById('hero-card');
+    const hero = document.querySelector('.hero');
+    if (!wrap || !card || !hero) return;
+
+    let raf = null;
+    let targetX = 0, targetY = 0, currentX = 0, currentY = 0;
+
+    hero.addEventListener('mousemove', (e) => {
+      const r  = wrap.getBoundingClientRect();
+      const cx = r.left + r.width  / 2;
+      const cy = r.top  + r.height / 2;
+      targetX = ((e.clientY - cy) / (r.height / 2)) * -8;
+      targetY = ((e.clientX - cx) / (r.width  / 2)) *  8;
+    });
+
+    hero.addEventListener('mouseleave', () => {
+      targetX = 0; targetY = 0;
+    });
+
+    function tick() {
+      currentX += (targetX - currentX) * 0.08;
+      currentY += (targetY - currentY) * 0.08;
+      wrap.style.transform = `perspective(800px) rotateX(${currentX}deg) rotateY(${currentY}deg)`;
+      raf = requestAnimationFrame(tick);
+    }
+    tick();
+  }
+
+  /* ─────────────────────────────────────────────────
+     MAGNETIC HERO CTA — subtle magnetic pull
+  ───────────────────────────────────────────────── */
+  function initMagneticCTA() {
+    const cta = document.getElementById('hero-cta');
+    if (!cta) return;
+    cta.addEventListener('mousemove', (e) => {
+      const r  = cta.getBoundingClientRect();
+      const cx = r.left + r.width  / 2;
+      const cy = r.top  + r.height / 2;
+      const dx = (e.clientX - cx) * 0.25;
+      const dy = (e.clientY - cy) * 0.25;
+      cta.style.transform = `translate(${dx}px, ${dy}px) scale(1.03)`;
+    });
+    cta.addEventListener('mouseleave', () => {
+      cta.style.transform = '';
+    });
+  }
+
+  /* ── INIT ── */
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+      initWordReveal();
+      initWordCycler();
+      initRipple();
+      initCardTilt();
+      initMagneticCTA();
+    });
+  } else {
+    initWordReveal();
+    initWordCycler();
+    initRipple();
+    initCardTilt();
+    initMagneticCTA();
+  }
+
+})();
+</script>
+
+</body>
+</html>
+

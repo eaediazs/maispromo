@@ -1,0 +1,7 @@
+# Cloudflare Pages — Redirects & Rewrites
+# Garante que clean URLs com query params funcionam corretamente
+
+# Páginas legais (novas)
+/legal/termos     /legal/termos/index.html     200
+/legal/privacidade /legal/privacidade/index.html 200
+/legal/cancelamento /legal/cancelamento/index.html 200

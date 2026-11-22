@@ -1,0 +1,202 @@
+    /* ── Hero ─────────────────────────────────── */
+    .sim-hero{background:var(--yellow-bg);padding:52px 0 0;text-align:center;position:relative;overflow:hidden}
+    .sim-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 50% at 50% 0%,rgba(247,197,0,.2),transparent);pointer-events:none}
+    .sim-hero .subtitle{max-width:540px;margin:12px auto 0}
+    .sim-wrap{max-width:920px;margin:44px auto;padding:0 24px 72px}
+    .sim-grid{display:grid;grid-template-columns:1fr 1fr;gap:26px;margin-top:0}
+
+    /* ── Painel de inputs ─────────────────────── */
+    .sim-inputs{background:var(--white);border-radius:20px;border:1.5px solid var(--gray-100);padding:30px;box-shadow:0 4px 24px rgba(0,0,0,.04)}
+    .sim-inputs h3{font-family:'Nunito',sans-serif;font-size:18px;font-weight:800;margin-bottom:22px;display:flex;align-items:center;gap:8px}
+    .sim-field{margin-bottom:22px}
+    .sim-label{display:flex;align-items:center;justify-content:space-between;font-size:13px;font-weight:700;color:var(--black);margin-bottom:10px}
+    .sim-label .label-left{display:flex;align-items:center;gap:7px}
+    .sim-value-tag{
+      background:var(--yellow-bg);border:1.5px solid var(--yellow);
+      color:var(--black);font-family:'Nunito',sans-serif;font-size:13px;font-weight:800;
+      border-radius:8px;padding:3px 10px;
+      transition:transform .15s, background .15s;
+    }
+    .sim-value-tag.bumping{transform:scale(1.12);background:var(--yellow)}
+
+    /* ═══════════════════════════════════════════
+       INOVAÇÃO 3 — Animated Gradient Sliders
+       Custom track com fill dinâmico via clip-path
+    ═══════════════════════════════════════════ */
+    .slider-wrap{position:relative;height:28px;display:flex;align-items:center}
+    .slider-track-bg{
+      position:absolute;left:0;right:0;height:7px;border-radius:4px;
+      background:var(--gray-100);overflow:visible;
+    }
+    .slider-fill{
+      position:absolute;left:0;top:0;height:100%;
+      background:linear-gradient(90deg,#F7C500,#F7A500,#F7C500);
+      background-size:200% 100%;
+      border-radius:4px;
+      transition:width .08s linear;
+      animation:shimmer 2.5s linear infinite;
+    }
+    @keyframes shimmer{
+      0%{background-position:100% 0}
+      100%{background-position:-100% 0}
+    }
+    /* Thumb glow on drag */
+    .sim-slider{
+      position:absolute;left:0;right:0;
+      width:100%;opacity:0;height:28px;cursor:pointer;z-index:3;
+      margin:0;
+    }
+    .slider-thumb{
+      position:absolute;
+      width:22px;height:22px;border-radius:50%;
+      background:var(--white);
+      border:3px solid var(--yellow);
+      box-shadow:0 2px 10px rgba(247,197,0,.5);
+      top:50%;transform:translate(-50%,-50%);
+      transition:box-shadow .2s, transform .15s;
+      pointer-events:none;z-index:2;
+    }
+    .slider-thumb.dragging{
+      box-shadow:0 0 0 8px rgba(247,197,0,.25), 0 2px 10px rgba(247,197,0,.5);
+      transform:translate(-50%,-50%) scale(1.15);
+    }
+    .sim-hints{display:flex;justify-content:space-between;font-size:11px;color:var(--gray-400);margin-top:5px}
+
+    /* ── Resultado ────────────────────────────── */
+    .sim-result{
+      background:var(--yellow);border-radius:20px;padding:30px;
+      display:flex;flex-direction:column;gap:0;
+      box-shadow:0 8px 32px rgba(247,197,0,.35);
+    }
+    .sim-result h3{font-family:'Nunito',sans-serif;font-size:17px;font-weight:800;color:var(--black);margin-bottom:20px;display:flex;align-items:center;gap:8px}
+
+    /* ═══════════════════════════════════════════
+       INOVAÇÃO 5 — Rolling Number Counter (Odômetro)
+       Wrapper com overflow:hidden + translateY animation
+    ═══════════════════════════════════════════ */
+    .odometer-wrap{
+      font-family:'Nunito',sans-serif;font-size:54px;font-weight:900;
+      color:var(--black);line-height:1;margin-bottom:6px;
+      display:flex;align-items:flex-end;gap:0;overflow:hidden;
+    }
+    .odo-prefix{font-size:22px;font-weight:700;color:rgba(0,0,0,.6);padding-bottom:6px;margin-right:3px}
+    .odo-digit-wrap{overflow:hidden;height:1.1em;position:relative}
+    .odo-digit{
+      display:block;line-height:1.1em;
+      transition:transform .35s cubic-bezier(.34,1.2,.64,1);
+    }
+    /* Static sub text */
+    .result-sub{font-size:14px;color:rgba(0,0,0,.6);margin-bottom:24px}
+
+    .result-breakdown{background:rgba(0,0,0,.07);border-radius:14px;padding:18px}
+    .rb-row{display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:1px solid rgba(0,0,0,.06);font-size:14px;font-weight:600}
+    .rb-row:last-child{border-bottom:none}
+    .rb-label{display:flex;align-items:center;gap:7px}
+    .rb-val{font-family:'Nunito',sans-serif;font-weight:800;transition:color .2s}
+    .rb-val.updated{color:#000;animation:pulse-val .3s ease}
+    @keyframes pulse-val{0%{transform:scale(1.08)}100%{transform:scale(1)}}
+
+    .annual-box{margin-top:20px;background:rgba(0,0,0,.07);border-radius:12px;padding:16px}
+    .annual-label{font-size:13px;font-weight:700;color:var(--black);margin-bottom:4px;display:flex;align-items:center;gap:6px}
+    .annual-val{font-family:'Nunito',sans-serif;font-size:26px;font-weight:900;color:var(--black)}
+
+    /* ── Comparativo ──────────────────────────── */
+    .plan-compare{margin-top:26px}
+    .plan-compare h3{font-family:'Nunito',sans-serif;font-size:18px;font-weight:800;margin-bottom:18px;display:flex;align-items:center;gap:8px}
+    .compare-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+    .compare-card{
+      background:var(--white);border-radius:16px;padding:22px;
+      border:2px solid var(--gray-100);text-align:center;cursor:pointer;
+      transition:all .25s;position:relative;overflow:hidden;
+    }
+    .compare-card.active{border-color:var(--yellow);box-shadow:0 6px 24px rgba(247,197,0,.25)}
+    .compare-card.active::after{
+      content:' Melhor opção';
+      position:absolute;bottom:0;left:0;right:0;
+      background:var(--yellow);color:var(--black);
+      font-size:10px;font-weight:900;font-family:'Nunito',sans-serif;
+      letter-spacing:1px;text-transform:uppercase;
+      padding:4px 0;
+    }
+    .compare-card:hover{border-color:rgba(247,197,0,.5);box-shadow:0 4px 16px rgba(247,197,0,.15)}
+    .cc-plan{font-family:'Nunito',sans-serif;font-size:11px;font-weight:800;color:var(--gray-400);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:10px}
+    .cc-economy{font-family:'Nunito',sans-serif;font-size:28px;font-weight:900;color:var(--black)}
+    .cc-per-year{font-size:12px;color:var(--gray-400);margin-top:2px;margin-bottom:6px}
+    .cc-roi{font-size:12px;font-weight:700;margin-top:8px;margin-bottom:18px}
+    .cc-roi.positive{color:var(--green)}
+    .cc-roi.zero{color:var(--gray-400)}
+
+    /* ── CTA ──────────────────────────────────── */
+    .sim-cta{background:var(--black);border-radius:20px;padding:32px;text-align:center;margin-top:26px}
+    .sim-cta h3{font-family:'Nunito',sans-serif;font-size:20px;font-weight:800;color:var(--white);margin-bottom:8px}
+    .sim-cta p{font-size:14px;color:#888;margin-bottom:22px}
+
+    /* ── Total ────────────────────────────────── */
+    #total-gasto{font-family:'Nunito',sans-serif;font-size:20px;font-weight:900;color:var(--black)}
+
+    /* ── Responsividade Simulador ─────────────── */
+    @media (max-width: 980px) {
+      .sim-wrap {
+        max-width: 100%;
+        padding: 0 20px 56px;
+        margin: 32px auto;
+      }
+      .sim-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+      .compare-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+      .sim-hero { padding: 40px 0 0; }
+      .sim-cta h3 { font-size: 18px; }
+      .sim-cta p { font-size: 13px; }
+    }
+
+    @media (max-width: 640px) {
+      .sim-hero h1 { font-size: 1.5rem; }
+      .sim-hero .subtitle { font-size: 14px; }
+      .sim-wrap {
+        padding: 0 16px 48px;
+        margin: 24px auto;
+      }
+      .sim-inputs {
+        padding: 22px 18px;
+        border-radius: 16px;
+      }
+      .sim-inputs h3 { font-size: 16px; }
+      .sim-result {
+        padding: 22px 18px;
+        border-radius: 16px;
+      }
+      .sim-result h3 { font-size: 15px; }
+      .odometer-wrap { font-size: 42px; }
+      .odo-prefix { font-size: 18px; }
+      #odo-display { font-size: 42px !important; }
+      .result-breakdown { padding: 14px; border-radius: 12px; }
+      .rb-row { font-size: 13px; }
+      .annual-box { padding: 14px; }
+      .annual-val { font-size: 22px; }
+      .plan-compare h3 { font-size: 16px; }
+      .compare-card { padding: 18px; border-radius: 14px; }
+      .cc-economy { font-size: 24px; }
+      .sim-cta {
+        padding: 24px 20px;
+        border-radius: 16px;
+      }
+      .sim-cta h3 { font-size: 16px; }
+    }
+
+    @media (max-width: 380px) {
+      .sim-wrap { padding: 0 12px 40px; }
+      .sim-inputs { padding: 18px 14px; }
+      .sim-inputs h3 { font-size: 15px; }
+      .sim-result { padding: 18px 14px; }
+      .odometer-wrap { font-size: 36px; }
+      #odo-display { font-size: 36px !important; }
+      .sim-field { margin-bottom: 18px; }
+      .sim-label { font-size: 12px; }
+      .sim-cta { padding: 20px 16px; }
+    }
+

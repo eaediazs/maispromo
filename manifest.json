@@ -1,0 +1,65 @@
+{
+  "name": "+Promo — Cashback e Milhas",
+  "short_name": "+Promo",
+  "description": "Clube de cashback e milhas. Ganhe dinheiro de volta em cada compra.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#FFFFFF",
+  "theme_color": "#F7C500",
+  "lang": "pt-BR",
+  "categories": [
+    "finance",
+    "shopping"
+  ],
+  "icons": [
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'><rect width='192' height='192' rx='40' fill='%23F7C500'/><text x='96' y='130' text-anchor='middle' font-size='100' font-family='sans-serif' font-weight='900' fill='%231A1A1A'>+</text></svg>",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect width='512' height='512' rx='100' fill='%23F7C500'/><text x='256' y='360' text-anchor='middle' font-size='280' font-family='sans-serif' font-weight='900' fill='%231A1A1A'>+</text></svg>",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/og-image.png",
+      "sizes": "1200x630",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "Dashboard +Promo"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Meu Painel",
+      "short_name": "Painel",
+      "description": "Acesse seu dashboard de cashback",
+      "url": "/dashboard",
+      "icons": [
+        {
+          "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 96 96'><rect width='96' height='96' rx='20' fill='%23F7C500'/><text x='48' y='65' text-anchor='middle' font-size='48' fill='%231A1A1A'>💰</text></svg>",
+          "sizes": "96x96"
+        }
+      ]
+    },
+    {
+      "name": "Simulador",
+      "short_name": "Simular",
+      "description": "Calcule seu cashback estimado",
+      "url": "/simulador",
+      "icons": [
+        {
+          "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 96 96'><rect width='96' height='96' rx='20' fill='%23F7C500'/><text x='48' y='65' text-anchor='middle' font-size='48' fill='%231A1A1A'>🧮</text></svg>",
+          "sizes": "96x96"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "firestore": {
+    "rules": "firestore.rules"
+  },
+  "hosting": {
+    "public": ".",
+    "ignore": [
+      "firebase.json",
+      "firestore.rules",
+      "functions/**",
+      "workers/**",
+      "temp_skills/**",
+      ".gemini/**",
+      "**/node_modules/**",
+      "DOCUMENTACAO_TECNICA_MAISPROMO_SST_2.md"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }
+}

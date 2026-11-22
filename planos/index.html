@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+<link rel="manifest" href="/manifest.json">
+<meta name="theme-color" content="#F7C500">
+<link rel="stylesheet" href="/css/promo-elite.css?v=1.4"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Planos — +PROMO</title>
+  <link rel="stylesheet" href="/css/style.css?v=1.4">
+  <link rel="stylesheet" href="/css/planos.css?v=1.4">
+</head>
+<body>
+<div id="page-loader"><div class="loader-brand"><div class="brand-pill"><svg viewBox="0 0 100 100" width="28" height="28" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="goldGrad-21" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#FFF275"/><stop offset="100%" stop-color="#F7C500"/></linearGradient></defs><circle cx="53" cy="53" r="44" fill="#C49B00"/><circle cx="48" cy="48" r="44" fill="url(#goldGrad-21)"/><path d="M40 26 h16 v16 h16 v16 h-16 v16 h-16 v-16 h-16 v-16 h16 z" fill="rgba(196,155,0,0.4)" transform="translate(3,4)"/><rect x="40" y="24" width="16" height="48" rx="1.5" fill="#1A1A1A"/><rect x="24" y="40" width="48" height="16" rx="1.5" fill="#1A1A1A"/><rect x="40" y="24" width="8" height="48" rx="1.5" fill="#3D3D3D"/><rect x="24" y="40" width="48" height="8" rx="1.5" fill="#3D3D3D"/></svg><span class="brand-pill-text">PROMO</span></div></div></div>
+<div id="toast-container"></div>
+<nav class="navbar">
+  <a href="/" class="navbar-brand"><div class="brand-pill"><svg viewBox="0 0 100 100" width="28" height="28" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="goldGrad-22" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#FFF275"/><stop offset="100%" stop-color="#F7C500"/></linearGradient></defs><circle cx="53" cy="53" r="44" fill="#C49B00"/><circle cx="48" cy="48" r="44" fill="url(#goldGrad-22)"/><path d="M40 26 h16 v16 h16 v16 h-16 v16 h-16 v-16 h-16 v-16 h16 z" fill="rgba(196,155,0,0.4)" transform="translate(3,4)"/><rect x="40" y="24" width="16" height="48" rx="1.5" fill="#1A1A1A"/><rect x="24" y="40" width="48" height="16" rx="1.5" fill="#1A1A1A"/><rect x="40" y="24" width="8" height="48" rx="1.5" fill="#3D3D3D"/><rect x="24" y="40" width="48" height="8" rx="1.5" fill="#3D3D3D"/></svg><span class="brand-pill-text">PROMO</span></div></a>
+  <ul class="navbar-links">
+    <li><a href="/">Início</a></li>
+    <li><a href="/parceiros">Parceiros</a></li>
+    <li><a href="/planos" class="active">Planos</a></li>
+    <li><a href="/simulador">Simulador</a></li>
+  </ul>
+  <div class="navbar-right" id="nav-right">
+    <label class="theme-switch" title="Alternar tema">
+      <input type="checkbox" id="theme-toggle">
+      <div class="track">
+    <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
+    <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+  </div>
+    </label>
+    <a href="/login"><button class="btn btn-ghost btn-sm">Entrar</button></a>
+    <a href="/cadastro"><button class="btn btn-yellow btn-sm">Assinar</button></a>
+  </div>
+</nav>
+
+<div class="plans-hero">
+  <div class="container">
+    <span class="eyebrow">Preços transparentes · 2026</span>
+    <h1>Escolha o plano <em>ideal para você</em></h1>
+    <p class="subtitle">Cancele quando quiser. Sem taxa. Sem surpresas.</p>
+    <div class="toggle-wrap">
+      <div class="toggle-row">
+        <button class="toggle-btn on" id="btn-mensal">Mensal</button>
+        <button class="toggle-btn" id="btn-anual">Anual <span class="save-badge">-20%</span></button>
+      </div>
+      <span id="annual-tip" class="hidden">
+        <!-- SVG check icon -->
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" style="vertical-align:middle;margin-right:5px"><circle cx="7" cy="7" r="7" fill="rgba(34,197,94,.2)"/><path d="M4 7l2 2 4-4" stroke="#16a34a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        No plano anual você economiza até <strong>R$ 167,76/ano</strong>
+      </span>
+    </div>
+  </div>
+</div>
+
+<section class="plans-section">
+  <div class="container">
+    <div class="plans-grid">
+
+      <!-- BASIC -->
+      <div class="plan-card" id="card-basic">
+        <div class="plan-name">Basic</div>
+        <div class="plan-price-row">
+          <span class="price-cur">R$</span>
+          <span class="price-val" id="price-basic">19</span>
+          <span class="price-cts" id="cents-basic">,90</span>
+        </div>
+        <div class="price-period" id="period-basic">por mês · cobrado mensalmente</div>
+        <div class="plan-sep"></div>
+
+        <div class="plan-feat">
+          <span class="fc-svg yes">
+            <svg width="12" height="12" viewBox="0 0 12 12"><path d="M2 6l3 3 5-5" stroke="#16a34a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+          </span>2% de cashback em parceiros
+        </div>
+        <div class="plan-feat">
+          <span class="fc-svg yes">
+            <svg width="12" height="12" viewBox="0 0 12 12"><path d="M2 6l3 3 5-5" stroke="#16a34a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+          </span>10 parceiros disponíveis
+        </div>
+        <div class="plan-feat">
+          <span class="fc-svg yes">
+            <svg width="12" height="12" viewBox="0 0 12 12"><path d="M2 6l3 3 5-5" stroke="#16a34a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+          </span>Saque a partir de R$ 30
+        </div>
+        <div class="plan-feat">
+          <span class="fc-svg yes">
+            <svg width="12" height="12" viewBox="0 0 12 12"><path d="M2 6l3 3 5-5" stroke="#16a34a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+          </span>Suporte via chat
+        </div>
+        <div class="plan-feat off">
+          <span class="fc-svg no">
+            <svg width="10" height="10" viewBox="0 0 10 10"><path d="M2 2l6 6M8 2l-6 6" stroke="#aaa" stroke-width="1.6" stroke-linecap="round"/></svg>
+          </span>Milhas aéreas
+        </div>
+        <div class="plan-feat off">
+          <span class="fc-svg no">
+            <svg width="10" height="10" viewBox="0 0 10 10"><path d="M2 2l6 6M8 2l-6 6" stroke="#aaa" stroke-width="1.6" stroke-linecap="round"/></svg>
+          </span>Cupons mensais
+        </div>
+        <div class="plan-feat off">
+          <span class="fc-svg no">
+            <svg width="10" height="10" viewBox="0 0 10 10"><path d="M2 2l6 6M8 2l-6 6" stroke="#aaa" stroke-width="1.6" stroke-linecap="round"/></svg>
+          </span>Suporte prioritário
+        </div>
+        <div style="margin-top:26px">
+          <button class="btn btn-outline btn-full" onclick="openModal('basic')">Assinar Basic</button>
+        </div>
+      </div>
+
+      <!-- PLUS (DESTAQUE) -->
+      <div class="plan-card featured" id="card-plus">
+        <div class="plan-ribbon">
+          <svg width="11" height="11" viewBox="0 0 11 11" fill="none" style="vertical-align:middle"><path d="M5.5 1l1.17 3.12H9.7L7.07 6.08l.98 3.12L5.5 7.37 2.95 9.2l.98-3.12L1.3 4.12h3.03z" fill="#000"/></svg>
+          Mais popular
+        </div>
+        <div class="plan-name" style="color:var(--yellow-d);margin-top:18px">Plus</div>
+        <div class="plan-price-row">
+          <span class="price-cur">R$</span>
+          <span class="price-val" id="price-plus">39</span>
+          <span class="price-cts" id="cents-plus">,90</span>
+        </div>
+        <div class="price-period" id="period-plus">por mês · cobrado mensalmente</div>
+        <div class="plan-sep"></div>
+
+        <div class="plan-feat">
+          <span class="fc-svg yes">
+            <svg width="12" height="12" viewBox="0 0 12 12"><path d="M2 6l3 3 5-5" stroke="#16a34a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+          </span><strong>4% de cashback em parceiros</strong>
+        </div>
+        <div class="plan-feat">
+          <span class="fc-svg yes">
+            <svg width="12" height="12" viewBox="0 0 12 12"><path d="M2 6l3 3 5-5" stroke="#16a34a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+          </span>25 parceiros disponíveis
+        </div>
+        <div class="plan-feat">
+          <span class="fc-svg yes">
+            <svg width="12" height="12" viewBox="0 0 12 12"><path d="M2 6l3 3 5-5" stroke="#16a34a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+          </span>Saque a partir de R$ 20
+        </div>
+        <div class="plan-feat">
+          <span class="fc-svg yes">
+            <svg width="12" height="12" viewBox="0 0 12 12"><path d="M2 6l3 3 5-5" stroke="#16a34a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+          </span>Suporte chat + email
+        </div>
+        <div class="plan-feat">
+          <span class="fc-svg yes">
+            <svg width="12" height="12" viewBox="0 0 12 12"><path d="M2 6l3 3 5-5" stroke="#16a34a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+          </span><strong>0,5 milha por R$1 gasto</strong>
+        </div>
+        <div class="plan-feat">
+          <span class="fc-svg yes">
+            <svg width="12" height="12" viewBox="0 0 12 12"><path d="M2 6l3 3 5-5" stroke="#16a34a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+          </span>1 cupom exclusivo por mês
+        </div>
+        <div class="plan-feat off">
+          <span class="fc-svg no">
+            <svg width="10" height="10" viewBox="0 0 10 10"><path d="M2 2l6 6M8 2l-6 6" stroke="#aaa" stroke-width="1.6" stroke-linecap="round"/></svg>
+          </span>Suporte prioritário 24h
+        </div>
+        <div style="margin-top:26px">
+          <button class="btn btn-yellow btn-full" onclick="openModal('plus')">Assinar Plus</button>
+        </div>
+      </div>
+
+      <!-- PREMIUM -->
+      <div class="plan-card" id="card-premium">
+        <div class="plan-name">Premium</div>
+        <div class="plan-price-row">
+          <span class="price-cur">R$</span>
+          <span class="price-val" id="price-premium">69</span>
+          <span class="price-cts" id="cents-premium">,90</span>
+        </div>
+        <div class="price-period" id="period-premium">por mês · cobrado mensalmente</div>
+        <div class="plan-sep"></div>
+
+        <div class="plan-feat">
+          <span class="fc-svg yes">
+            <svg width="12" height="12" viewBox="0 0 12 12"><path d="M2 6l3 3 5-5" stroke="#16a34a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+          </span><strong>6% de cashback — o máximo!</strong>
+        </div>
+        <div class="plan-feat">
+          <span class="fc-svg yes">
+            <svg width="12" height="12" viewBox="0 0 12 12"><path d="M2 6l3 3 5-5" stroke="#16a34a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+          </span>Todos os 40+ parceiros
+        </div>
+        <div class="plan-feat">
+          <span class="fc-svg yes">
+            <svg width="12" height="12" viewBox="0 0 12 12"><path d="M2 6l3 3 5-5" stroke="#16a34a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+          </span>Saque a partir de R$ 10
+        </div>
+        <div class="plan-feat">
+          <span class="fc-svg yes">
+            <svg width="12" height="12" viewBox="0 0 12 12"><path d="M2 6l3 3 5-5" stroke="#16a34a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+          </span>Suporte prioritário 24h
+        </div>
+        <div class="plan-feat">
+          <span class="fc-svg yes">
+            <svg width="12" height="12" viewBox="0 0 12 12"><path d="M2 6l3 3 5-5" stroke="#16a34a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+          </span><strong>1 milha por R$1 gasto</strong>
+        </div>
+        <div class="plan-feat">
+          <span class="fc-svg yes">
+            <svg width="12" height="12" viewBox="0 0 12 12"><path d="M2 6l3 3 5-5" stroke="#16a34a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+          </span>3 cupons exclusivos por mês
+        </div>
+        <div class="plan-feat">
+          <span class="fc-svg yes">
+            <svg width="12" height="12" viewBox="0 0 12 12"><path d="M2 6l3 3 5-5" stroke="#16a34a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+          </span>Surpresas mensais exclusivas
+        </div>
+        <div style="margin-top:26px">
+          <button class="btn btn-black btn-full" onclick="openModal('premium')">Assinar Premium</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="guarantee">
+      <div style="flex-shrink:0">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+          <path d="M16 3L4 8v9c0 6.075 5.12 11.5 12 13 6.88-1.5 12-6.925 12-13V8L16 3z" fill="rgba(247,197,0,.18)" stroke="var(--yellow)" stroke-width="2" stroke-linejoin="round"/>
+          <path d="M11 16l3 3 7-7" stroke="#16a34a" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        </svg>
+      </div>
+      <div class="guarantee-text"><strong>Garantia de 7 dias.</strong> Assinou e não gostou? Devolvemos 100% do valor sem perguntas. Você não tem nada a perder.</div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq-section">
+  <div class="container">
+    <div class="text-center">
+      <span class="eyebrow">Dúvidas frequentes</span>
+      <h2>Perguntas & Respostas</h2>
+    </div>
+    <div class="faq-grid" id="faq-grid"></div>
+  </div>
+</section>
+
+<!-- Modal de assinatura -->
+<div class="modal-overlay" id="modal-overlay">
+  <div class="modal">
+    <div class="modal-title" id="m-title">Assinar Plano</div>
+    <div class="modal-sub" id="m-sub">Complete sua assinatura abaixo</div>
+    <div class="sim-hint" id="m-hint">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" style="vertical-align:middle;margin-right:5px"><circle cx="7" cy="7" r="7" fill="rgba(247,197,0,.4)"/><path d="M7 4v3M7 9.5v.5" stroke="#000" stroke-width="1.4" stroke-linecap="round"/></svg>
+      Você pode cancelar a qualquer momento.
+    </div>
+    <form id="sub-form">
+      <div class="form-group">
+        <label class="form-label">Nome completo</label>
+        <input class="form-input" id="sub-nome" placeholder="Seu nome completo" required>
+      </div>
+      <div class="form-group">
+        <label class="form-label">E-mail</label>
+        <input class="form-input" type="email" id="sub-email" placeholder="seu@email.com" required>
+      </div>
+      <div class="form-group">
+        <label class="form-label">CPF</label>
+        <input class="form-input" id="sub-cpf" placeholder="000.000.000-00" maxlength="14">
+      </div>
+      <div style="display:flex;gap:10px;margin-top:8px">
+        <button type="submit" class="btn btn-yellow btn-full" id="sub-btn">Confirmar assinatura →</button>
+        <button type="button" class="btn btn-ghost" onclick="closeModal()">Cancelar</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script type="module" src="/js/promo-elite.js?v=1.3"></script>
+<script type="module" src="/js/pages/planos.js?v=1.3"></script>
+</body>
+</html>
+

@@ -1,0 +1,11 @@
+name = "nfe-scanner"
+main = "worker.js"
+compatibility_date = "2024-12-01"
+account_id = "6a95cb1279367b7f8514ae94b1708ad4"
+
+# ╔════════════════════════════════════════════════════════════╗
+# ║  VARIÁVEIS SECRETAS (configurar via Cloudflare Dashboard  ║
+# ║  ou via: wrangler secret put NFE_API_KEY)                  ║
+# ║                                                            ║
+# ║  - NFE_API_KEY  → Chave da API NFE.io (sandbox/prod)       ║
+# ╚════════════════════════════════════════════════════════════╝

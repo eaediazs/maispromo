@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>+Promo — Hero Refatorado v2 (Impeccable)</title>
+  <meta name="description" content="Hero completamente reescrito com tipografia editorial, profundidade real e paleta premium.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Nunito+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ================================================================
+       +PROMO HERO — REESCRITURA RADICAL
+       Inspiração: Stripe, Linear, Vercel, Cosmos.so, Antlii
+
+       Paleta mantida + novos acentos:
+         Brand Yellow:  #F7C500
+         Butter Yellow: #FFF275  (highlight, glow)
+         Royal Iris:    #3A0CA3  (high-contrast text, hover)
+         Base:          #F9F9F9 / #FFFFFF / #1A1A1A
+       ================================================================ */
+
+    :root {
+      /* ── Paleta Core ── */
+      --yellow:       #F7C500;
+      --yellow-d:     #E0B000;
+      --yellow-bg:    #FFFBE6;
+      --butter:       #FFF275;
+      --iris:         #3A0CA3;
+      --iris-soft:    rgba(58, 12, 163, 0.08);
+      --iris-hover:   #4B1DD4;
+      --black:        #0D0D0D;
+      --gray-800:     #1A1A1A;
+      --gray-700:     #2E2E2E;
+      --gray-600:     #4A4A4A;
+      --gray-500:     #6B6B6B;
+      --gray-400:     #8E8E8E;
+      --gray-300:     #B8B8B8;
+      --gray-200:     #DCDCDC;
+      --gray-100:     #F0F0F0;
+      --gray-50:      #F9F9F9;
+      --white:        #FFFFFF;
+      --green:        #0FAF69;
+
+      /* ── Depth System ── */
+      --shadow-card:
+        0 0 0 1px rgba(0, 0, 0, 0.04),
+        0 2px 4px rgba(0, 0, 0, 0.02),
+        0 8px 16px rgba(0, 0, 0, 0.04),
+        0 24px 48px rgba(0, 0, 0, 0.06);
+      --shadow-card-hover:
+        0 0 0 1px rgba(58, 12, 163, 0.08),
+        0 4px 8px rgba(0, 0, 0, 0.03),
+        0 12px 24px rgba(0, 0, 0, 0.06),
+        0 36px 64px rgba(0, 0, 0, 0.08);
+      --shadow-chip:
+        0 0 0 1px rgba(0, 0, 0, 0.05),
+        0 2px 8px rgba(0, 0, 0, 0.06),
+        0 8px 24px rgba(0, 0, 0, 0.04);
+      --shadow-btn-glow:
+        0 0 0 1px rgba(247, 197, 0, 0.30),
+        0 4px 16px rgba(247, 197, 0, 0.25),
+        0 8px 32px rgba(247, 197, 0, 0.15);
+
+      /* ── Radii ── */
+      --r-card: 16px;
+      --r-pill: 100px;
+
+      /* ── Motion ── */
+      --ease-elastic: cubic-bezier(0.34, 1.56, 0.64, 1);
+      --ease-out:     cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-smooth:  cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    /* ── Reset ── */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Nunito Sans', sans-serif;
+      background: var(--gray-50);
+      color: var(--black);
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+    }
+
+    /* ── Browser Surfaces ── */
+    ::selection { background: rgba(58, 12, 163, 0.15); color: var(--black); }
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: var(--gray-300); border-radius: 50px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--gray-400); }
+    :focus-visible { outline: 2px solid var(--iris); outline-offset: 3px; border-radius: 4px; }
+
+    a { text-decoration: none; color: inherit; }
+    img { max-width: 100%; display: block; }
+
+    /* ════════════════════════════════════════════════
+       HERO — THE MAIN EVENT
+       ════════════════════════════════════════════════ */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: clamp(80px, 10vw, 140px) clamp(24px, 5vw, 80px);
+      overflow: hidden;
+      background: var(--white);
+    }
+
+    /* ── Mesh Gradient Background ── */
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 5% 20%,   rgba(255, 242, 117, 0.20) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 70% at 85% 10%,   rgba(58, 12, 163, 0.05) 0%, transparent 55%),
+        radial-gradient(ellipse 70% 50% at 60% 90%,   rgba(247, 197, 0, 0.12) 0%, transparent 55%),
+        radial-gradient(ellipse 40% 80% at 95% 70%,   rgba(255, 242, 117, 0.10) 0%, transparent 50%);
+      animation: meshBreathe 20s var(--ease-smooth) infinite alternate;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Subtle noise texture overlay */
+    .hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.015'/%3E%3C/svg%3E");
+      background-size: 200px 200px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    @keyframes meshBreathe {
+      0%   { transform: scale(1) translate(0, 0); }
+      100% { transform: scale(1.05) translate(-1%, 1%); }
+    }
+
+    /* ── Container ── */
+    .hero-container {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: 1400px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: clamp(48px, 6vw, 96px);
+      align-items: center;
+    }
+
+    /* ════════════════════════════════════════════════
+       LEFT SIDE — EDITORIAL TYPOGRAPHY
+       ════════════════════════════════════════════════ */
+    .hero-content {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    /* Status pill — not an eyebrow, a live-data element */
+    .hero-signal {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      width: fit-content;
+      padding: 6px 16px 6px 12px;
+      background: var(--iris-soft);
+      border: 1px solid rgba(58, 12, 163, 0.10);
+      border-radius: var(--r-pill);
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--iris);
+      letter-spacing: 0.01em;
+      margin-bottom: clamp(28px, 3vw, 40px);
+      transition: all 0.3s var(--ease-elastic);
+    }
+    .hero-signal:hover {
+      background: rgba(58, 12, 163, 0.12);
+      transform: translateY(-1px);
+    }
+    .hero-signal .pulse {
+      width: 6px; height: 6px;
+      background: var(--iris);
+      border-radius: 50%;
+      animation: pulseAlive 2s var(--ease-smooth) infinite;
+    }
+    @keyframes pulseAlive {
+      0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(58, 12, 163, 0.3); }
+      50%      { opacity: 0.6; box-shadow: 0 0 0 6px rgba(58, 12, 163, 0); }
+    }
+
+    /* ── Display Title — The Showstopper ── */
+    .hero-title {
+      font-family: 'Nunito', sans-serif;
+      font-size: clamp(44px, 6.5vw, 82px);
+      font-weight: 900;
+      line-height: 1.02;
+      letter-spacing: -0.04em;
+      color: var(--black);
+      margin-bottom: clamp(20px, 2.5vw, 32px);
+      max-width: 14ch;
+    }
+    .hero-title .em {
+      color: var(--iris);
+      display: inline;
+    }
+
+    /* ── Subline ── */
+    .hero-sub {
+      font-family: 'Nunito Sans', sans-serif;
+      font-size: clamp(15px, 1.2vw, 18px);
+      font-weight: 400;
+      line-height: 1.7;
+      color: var(--gray-500);
+      max-width: 42ch;
+      margin-bottom: clamp(32px, 3vw, 48px);
+    }
+
+    /* ── Buttons ── */
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-bottom: clamp(40px, 4vw, 64px);
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 16px 36px;
+      background: var(--yellow);
+      color: var(--black);
+      font-family: 'Nunito', sans-serif;
+      font-size: 15px;
+      font-weight: 800;
+      border: none;
+      border-radius: var(--r-pill);
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.4s var(--ease-elastic);
+      box-shadow: 0 0 0 1px rgba(247, 197, 0, 0.3);
+    }
+    .btn-primary::before {
+      content: '';
+      position: absolute;
+      inset: -2px;
+      border-radius: inherit;
+      background: linear-gradient(135deg, var(--butter), var(--yellow), var(--yellow-d));
+      z-index: -1;
+      opacity: 0;
+      transition: opacity 0.4s var(--ease-elastic);
+    }
+    .btn-primary:hover {
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: var(--shadow-btn-glow);
+    }
+    .btn-primary:hover::before {
+      opacity: 1;
+    }
+    .btn-primary:active {
+      transform: translateY(0) scale(0.98);
+      transition-duration: 0.1s;
+    }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 16px 32px;
+      background: transparent;
+      color: var(--iris);
+      font-family: 'Nunito', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      border: 1.5px solid rgba(58, 12, 163, 0.18);
+      border-radius: var(--r-pill);
+      cursor: pointer;
+      transition: all 0.4s var(--ease-elastic);
+    }
+    .btn-secondary:hover {
+      background: var(--iris);
+      color: var(--white);
+      border-color: var(--iris);
+      transform: translateY(-3px) scale(1.02);
+      box-shadow:
+        0 4px 16px rgba(58, 12, 163, 0.20),
+        0 8px 32px rgba(58, 12, 163, 0.10);
+    }
+    .btn-secondary:active {
+      transform: translateY(0) scale(0.98);
+      transition-duration: 0.1s;
+    }
+
+    /* ── Proof Points (replaces trust strip) ── */
+    .hero-proof {
+      display: flex;
+      gap: clamp(32px, 4vw, 56px);
+    }
+
+    .proof-item {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .proof-num {
+      font-family: 'Nunito', sans-serif;
+      font-size: clamp(28px, 3vw, 40px);
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      color: var(--black);
+      line-height: 1.1;
+    }
+    .proof-label {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--gray-400);
+      letter-spacing: 0.02em;
+    }
+    .proof-sep {
+      width: 1px;
+      background: var(--gray-200);
+      align-self: stretch;
+      margin: 4px 0;
+    }
+
+    /* ════════════════════════════════════════════════
+       RIGHT SIDE — THE CARD
+       Glassmorphism + Multi-layer depth + Hairline border
+       ════════════════════════════════════════════════ */
+    .hero-card-stage {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .hero-card {
+      width: 100%;
+      max-width: 400px;
+      padding: clamp(24px, 3vw, 36px);
+      background: rgba(255, 255, 255, 0.72);
+      backdrop-filter: blur(40px) saturate(1.6);
+      -webkit-backdrop-filter: blur(40px) saturate(1.6);
+      border: 1px solid rgba(0, 0, 0, 0.05);
+      border-radius: var(--r-card);
+      box-shadow: var(--shadow-card);
+      transition: all 0.5s var(--ease-elastic);
+      position: relative;
+      z-index: 2;
+    }
+    .hero-card:hover {
+      transform: translateY(-8px) scale(1.01);
+      box-shadow: var(--shadow-card-hover);
+    }
+
+    /* Card decorative gradient ring behind it */
+    .hero-card-stage::before {
+      content: '';
+      position: absolute;
+      width: 110%;
+      height: 110%;
+      background: conic-gradient(
+        from 180deg,
+        rgba(247, 197, 0, 0.12),
+        rgba(58, 12, 163, 0.06),
+        rgba(255, 242, 117, 0.10),
+        rgba(58, 12, 163, 0.04),
+        rgba(247, 197, 0, 0.12)
+      );
+      border-radius: 24px;
+      filter: blur(40px);
+      z-index: 0;
+      animation: ringRotate 12s linear infinite;
+    }
+    @keyframes ringRotate {
+      to { transform: rotate(360deg); }
+    }
+
+    /* ── Card Header ── */
+    .card-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: clamp(18px, 2vw, 24px);
+    }
+    .card-label {
+      font-family: 'Nunito', sans-serif;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gray-400);
+    }
+    .card-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 4px 12px;
+      background: var(--yellow);
+      border-radius: var(--r-pill);
+      font-family: 'Nunito', sans-serif;
+      font-size: 10px;
+      font-weight: 800;
+      color: var(--black);
+      letter-spacing: 0.04em;
+    }
+    .card-badge svg {
+      width: 10px; height: 10px;
+    }
+
+    /* ── Cashback Display ── */
+    .card-cashback {
+      text-align: center;
+      padding: clamp(16px, 2vw, 24px) 16px;
+      margin-bottom: clamp(18px, 2vw, 24px);
+      background: linear-gradient(135deg, rgba(255, 242, 117, 0.15), rgba(247, 197, 0, 0.08));
+      border: 1px dashed rgba(247, 197, 0, 0.35);
+      border-radius: 12px;
+    }
+    .cashback-value {
+      font-family: 'Nunito', sans-serif;
+      font-size: clamp(36px, 4vw, 50px);
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      color: var(--black);
+      line-height: 1;
+    }
+    .cashback-value .green {
+      color: var(--green);
+    }
+    .cashback-caption {
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--gray-400);
+      margin-top: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+    }
+    .cashback-caption svg {
+      width: 12px; height: 12px;
+      stroke: var(--gray-400);
+    }
+
+    /* ── Transaction Rows ── */
+    .card-rows {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    .card-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+      transition: all 0.3s var(--ease-elastic);
+    }
+    .card-row:last-child { border-bottom: none; }
+    .card-row:hover {
+      transform: translateX(4px);
+    }
+
+    .row-icon {
+      width: 36px; height: 36px;
+      border-radius: 10px;
+      background: var(--gray-100);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: all 0.3s var(--ease-elastic);
+    }
+    .card-row:hover .row-icon {
+      background: var(--iris-soft);
+    }
+    .row-icon svg {
+      width: 16px; height: 16px;
+      stroke: var(--gray-500);
+      fill: none;
+      stroke-width: 1.75;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      transition: stroke 0.3s var(--ease-out);
+    }
+    .card-row:hover .row-icon svg {
+      stroke: var(--iris);
+    }
+
+    .row-name {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--black);
+    }
+    .row-detail {
+      font-size: 11px;
+      color: var(--gray-400);
+      margin-top: 1px;
+    }
+    .row-value {
+      margin-left: auto;
+      font-family: 'Nunito', sans-serif;
+      font-size: 13px;
+      font-weight: 800;
+      color: var(--green);
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* ── Floating Chips ── */
+    .float-chip {
+      position: absolute;
+      z-index: 3;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 10px 16px;
+      border-radius: var(--r-pill);
+      font-family: 'Nunito', sans-serif;
+      font-size: 12px;
+      font-weight: 800;
+      white-space: nowrap;
+      box-shadow: var(--shadow-chip);
+      transition: all 0.4s var(--ease-elastic);
+    }
+    .float-chip:hover {
+      transform: scale(1.06);
+    }
+    .float-chip svg {
+      width: 13px; height: 13px;
+    }
+
+    .chip-gold {
+      top: 5%;
+      right: -5%;
+      background: var(--yellow);
+      color: var(--black);
+      border: 1px solid rgba(224, 176, 0, 0.30);
+    }
+    .chip-social {
+      bottom: 20%;
+      left: -8%;
+      background: var(--white);
+      color: var(--gray-700);
+      border: 1px solid rgba(0, 0, 0, 0.06);
+    }
+
+    /* ════════════════════════════════════════════════
+       TRUST BAR — Below hero, edge to edge
+       ════════════════════════════════════════════════ */
+    .trust-bar {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: clamp(16px, 3vw, 32px);
+      padding: 16px clamp(24px, 5vw, 80px);
+      background: var(--gray-50);
+      border-top: 1px solid rgba(0, 0, 0, 0.04);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+    }
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--gray-500);
+    }
+    .trust-item svg {
+      width: 14px; height: 14px;
+      flex-shrink: 0;
+    }
+    .trust-sep {
+      width: 3px; height: 3px;
+      background: var(--gray-300);
+      border-radius: 50%;
+    }
+
+    /* ════════════════════════════════════════════════
+       RESPONSIVE — FLUID REFLOW
+       ════════════════════════════════════════════════ */
+    @media (max-width: 960px) {
+      .hero-container {
+        grid-template-columns: 1fr;
+        gap: 48px;
+        text-align: center;
+      }
+      .hero-content {
+        align-items: center;
+      }
+      .hero-title {
+        max-width: 16ch;
+      }
+      .hero-sub {
+        max-width: 48ch;
+      }
+      .hero-actions {
+        justify-content: center;
+      }
+      .hero-proof {
+        justify-content: center;
+      }
+      .hero-card-stage {
+        margin-top: 8px;
+      }
+      .hero-card {
+        max-width: 360px;
+      }
+      .chip-gold { right: 0; }
+      .chip-social { left: 0; }
+    }
+
+    @media (max-width: 600px) {
+      .hero {
+        min-height: auto;
+        padding: 64px 20px 48px;
+      }
+      .hero-title {
+        max-width: 100%;
+        font-size: clamp(36px, 10vw, 48px);
+      }
+      .hero-actions {
+        flex-direction: column;
+        width: 100%;
+      }
+      .btn-primary, .btn-secondary {
+        width: 100%;
+        justify-content: center;
+      }
+      .hero-proof {
+        gap: 20px;
+        flex-wrap: wrap;
+      }
+      .float-chip {
+        display: none;
+      }
+      .trust-bar {
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+    }
+
+    /* ── Reduced Motion ── */
+    @media (prefers-reduced-motion: reduce) {
+      .hero::before { animation: none; }
+      .hero-card-stage::before { animation: none; }
+      .hero-signal .pulse { animation: none; }
+      .hero-card, .btn-primary, .btn-secondary, .card-row, .float-chip {
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- ════════ HERO ════════ -->
+<section class="hero" aria-label="Apresentação do +Promo">
+  <div class="hero-container">
+
+    <!-- LEFT: Editorial Typography -->
+    <div class="hero-content">
+
+      <div class="hero-signal" role="status">
+        <span class="pulse"></span>
+        40+ parceiros · supermercado, farmácia, posto
+      </div>
+
+      <h1 class="hero-title">
+        Seu dinheiro voltando pra&nbsp;<span class="em">você.</span>
+      </h1>
+
+      <p class="hero-sub">
+        Assine o +Promo e ganhe cashback de verdade em supermercados, farmácias, postos e dezenas de lojas. O dinheiro cai na sua conta todo mês.
+      </p>
+
+      <div class="hero-actions">
+        <button class="btn-primary" id="hero-cta">
+          Quero meu cashback
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </button>
+        <button class="btn-secondary">
+          Calcular quanto vou ganhar
+        </button>
+      </div>
+
+      <div class="hero-proof">
+        <div class="proof-item">
+          <div class="proof-num">40+</div>
+          <div class="proof-label">Lojas parceiras</div>
+        </div>
+        <div class="proof-sep"></div>
+        <div class="proof-item">
+          <div class="proof-num">6%</div>
+          <div class="proof-label">De volta em cada compra</div>
+        </div>
+        <div class="proof-sep"></div>
+        <div class="proof-item">
+          <div class="proof-num">R$19<span style="font-size:0.5em;font-weight:700;opacity:0.5">,90</span></div>
+          <div class="proof-label">Para começar</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- RIGHT: Glassmorphism Card -->
+    <div class="hero-card-stage">
+      <!-- Chip: status -->
+      <div class="float-chip chip-gold">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        Plano Plus ativo
+      </div>
+      <!-- Chip: social proof -->
+      <div class="float-chip chip-social">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        "Valeu demais!"
+      </div>
+
+      <div class="hero-card" aria-hidden="true">
+        <div class="card-head">
+          <span class="card-label">Seu mês em resumo</span>
+          <span class="card-badge">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            PLUS
+          </span>
+        </div>
+
+        <div class="card-cashback">
+          <div class="cashback-value">+R$<span class="green">234</span></div>
+          <div class="cashback-caption">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+            Cashback acumulado em março
+          </div>
+        </div>
+
+        <div class="card-rows">
+          <div class="card-row">
+            <div class="row-icon">
+              <svg viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+            </div>
+            <div>
+              <div class="row-name">MercadoFácil</div>
+              <div class="row-detail">Supermercado · 4%</div>
+            </div>
+            <div class="row-value">+R$7,52</div>
+          </div>
+          <div class="card-row">
+            <div class="row-icon">
+              <svg viewBox="0 0 24 24"><path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z"/><path d="M8.5 8.5 16 16"/></svg>
+            </div>
+            <div>
+              <div class="row-name">FarmaVida</div>
+              <div class="row-detail">Farmácia · 8%</div>
+            </div>
+            <div class="row-value">+R$5,16</div>
+          </div>
+          <div class="card-row">
+            <div class="row-icon">
+              <svg viewBox="0 0 24 24"><path d="M3 22V5a2 2 0 0 1 2-2h7a2 2 0 0 1 2 2v17"/><path d="M3 11h11"/><path d="M17 22V9l3-3"/><path d="M14 7h5a1 1 0 0 1 1 1v3"/></svg>
+            </div>
+            <div>
+              <div class="row-name">PetroPrime</div>
+              <div class="row-detail">Combustível · 3%</div>
+            </div>
+            <div class="row-value">+R$4,50</div>
+          </div>
+          <div class="card-row">
+            <div class="row-icon">
+              <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="15" rx="2" ry="2"/><polyline points="17 2 12 7 7 2"/></svg>
+            </div>
+            <div>
+              <div class="row-name">PlayStream</div>
+              <div class="row-detail">Streaming incluso</div>
+            </div>
+            <div class="row-value" style="color: var(--green)">Grátis</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ════════ TRUST BAR ════════ -->
+<div class="trust-bar">
+  <span class="trust-item">
+    <svg viewBox="0 0 24 24" fill="none" stroke="#0FAF69" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+    Cancele quando quiser
+  </span>
+  <div class="trust-sep"></div>
+  <span class="trust-item">
+    <svg viewBox="0 0 24 24" fill="none" stroke="#0FAF69" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+    Sem taxa de adesão
+  </span>
+  <div class="trust-sep"></div>
+  <span class="trust-item">
+    <svg viewBox="0 0 24 24" fill="none" stroke="#0FAF69" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+    7 dias de garantia
+  </span>
+</div>
+
+</body>
+</html>

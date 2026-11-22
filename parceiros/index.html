@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+<link rel="manifest" href="/manifest.json">
+<meta name="theme-color" content="#F7C500">
+<link rel="stylesheet" href="/css/promo-elite.css?v=1.4"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Parceiros — +PROMO</title>
+  <link rel="stylesheet" href="/css/style.css?v=1.4">
+  <link rel="stylesheet" href="/css/parceiros.css?v=1.4">
+</head>
+<body>
+<div id="page-loader"><div class="loader-brand"><div class="brand-pill"><svg viewBox="0 0 100 100" width="28" height="28" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="goldGrad-19" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#FFF275"/><stop offset="100%" stop-color="#F7C500"/></linearGradient></defs><circle cx="53" cy="53" r="44" fill="#C49B00"/><circle cx="48" cy="48" r="44" fill="url(#goldGrad-19)"/><path d="M40 26 h16 v16 h16 v16 h-16 v16 h-16 v-16 h-16 v-16 h16 z" fill="rgba(196,155,0,0.4)" transform="translate(3,4)"/><rect x="40" y="24" width="16" height="48" rx="1.5" fill="#1A1A1A"/><rect x="24" y="40" width="48" height="16" rx="1.5" fill="#1A1A1A"/><rect x="40" y="24" width="8" height="48" rx="1.5" fill="#3D3D3D"/><rect x="24" y="40" width="48" height="8" rx="1.5" fill="#3D3D3D"/></svg><span class="brand-pill-text">PROMO</span></div></div></div>
+<div id="toast-container"></div>
+<nav class="navbar">
+  <a href="/" class="navbar-brand"><div class="brand-pill"><svg viewBox="0 0 100 100" width="28" height="28" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="goldGrad-20" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#FFF275"/><stop offset="100%" stop-color="#F7C500"/></linearGradient></defs><circle cx="53" cy="53" r="44" fill="#C49B00"/><circle cx="48" cy="48" r="44" fill="url(#goldGrad-20)"/><path d="M40 26 h16 v16 h16 v16 h-16 v16 h-16 v-16 h-16 v-16 h16 z" fill="rgba(196,155,0,0.4)" transform="translate(3,4)"/><rect x="40" y="24" width="16" height="48" rx="1.5" fill="#1A1A1A"/><rect x="24" y="40" width="48" height="16" rx="1.5" fill="#1A1A1A"/><rect x="40" y="24" width="8" height="48" rx="1.5" fill="#3D3D3D"/><rect x="24" y="40" width="48" height="8" rx="1.5" fill="#3D3D3D"/></svg><span class="brand-pill-text">PROMO</span></div></a>
+  <ul class="navbar-links">
+    <li><a href="/">Início</a></li>
+    <li><a href="/parceiros" class="active">Parceiros</a></li>
+    <li><a href="/planos">Planos</a></li>
+    <li><a href="/simulador">Simulador</a></li>
+  </ul>
+  <div class="navbar-right" id="nav-right">
+    <label class="theme-switch" title="Alternar tema">
+      <input type="checkbox" id="theme-toggle">
+      <div class="track">
+    <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
+    <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+  </div>
+    </label>
+    <a href="/login"><button class="btn btn-ghost btn-sm">Entrar</button></a>
+    <a href="/cadastro"><button class="btn btn-yellow btn-sm">Assinar</button></a>
+  </div>
+</nav>
+
+<!-- Hero -->
+<div class="pg-hero">
+  <div class="container text-center">
+    <span class="eyebrow">Rede de Benefícios · 2026</span>
+    <h1>Nossos <em>Parceiros</em></h1>
+    <p class="subtitle" style="max-width:520px;margin:12px auto 0">Compre em qualquer um deles e o cashback cai automaticamente no seu saldo +Promo.</p>
+    <div class="search-wrap">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+        <circle cx="6.5" cy="6.5" r="4.5" stroke="#aaa" stroke-width="1.6"/>
+        <path d="M10 10l3.5 3.5" stroke="#aaa" stroke-width="1.6" stroke-linecap="round"/>
+      </svg>
+      <input class="search-input" id="search-input" placeholder="Buscar parceiro por nome...">
+      <span id="search-clear" style="cursor:pointer;color:var(--gray-400);font-size:16px;display:none;line-height:1">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="6" fill="var(--gray-200)"/><path d="M5 5l4 4M9 5l-4 4" stroke="#666" stroke-width="1.4" stroke-linecap="round"/></svg>
+      </span>
+    </div>
+  </div>
+</div>
+
+<!-- Filtros -->
+<div class="filters-bar">
+  <div class="container">
+    <div class="filters-inner">
+      <button class="filter-chip on" data-cat="todos">
+        <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><rect x="1" y="1" width="5" height="5" rx="1.2" fill="currentColor"/><rect x="7" y="1" width="5" height="5" rx="1.2" fill="currentColor"/><rect x="1" y="7" width="5" height="5" rx="1.2" fill="currentColor"/><rect x="7" y="7" width="5" height="5" rx="1.2" fill="currentColor"/></svg>
+        Todos
+      </button>
+      <button class="filter-chip" data-cat="Supermercado">
+        <svg width="13" height="13" viewBox="0 0 16 16" fill="none"><path d="M2 2h1.5l2 8h7l1.5-5.5H4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/><circle cx="7" cy="13" r="1" fill="currentColor"/><circle cx="11" cy="13" r="1" fill="currentColor"/></svg>
+        Supermercados
+      </button>
+      <button class="filter-chip" data-cat="Farmácia">
+        <svg width="13" height="13" viewBox="0 0 14 14" fill="none"><rect x="1" y="1" width="12" height="12" rx="2.5" stroke="currentColor" stroke-width="1.4" fill="none"/><path d="M7 4v6M4 7h6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        Farmácias
+      </button>
+      <button class="filter-chip" data-cat="Viagem">
+        <svg width="13" height="13" viewBox="0 0 14 14" fill="none"><path d="M2 9l1-6 4 2 4-2 1 6-4.5 2L2 9z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round" fill="none"/><path d="M6.5 5v6" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+        Viagens
+      </button>
+      <button class="filter-chip" data-cat="Restaurante">
+        <svg width="13" height="13" viewBox="0 0 14 14" fill="none"><path d="M3 1v5a2.5 2.5 0 005 0V1M5 1v5M11 1v12M9.5 1c0 2.5 1.5 2.5 1.5 5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+        Restaurantes
+      </button>
+      <button class="filter-chip" data-cat="Combustível">
+        <svg width="13" height="13" viewBox="0 0 14 14" fill="none"><path d="M3 13V4a1 1 0 011-1h4a1 1 0 011 1v2.5h.5a2 2 0 012 2V11a.5.5 0 001 0" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" fill="none"/><path d="M3 7h6" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+        Combustível
+      </button>
+      <button class="filter-chip" data-cat="Streaming">
+        <svg width="13" height="13" viewBox="0 0 14 14" fill="none"><path d="M2 4h10v8H2z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round" fill="none"/><path d="M5 7l4-2v4L5 7z" fill="currentColor"/><path d="M5 2L9 2" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+        Streaming
+      </button>
+      <button class="filter-chip" data-cat="Moda">
+        <svg width="13" height="13" viewBox="0 0 14 14" fill="none"><path d="M4.5 1.5L2 5h3v7h4V5h3L9.5 1.5h-5z" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+        Moda
+      </button>
+      <button class="filter-chip" data-cat="Tecnologia">
+        <svg width="13" height="13" viewBox="0 0 14 14" fill="none"><rect x="1" y="3" width="12" height="7" rx="1.5" stroke="currentColor" stroke-width="1.3" fill="none"/><path d="M4 12h6M7 10v2" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+        Tecnologia
+      </button>
+      <button class="filter-chip" data-cat="Educação">
+        <svg width="13" height="13" viewBox="0 0 14 14" fill="none"><path d="M7 2L1 5l6 3 6-3-6-3zM1 5v5M4 6.5v4a3 3 0 006 0v-4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+        Educação
+      </button>
+      <span class="results-count" id="results-count">24 parceiros</span>
+    </div>
+  </div>
+</div>
+
+<!-- Grade de parceiros -->
+<section class="partners-section">
+  <div class="container">
+    <div class="p-grid" id="partners-grid"></div>
+    <div class="empty" id="empty-state">
+      <div style="margin-bottom:14px">
+        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" style="opacity:.3"><circle cx="20" cy="20" r="14" stroke="#000" stroke-width="2.5"/><path d="M30 30l11 11" stroke="#000" stroke-width="2.5" stroke-linecap="round"/><path d="M15 20h10M20 15v10" stroke="#000" stroke-width="2" stroke-linecap="round"/></svg>
+      </div>
+      <h3>Nenhum parceiro encontrado</h3>
+      <p>Tente outro filtro ou termo de busca.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Modal de detalhe -->
+<div class="modal-overlay" id="modal-overlay">
+  <div class="modal" id="modal">
+    <div class="modal-header">
+      <div class="modal-icon" id="modal-icon"></div>
+      <div>
+        <div class="modal-title" id="modal-title"></div>
+        <div class="modal-sub" id="modal-sub"></div>
+      </div>
+      <button class="modal-close" id="modal-close">
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M1 1l10 10M11 1L1 11" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+    <div id="modal-body"></div>
+    <a href="/cadastro" style="display:block;margin-top:22px">
+      <button class="btn btn-yellow btn-full">Assinar para ativar este parceiro →</button>
+    </a>
+  </div>
+</div>
+
+<script>
+  window.addEventListener('load',()=>{ document.getElementById('page-loader').classList.add('hide'); });
+
+  // ── Biblioteca de Ícones Premium (Lucide-style) ──
+  const getIcon = (name) => {
+    const icons = {
+      'Supermercado': '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>',
+      'Farmácia': '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z"/><path d="m8.5 8.5 7 7"/></svg>',
+      'Viagem': '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21 4 19 2c-2-2-4-2-5.5-.5L10 5 1.8 6.2l4.8 4.8-1 5.2 5.2-1 4.8 4.8Z"/></svg>',
+      'Restaurante': '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15V2v0a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"/></svg>',
+      'Combustível': '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="3" x2="15" y1="22" y2="22"/><line x1="4" x2="14" y1="9" y2="9"/><path d="M14 22V4a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v18"/><path d="M14 13h2a2 2 0 0 1 2 2v2a2 2 0 0 0 2 2h0a2 2 0 0 0 2-2V9.83a2 2 0 0 0-.59-1.42L18 5"/></svg>',
+      'Streaming': '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="2.18" ry="2.18"/><line x1="7" x2="7" y1="2" y2="22"/><line x1="17" x2="17" y1="2" y2="22"/><line x1="2" x2="22" y1="12" y2="12"/><line x1="2" x2="7" y1="7" y2="7"/><line x1="2" x2="7" y1="17" y2="17"/><line x1="17" x2="22" y1="17" y2="17"/><line x1="17" x2="22" y1="7" y2="7"/></svg>',
+      'Moda': '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.38 3.46 16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.57a1 1 0 0 0 .99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.57a2 2 0 0 0-1.34-2.23Z"/></svg>',
+      'Tecnologia': '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="12" x="3" y="4" rx="2" ry="2"/><line x1="2" x2="22" y1="20" y2="20"/></svg>',
+      'Educação': '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg>',
+      'Saúde': '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>',
+      'Lojas de Conveniência': '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m2 7 4.41-4.41A2 2 0 0 1 7.83 2h8.34a2 2 0 0 1 1.42.59L22 7"/><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><path d="M15 22v-4a2 2 0 0 0-2-2h-2a2 2 0 0 0-2 2v4"/><path d="M2 7h20"/><path d="M22 7v3a2 2 0 0 1-2 2v0a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 16 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 12 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 8 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 4 12v0a2 2 0 0 1-2-2V7"/></svg>',
+      'Shopping': '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>',
+      'Serviços Digitais': '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="7"/><path d="M12 6v4"/></svg>',
+      'Alimentação Saudável': '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg>',
+      'Eletrônicos': '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 14h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-7a9 9 0 0 1 18 0v7a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3"/></svg>',
+      'Assinaturas': '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>'
+    };
+    return icons[name] || icons['Shopping'];
+  };
+
+  // ── Dados ─────────────────────────────────────
+  const PARCEIROS = [
+    { nome:'MercadoFácil',  cat:'Supermercado', icon:'<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>', bg:'#FFF9E0', basic:'2%',  plus:'4%',       premium:'6%',          plano:'basic',   desc:'Rede de supermercados com mais de 200 lojas no Brasil.' },
+    { nome:'FreshMart',     cat:'Supermercado', icon:'', bg:'#E8FAF0', basic:'2%',  plus:'5%',       premium:'6%',          plano:'basic',   desc:'Supermercado premium com foco em produtos naturais e orgânicos.' },
+    { nome:'CompraFlex',    cat:'Supermercado', icon:'', bg:'#FFF9E0', basic:'1%',  plus:'3%',       premium:'5%',          plano:'basic',   desc:'Atacarejo com preços de atacado e variedade de produtos.' },
+    { nome:'FarmaVida',     cat:'Farmácia',     icon:'<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10.5 20H4a2 2 0 0 1-2-2V5c0-1.1.9-2 2-2h3.93a2 2 0 0 1 1.66.9l.82 1.2a2 2 0 0 0 1.66.9H20a2 2 0 0 1 2 2v3"/><circle cx="18" cy="18" r="3"/><path d="M20.5 15.5 15.5 20.5"/></svg>', bg:'#F0EEFF', basic:'4%',  plus:'8%',       premium:'8%',          plano:'plus',    desc:'Rede de farmácias com entregas em até 1 hora.' },
+    { nome:'SaúdeExpress',  cat:'Farmácia',     icon:'', bg:'#E8FAF0', basic:'3%',  plus:'6%',       premium:'8%',          plano:'plus',    desc:'Farmácia digital com foco em saúde e bem-estar.' },
+    { nome:'AirFlex',       cat:'Viagem',       icon:'<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17.8 19.2L16 11l3.5-3.5C21 6 21 4 19 2c-2-2-4-2-5.5-.5L10 5 1.8 6.2l4.8 4.8-1 5.2 5.2-1 4.8 4.8z"/></svg>', bg:'#FFF0F0', basic:'1%+milhas', plus:'2%+milhas', premium:'3%+milhas', plano:'premium', desc:'Companhia aérea parceira com milhas duplas para assinantes +Promo.' },
+    { nome:'HotelPlus',     cat:'Viagem',       icon:'', bg:'#E8F4FF', basic:'—',   plus:'2%',       premium:'4%',          plano:'plus',    desc:'Plataforma de reservas de hotéis com descontos exclusivos.' },
+    { nome:'ViajaMais',     cat:'Viagem',       icon:'<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg>', bg:'#FFF9E0', basic:'1%',  plus:'2%',       premium:'3%',          plano:'basic',   desc:'Agência de turismo com pacotes nacionais e internacionais.' },
+    { nome:'BomGarfo',      cat:'Restaurante',  icon:'', bg:'#FFF9E0', basic:'2%',  plus:'6%',       premium:'8%',          plano:'basic',   desc:'Rede de hamburguerias artesanais com delivery rápido.' },
+    { nome:'DelivExpress',  cat:'Restaurante',  icon:'', bg:'#FFF0E8', basic:'3%',  plus:'5%',       premium:'7%',          plano:'basic',   desc:'App de delivery com mais de 500 restaurantes cadastrados.' },
+    { nome:'TasteNow',      cat:'Restaurante',  icon:'<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3zm0 0v7"/></svg>', bg:'#E8FAF0', basic:'2%',  plus:'6%',       premium:'8%',          plano:'basic',   desc:'Restaurantes gourmet com reservas e cardápio exclusivo.' },
+    { nome:'PetroPrime',    cat:'Combustível',  icon:'', bg:'#FFF9E0', basic:'2%',  plus:'3%',       premium:'4%',          plano:'basic',   desc:'Rede de postos com mais de 800 unidades no Brasil.' },
+    { nome:'GasFull',       cat:'Combustível',  icon:'', bg:'#E8FAF0', basic:'1%',  plus:'2%',       premium:'4%',          plano:'basic',   desc:'Postos com loja de conveniência e lavagem de veículos.' },
+    { nome:'PlayStream',    cat:'Streaming',    icon:'', bg:'#E8F4FF', basic:'—',   plus:'Incluso',  premium:'Incluso',     plano:'plus',    desc:'Streaming de filmes e séries com catálogo de 10.000+ títulos.' },
+    { nome:'CineMax+',      cat:'Streaming',    icon:'', bg:'#F0EEFF', basic:'—',   plus:'—',        premium:'Incluso',     plano:'premium', desc:'Cinema online com estreias exclusivas e conteúdo premium.' },
+    { nome:'StyleOn',       cat:'Moda',         icon:'<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.38 3.46L16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.57a1 1 0 0 0 .99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.57a2 2 0 0 0-1.34-2.23z"/></svg>', bg:'#F8EEFF', basic:'3%',  plus:'8%',       premium:'10%',         plano:'plus',    desc:'Moda feminina com entrega expressa e troca gratuita.' },
+    { nome:'FashionHub',    cat:'Moda',         icon:'', bg:'#FFF0F0', basic:'3%',  plus:'7%',       premium:'10%',         plano:'plus',    desc:'Multimarcas com as principais tendências do mercado.' },
+    { nome:'UrbanWear',     cat:'Moda',         icon:'', bg:'#E8FAF0', basic:'2%',  plus:'6%',       premium:'9%',          plano:'basic',   desc:'Moda casual e streetwear com frete grátis acima de R$150.' },
+    { nome:'TechStore',     cat:'Tecnologia',   icon:'<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>', bg:'#E8FAF0', basic:'2%',  plus:'4%',       premium:'5%',          plano:'basic',   desc:'Eletrônicos e gadgets com garantia estendida grátis.' },
+    { nome:'GadgetShop',    cat:'Tecnologia',   icon:'', bg:'#FFF9E0', basic:'2%',  plus:'4%',       premium:'5%',          plano:'basic',   desc:'Acessórios e periféricos para casa, escritório e games.' },
+    { nome:'EduPrime',      cat:'Educação',     icon:'', bg:'#FFF0E8', basic:'5%',  plus:'10%',      premium:'10%+2meses',  plano:'basic',   desc:'Plataforma de cursos online com certificados reconhecidos.' },
+    { nome:'CursoFlex',     cat:'Educação',     icon:'', bg:'#E8F4FF', basic:'5%',  plus:'8%',       premium:'10%',         plano:'basic',   desc:'Cursos profissionalizantes e preparatórios online.' },
+    { nome:'FitLife',       cat:'Saúde',        icon:'', bg:'#E8FAF0', basic:'3%',  plus:'6%',       premium:'8%',          plano:'basic',   desc:'Academia e academia online com planos mensais flexíveis.' },
+    { nome:'NutriPlus',     cat:'Saúde',        icon:'', bg:'#FFF9E0', basic:'4%',  plus:'7%',       premium:'8%',          plano:'basic',   desc:'Nutrição e suplementos com acompanhamento nutricional.' },
+  ];
+
+  let filtroAtivo = 'todos';
+  let buscaAtiva  = '';
+
+  const grid = document.getElementById('partners-grid');
+
+  // ─────────────────────────────────────────────
+  // INOVAÇÃO 4 — Fluid Filter com FLIP Animation
+  // Técnica: First, Last, Invert, Play
+  // 1. Grava posições (First)
+  // 2. Atualiza DOM (Last)
+  // 3. Calcula diff de posição (Invert)
+  // 4. Anima de volta ao lugar (Play)
+  // ─────────────────────────────────────────────
+
+  function getFiltered() {
+    return PARCEIROS.filter(p => {
+      const catOk = filtroAtivo === 'todos' || p.cat === filtroAtivo;
+      const busOk = p.nome.toLowerCase().includes(buscaAtiva.toLowerCase());
+      return catOk && busOk;
+    });
+  }
+
+  function buildCardHTML(p, idx) {
+    const renderIcon = p.icon || getIcon(p.cat);
+    return `
+      <div class="p-card" data-plano="${p.plano}" data-idx="${idx}" tabindex="0">
+        ${p.plano==='premium'?'<div class="p-pro">PRO</div>':''}
+        <div class="p-logo" style="background:${p.bg}">${renderIcon}</div>
+        <div class="p-name">${p.nome}</div>
+        <div class="p-cat">
+          <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><circle cx="5" cy="5" r="4" stroke="currentColor" stroke-width="1.2" fill="none"/><path d="M5 3v2l1.5 1" stroke="currentColor" stroke-width="1" stroke-linecap="round"/></svg>
+          ${p.cat}
+        </div>
+        <div class="p-cashback">
+          <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M5 1.5L6.2 4H9L6.8 5.7l.8 2.8L5 7.1l-2.6 1.4.8-2.8L1 4h2.8z" fill="currentColor"/></svg>
+          ${p.plus} cashback
+        </div>
+      </div>`;
+  }
+
+  // Initial render (no animation)
+  function initialRender() {
+    const filtered = getFiltered();
+    document.getElementById('results-count').textContent = `${filtered.length} parceiro${filtered.length!==1?'s':''}`;
+    document.getElementById('empty-state').classList.toggle('show', filtered.length === 0);
+
+    grid.innerHTML = filtered.map((p, i) => buildCardHTML(p, PARCEIROS.indexOf(p))).join('');
+
+    // Staggered entrance on first load
+    grid.querySelectorAll('.p-card').forEach((card, i) => {
+      card.style.animationDelay = (i * 35) + 'ms';
+      card.classList.add('entering');
+    });
+
+    bindCardEvents();
+  }
+
+  // FLIP-animated filter transition
+  function filterWithFlip() {
+    const existingCards = Array.from(grid.querySelectorAll('.p-card'));
+
+    // Step 1 — FIRST: record current positions
+    const firstPositions = new Map();
+    existingCards.forEach(card => {
+      firstPositions.set(card.dataset.idx, card.getBoundingClientRect());
+    });
+
+    // Step 2 — Determine new set
+    const filtered = getFiltered();
+    document.getElementById('results-count').textContent = `${filtered.length} parceiro${filtered.length!==1?'s':''}`;
+    document.getElementById('empty-state').classList.toggle('show', filtered.length === 0);
+
+    // IDs in old vs new sets
+    const newIdxSet = new Set(filtered.map(p => String(PARCEIROS.indexOf(p))));
+    const oldIdxSet = new Set(existingCards.map(c => c.dataset.idx));
+
+    // Step 3 — Hide removed cards
+    existingCards.forEach(card => {
+      if (!newIdxSet.has(card.dataset.idx)) {
+        card.classList.add('flip-transit','hiding');
+      }
+    });
+
+    // Step 4 — After exit anim, rebuild and play entrance
+    setTimeout(() => {
+      grid.innerHTML = filtered.map((p, i) => buildCardHTML(p, PARCEIROS.indexOf(p))).join('');
+
+      const newCards = Array.from(grid.querySelectorAll('.p-card'));
+
+      newCards.forEach((card, i) => {
+        // If it was in the old set, play FLIP
+        if (oldIdxSet.has(card.dataset.idx)) {
+          const first = firstPositions.get(card.dataset.idx);
+          if (first) {
+            const last = card.getBoundingClientRect();
+            const dx = first.left - last.left;
+            const dy = first.top  - last.top;
+            if (Math.abs(dx) > 1 || Math.abs(dy) > 1) {
+              card.style.transition = 'none';
+              card.style.transform  = `translate(${dx}px,${dy}px)`;
+              void card.offsetWidth; // force reflow
+              card.style.transition = 'transform .38s cubic-bezier(.4,0,.2,1), opacity .3s ease';
+              card.style.transform  = '';
+            }
+          }
+        } else {
+          // New card — staggered entrance
+          card.style.animationDelay = (i * 30) + 'ms';
+          card.classList.add('entering');
+        }
+      });
+
+      bindCardEvents();
+    }, 200); // match hiding transition
+  }
+
+  function bindCardEvents() {
+    // Spotlight glow
+    grid.querySelectorAll('.p-card').forEach(card => {
+      card.addEventListener('mousemove', e => {
+        const rect = card.getBoundingClientRect();
+        card.style.setProperty('--mx', (e.clientX - rect.left) + 'px');
+        card.style.setProperty('--my', (e.clientY - rect.top)  + 'px');
+      });
+      card.addEventListener('mouseleave', () => {
+        card.style.setProperty('--mx', '50%');
+        card.style.setProperty('--my', '50%');
+      });
+      card.addEventListener('click', () => openModal(PARCEIROS[+card.dataset.idx]));
+    });
+  }
+
+  // ── Filter chips ──────────────────────────────
+  document.querySelectorAll('.filter-chip').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.filter-chip').forEach(b => b.classList.remove('on'));
+      btn.classList.add('on');
+      filtroAtivo = btn.dataset.cat;
+      filterWithFlip();
+    });
+  });
+
+  // ── Search ─────────────────────────────────────
+  let searchTimeout;
+  document.getElementById('search-input').addEventListener('input', function() {
+    buscaAtiva = this.value;
+    document.getElementById('search-clear').style.display = this.value ? 'flex' : 'none';
+    clearTimeout(searchTimeout);
+    searchTimeout = setTimeout(filterWithFlip, 120);
+  });
+  document.getElementById('search-clear').addEventListener('click', () => {
+    document.getElementById('search-input').value = '';
+    buscaAtiva = '';
+    document.getElementById('search-clear').style.display = 'none';
+    filterWithFlip();
+  });
+
+  // ── Modal ──────────────────────────────────────
+  function openModal(p) {
+    const renderIcon = p.icon || getIcon(p.cat);
+    document.getElementById('modal-icon').style.background = p.bg;
+    document.getElementById('modal-icon').innerHTML = renderIcon;
+    document.getElementById('modal-title').textContent = p.nome;
+    document.getElementById('modal-sub').textContent = p.cat;
+    document.getElementById('modal-body').innerHTML = `
+      <p style="font-size:14px;color:#555;margin-bottom:18px;line-height:1.65">${p.desc}</p>
+      <div class="modal-row">
+        <span class="modal-row-label">
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" style="vertical-align:middle;margin-right:5px"><circle cx="6" cy="6" r="5" fill="rgba(100,149,237,.15)" stroke="#6495ed" stroke-width="1.2"/></svg>
+          Plano Basic
+        </span>
+        <span class="modal-row-value">${p.basic} cashback</span>
+      </div>
+      <div class="modal-row">
+        <span class="modal-row-label">
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" style="vertical-align:middle;margin-right:5px"><path d="M6 1.5L7.2 4.5H10L7.6 6.4l.9 3L6 7.8l-2.5 1.6.9-3L2 4.5h2.8z" fill="#F7C500"/></svg>
+          Plano Plus
+        </span>
+        <span class="modal-row-value">${p.plus} cashback</span>
+      </div>
+      <div class="modal-row">
+        <span class="modal-row-label">
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" style="vertical-align:middle;margin-right:5px"><path d="M6 1.5L7.2 4.5H10L7.6 6.4l.9 3L6 7.8l-2.5 1.6.9-3L2 4.5h2.8z" fill="#000"/></svg>
+          Plano Premium
+        </span>
+        <span class="modal-row-value">${p.premium} cashback</span>
+      </div>
+      <div class="modal-row">
+        <span class="modal-row-label">Plano mínimo</span>
+        <span class="modal-row-value" style="text-transform:capitalize">${p.plano}</span>
+      </div>
+    `;
+    document.getElementById('modal-overlay').classList.add('open');
+  }
+
+  document.getElementById('modal-close').addEventListener('click', () => {
+    document.getElementById('modal-overlay').classList.remove('open');
+  });
+  document.getElementById('modal-overlay').addEventListener('click', e => {
+    if(e.target === e.currentTarget) document.getElementById('modal-overlay').classList.remove('open');
+  });
+
+  // Init
+  initialRender();
+</script>
+<script type="module" src="/js/promo-elite.js?v=1.2"></script>
+</body>
+</html>

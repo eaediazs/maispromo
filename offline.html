@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Sem conexão — +PROMO</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800;900&family=Nunito+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root { --yellow:#F7C500; --black:#1A1A1A; }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body {
+      font-family:'Nunito Sans',sans-serif;
+      background:#FFFBE6;
+      min-height:100vh;
+      display:flex;align-items:center;justify-content:center;
+      text-align:center;padding:24px;
+    }
+    .mark {
+      width:72px;height:72px;background:var(--yellow);border-radius:20px;
+      display:flex;align-items:center;justify-content:center;
+      font-family:'Nunito',sans-serif;font-size:36px;font-weight:900;color:var(--black);
+      margin:0 auto 20px;
+    }
+    h1 {
+      font-family:'Nunito',sans-serif;font-size:28px;font-weight:900;
+      color:var(--black);margin-bottom:12px;letter-spacing:-0.5px;
+    }
+    p { font-size:16px;color:#666;line-height:1.6;max-width:360px;margin:0 auto 28px; }
+    .btn {
+      display:inline-flex;align-items:center;gap:8px;
+      padding:12px 28px;background:var(--black);color:#fff;
+      border:none;border-radius:50px;font-family:'Nunito',sans-serif;
+      font-size:15px;font-weight:700;cursor:pointer;text-decoration:none;
+    }
+    .offline-icon { font-size:48px;margin-bottom:16px; }
+    .hint {
+      margin-top:20px;font-size:13px;color:#aaa;
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <div class="mark">+</div>
+    <div class="offline-icon"></div>
+    <h1>Você está sem conexão</h1>
+    <p>
+      Não foi possível carregar esta página. Verifique sua internet
+      e tente novamente — seus dados estão salvos localmente.
+    </p>
+    <a class="btn" onclick="window.location.reload()">
+      ↺ Tentar novamente
+    </a>
+    <p class="hint">
+      Suas informações de cashback e transações estão salvas<br>
+      e serão atualizadas assim que você reconectar.
+    </p>
+  </div>
+</body>
+</html>
+

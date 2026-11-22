@@ -1,0 +1,157 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // ╔═══════════════════════════════════════════════════════════╗
+    // ║  +PROMO — Regras de Segurança de Produção                ║
+    // ║  Última atualização: 17/04/2026                          ║
+    // ║  Projeto: maispromo-81a2d                                ║
+    // ╚═══════════════════════════════════════════════════════════╝
+
+    // ── Funções auxiliares ───────────────────────────────────────
+
+    // Verifica se o usuário está autenticado
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    // Verifica se o usuário autenticado é o dono do documento
+    function isOwner(userId) {
+      return isSignedIn() && request.auth.uid == userId;
+    }
+
+    // Verifica se um campo NÃO está sendo alterado na requisição
+    function fieldUnchanged(field) {
+      return !(field in request.resource.data)
+          || request.resource.data[field] == resource.data[field];
+    }
+
+    // Verifica se é uma criação válida (campos financeiros zerados)
+    function isValidCreation() {
+      let d = request.resource.data;
+      return d.cashback == 0
+          && d.milhas == 0
+          && d.pontos == 0
+          && d.gastoMes == 0
+          && d.cashbackMes == 0;
+    }
+
+    // Verifica se a operação é um saque válido:
+    // - cashback DEVE ir para 0 (nunca para outro valor)
+    // - o saldo anterior deve ser > 0 (não pode "sacar" do zero)
+    // NOTA: Migrar para Cloud Function para segurança máxima.
+    function isValidSaque() {
+      let d = request.resource.data;
+      return d.cashback == 0
+          && resource.data.cashback > 0;
+    }
+
+    // Verifica se o incremento de cashback vindo do scanner de NF-e é válido:
+    // - Deve ser um incremento positivo
+    // - O limite máximo por nota é de R$ 500
+    function isValidCashbackIncrement() {
+      let oldCashback = resource.data.cashback;
+      let newCashback = request.resource.data.cashback;
+      return newCashback > oldCashback
+          && (newCashback - oldCashback) <= 500.0;
+    }
+
+    // ═════════════════════════════════════════════════════════════
+    // COLEÇÃO: usuarios/{userId}
+    // Perfil do usuário, saldos, plano, nível
+    // ═════════════════════════════════════════════════════════════
+    match /usuarios/{userId} {
+
+      // LEITURA: Somente o próprio dono pode ler seus dados
+      allow read: if isOwner(userId);
+
+      // CRIAÇÃO: Somente o próprio dono, com saldos zerados
+      // (impede criar conta já com cashback/milhas/pontos)
+      allow create: if isOwner(userId) && isValidCreation();
+
+      // ATUALIZAÇÃO: Duas situações permitidas:
+      //
+      // 1) ATUALIZAÇÃO NORMAL (perfil, plano, etc.)
+      //    → Todos os campos financeiros DEVEM permanecer iguais
+      //
+      // 2) SAQUE (cashback → 0)
+      //    → cashback só pode ir para 0, nunca para outro valor
+      //    → totalResgatado, ultimoSaque, dataSaque podem mudar
+      //    → demais campos financeiros permanecem iguais
+      //
+      // Campos como milhas, pontos, gastoMes, etc. NUNCA podem
+      // ser alterados pelo cliente em nenhuma circunstância.
+      allow update: if isOwner(userId)
+                    && fieldUnchanged('milhas')
+                    && fieldUnchanged('pontos')
+                    && fieldUnchanged('cashbackMes')
+                    && fieldUnchanged('gastoMes')
+                    && fieldUnchanged('numTx')
+                    && fieldUnchanged('gastoSuper')
+                    && fieldUnchanged('gastoFarm')
+                    && fieldUnchanged('gastoRest')
+                    && fieldUnchanged('gastoComb')
+                    && (
+                      // Caso 1: Update normal — cashback não muda
+                      fieldUnchanged('cashback')
+                      ||
+                      // Caso 2: Saque — cashback vai para 0
+                      isValidSaque()
+                      ||
+                      // Caso 3: Cashback creditado via nota fiscal (NFC-e)
+                      isValidCashbackIncrement()
+                    );
+
+      // EXCLUSÃO: Ninguém pode deletar perfis pelo cliente
+      allow delete: if false;
+    }
+
+    // ═════════════════════════════════════════════════════════════
+    // COLEÇÃO: notificacoes/{userId}/itens/{notifId}
+    // Notificações do usuário (resgate, cupons, nível, etc.)
+    // ═════════════════════════════════════════════════════════════
+    match /notificacoes/{userId}/itens/{notifId} {
+
+      // LEITURA: Somente o próprio dono
+      allow read: if isOwner(userId);
+
+      // CRIAÇÃO: Somente o próprio dono
+      allow create: if isOwner(userId);
+
+      // ATUALIZAÇÃO: Somente o dono, e só pode alterar 'lida'
+      // (impede alterar título, mensagem, tipo, etc.)
+      allow update: if isOwner(userId)
+                    && request.resource.data.diff(resource.data)
+                    .affectedKeys().hasOnly(['lida']);
+
+      // EXCLUSÃO: Não permitido pelo cliente
+      allow delete: if false;
+    }
+
+    // ═════════════════════════════════════════════════════════════
+    // COLEÇÃO: notas_lidas/{chave}
+    // Chaves de acesso de NF-e processadas (Anti-fraude de duplicidade)
+    // ═════════════════════════════════════════════════════════════
+    match /notas_lidas/{chave} {
+      // LEITURA: Apenas autenticado. Se o documento já existir, valida se é o dono.
+      // (Opcional resource == null impede a quebra de transação get() quando a nota não existe)
+      allow read: if isSignedIn() && (resource == null || resource.data.uid == request.auth.uid);
+
+      // CRIAÇÃO: Apenas autenticado, informando o próprio uid e garantindo nota única (anti-fraude)
+      allow create: if isSignedIn() 
+                    && request.resource.data.uid == request.auth.uid
+                    && !exists(/databases/$(database)/documents/notas_lidas/$(chave));
+
+      // NUNCA permite atualizar ou deletar notas lidas (segurança máxima anti-fraude)
+      allow update, delete: if false;
+    }
+
+    // ═════════════════════════════════════════════════════════════
+    // REGRA PADRÃO: BLOQUEAR TUDO
+    // Qualquer coleção não listada acima é bloqueada
+    // ═════════════════════════════════════════════════════════════
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

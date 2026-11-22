@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+<link rel="manifest" href="/manifest.json">
+<meta name="theme-color" content="#F7C500">
+<link rel="stylesheet" href="/css/promo-elite.css?v=1.4"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Simulador de Economia — +PROMO</title>
+  <link rel="stylesheet" href="/css/style.css?v=1.4">
+  <link rel="stylesheet" href="/css/simulador.css?v=1.4">
+</head>
+<body>
+<div id="page-loader"><div class="loader-brand"><div class="brand-pill"><svg viewBox="0 0 100 100" width="28" height="28" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="goldGrad-23" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#FFF275"/><stop offset="100%" stop-color="#F7C500"/></linearGradient></defs><circle cx="53" cy="53" r="44" fill="#C49B00"/><circle cx="48" cy="48" r="44" fill="url(#goldGrad-23)"/><path d="M40 26 h16 v16 h16 v16 h-16 v16 h-16 v-16 h-16 v-16 h16 z" fill="rgba(196,155,0,0.4)" transform="translate(3,4)"/><rect x="40" y="24" width="16" height="48" rx="1.5" fill="#1A1A1A"/><rect x="24" y="40" width="48" height="16" rx="1.5" fill="#1A1A1A"/><rect x="40" y="24" width="8" height="48" rx="1.5" fill="#3D3D3D"/><rect x="24" y="40" width="48" height="8" rx="1.5" fill="#3D3D3D"/></svg><span class="brand-pill-text">PROMO</span></div></div></div>
+<div id="toast-container"></div>
+<nav class="navbar">
+  <a href="/" class="navbar-brand"><div class="brand-pill"><svg viewBox="0 0 100 100" width="28" height="28" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="goldGrad-24" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#FFF275"/><stop offset="100%" stop-color="#F7C500"/></linearGradient></defs><circle cx="53" cy="53" r="44" fill="#C49B00"/><circle cx="48" cy="48" r="44" fill="url(#goldGrad-24)"/><path d="M40 26 h16 v16 h16 v16 h-16 v16 h-16 v-16 h-16 v-16 h16 z" fill="rgba(196,155,0,0.4)" transform="translate(3,4)"/><rect x="40" y="24" width="16" height="48" rx="1.5" fill="#1A1A1A"/><rect x="24" y="40" width="48" height="16" rx="1.5" fill="#1A1A1A"/><rect x="40" y="24" width="8" height="48" rx="1.5" fill="#3D3D3D"/><rect x="24" y="40" width="48" height="8" rx="1.5" fill="#3D3D3D"/></svg><span class="brand-pill-text">PROMO</span></div></a>
+  <ul class="navbar-links">
+    <li><a href="/">Início</a></li>
+    <li><a href="/parceiros">Parceiros</a></li>
+    <li><a href="/planos">Planos</a></li>
+    <li><a href="/simulador" class="active">Simulador</a></li>
+  </ul>
+  <div class="navbar-right" id="nav-right">
+    <label class="theme-switch" title="Alternar tema">
+      <input type="checkbox" id="theme-toggle">
+      <div class="track">
+    <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
+    <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+  </div>
+    </label>
+    <a href="/login"><button class="btn btn-ghost btn-sm">Entrar</button></a>
+    <a href="/cadastro"><button class="btn btn-yellow btn-sm">Assinar</button></a>
+  </div>
+</nav>
+
+<div class="sim-hero">
+  <div class="container">
+    <span class="eyebrow">Ferramenta Gratuita · 2026</span>
+    <h1>Simulador de <em>Economia</em></h1>
+    <p class="subtitle">Informe quanto você gasta por mês em cada categoria e veja quanto ganharia de cashback com a +Promo.</p>
+  </div>
+</div>
+
+<div class="sim-wrap">
+  <div class="sim-grid">
+
+    <!-- INPUTS -->
+    <div class="sim-inputs">
+      <h3>
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="1" y="3" width="18" height="14" rx="3" stroke="#000" stroke-width="1.6" fill="none"/><path d="M1 7h18M7 3v4M13 3v4" stroke="#000" stroke-width="1.4" stroke-linecap="round"/><circle cx="6" cy="12" r="1.2" fill="#000"/><circle cx="10" cy="12" r="1.2" fill="#000"/><circle cx="14" cy="12" r="1.2" fill="#000"/></svg>
+        Quanto você gasta por mês?
+      </h3>
+
+      <!-- Supermercado -->
+      <div class="sim-field">
+        <div class="sim-label">
+          <span class="label-left">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 2h1.5l2 8h7l1.5-5.5H4.5" stroke="#000" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/><circle cx="7" cy="13" r="1" fill="#000"/><circle cx="11" cy="13" r="1" fill="#000"/></svg>
+            Supermercado
+          </span>
+          <span class="sim-value-tag" id="v-super">R$ 600</span>
+        </div>
+        <div class="slider-wrap">
+          <div class="slider-track-bg">
+            <div class="slider-fill" id="fill-super" style="width:20%"></div>
+          </div>
+          <div class="slider-thumb" id="thumb-super" style="left:20%"></div>
+          <input type="range" class="sim-slider" id="s-super" min="0" max="3000" step="50" value="600">
+        </div>
+        <div class="sim-hints"><span>R$ 0</span><span>R$ 3.000</span></div>
+      </div>
+
+      <!-- Farmácia -->
+      <div class="sim-field">
+        <div class="sim-label">
+          <span class="label-left">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="2" y="2" width="12" height="12" rx="3" stroke="#000" stroke-width="1.4" fill="none"/><path d="M8 5v6M5 8h6" stroke="#000" stroke-width="1.6" stroke-linecap="round"/></svg>
+            Farmácia
+          </span>
+          <span class="sim-value-tag" id="v-farm">R$ 200</span>
+        </div>
+        <div class="slider-wrap">
+          <div class="slider-track-bg">
+            <div class="slider-fill" id="fill-farm" style="width:20%"></div>
+          </div>
+          <div class="slider-thumb" id="thumb-farm" style="left:20%"></div>
+          <input type="range" class="sim-slider" id="s-farm" min="0" max="1000" step="25" value="200">
+        </div>
+        <div class="sim-hints"><span>R$ 0</span><span>R$ 1.000</span></div>
+      </div>
+
+      <!-- Restaurantes -->
+      <div class="sim-field">
+        <div class="sim-label">
+          <span class="label-left">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 2v5a3 3 0 006 0V2M6 2v5M13 2v12M11 2c0 3 2 3 2 6" stroke="#000" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+            Restaurantes
+          </span>
+          <span class="sim-value-tag" id="v-rest">R$ 300</span>
+        </div>
+        <div class="slider-wrap">
+          <div class="slider-track-bg">
+            <div class="slider-fill" id="fill-rest" style="width:15%"></div>
+          </div>
+          <div class="slider-thumb" id="thumb-rest" style="left:15%"></div>
+          <input type="range" class="sim-slider" id="s-rest" min="0" max="2000" step="50" value="300">
+        </div>
+        <div class="sim-hints"><span>R$ 0</span><span>R$ 2.000</span></div>
+      </div>
+
+      <!-- Combustível -->
+      <div class="sim-field">
+        <div class="sim-label">
+          <span class="label-left">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 14V4a1 1 0 011-1h5a1 1 0 011 1v3h1a2 2 0 012 2v3a1 1 0 001 1" stroke="#000" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/><path d="M3 8h7" stroke="#000" stroke-width="1.4" stroke-linecap="round"/></svg>
+            Combustível
+          </span>
+          <span class="sim-value-tag" id="v-comb">R$ 250</span>
+        </div>
+        <div class="slider-wrap">
+          <div class="slider-track-bg">
+            <div class="slider-fill" id="fill-comb" style="width:16.7%"></div>
+          </div>
+          <div class="slider-thumb" id="thumb-comb" style="left:16.7%"></div>
+          <input type="range" class="sim-slider" id="s-comb" min="0" max="1500" step="50" value="250">
+        </div>
+        <div class="sim-hints"><span>R$ 0</span><span>R$ 1.500</span></div>
+      </div>
+
+      <!-- Moda -->
+      <div class="sim-field">
+        <div class="sim-label">
+          <span class="label-left">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M5 2L2 6h3v8h6V6h3L11 2H5z" stroke="#000" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+            Moda &amp; Compras
+          </span>
+          <span class="sim-value-tag" id="v-moda">R$ 150</span>
+        </div>
+        <div class="slider-wrap">
+          <div class="slider-track-bg">
+            <div class="slider-fill" id="fill-moda" style="width:7.5%"></div>
+          </div>
+          <div class="slider-thumb" id="thumb-moda" style="left:7.5%"></div>
+          <input type="range" class="sim-slider" id="s-moda" min="0" max="2000" step="50" value="150">
+        </div>
+        <div class="sim-hints"><span>R$ 0</span><span>R$ 2.000</span></div>
+      </div>
+
+      <!-- Tecnologia -->
+      <div class="sim-field">
+        <div class="sim-label">
+          <span class="label-left">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="1" y="3" width="14" height="9" rx="2" stroke="#000" stroke-width="1.4" fill="none"/><path d="M5 14h6M8 12v2" stroke="#000" stroke-width="1.4" stroke-linecap="round"/></svg>
+            Tecnologia
+          </span>
+          <span class="sim-value-tag" id="v-tech">R$ 100</span>
+        </div>
+        <div class="slider-wrap">
+          <div class="slider-track-bg">
+            <div class="slider-fill" id="fill-tech" style="width:5%"></div>
+          </div>
+          <div class="slider-thumb" id="thumb-tech" style="left:5%"></div>
+          <input type="range" class="sim-slider" id="s-tech" min="0" max="2000" step="50" value="100">
+        </div>
+        <div class="sim-hints"><span>R$ 0</span><span>R$ 2.000</span></div>
+      </div>
+
+      <div style="border-top:1px solid var(--gray-100);padding-top:18px;margin-top:10px;display:flex;justify-content:space-between;align-items:center">
+        <span style="font-size:14px;font-weight:700;color:var(--gray-500)">Total mensal estimado</span>
+        <span id="total-gasto">R$ 1.600</span>
+      </div>
+    </div>
+
+    <!-- RESULTADO em tempo real -->
+    <div class="sim-result">
+      <h3>
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" stroke="#000" stroke-width="1.6" fill="none"/><path d="M10 5v5l3 2" stroke="#000" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Seu cashback estimado
+      </h3>
+
+      <!-- Odometer principal -->
+      <div class="odometer-wrap" id="odo-main">
+        <span class="odo-prefix">R$</span>
+        <span id="odo-display" style="font-family:'Nunito',sans-serif;font-size:52px;font-weight:900;color:var(--black)">0,00</span>
+      </div>
+      <div class="result-sub" id="res-sub">por mês com o Plano Plus</div>
+
+      <div class="result-breakdown">
+        <div class="rb-row">
+          <span class="rb-label">
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M2 2h1.5l2 8h7l1.5-5.5H4.5" stroke="#000" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/><circle cx="7" cy="13" r="1" fill="#000"/><circle cx="11" cy="13" r="1" fill="#000"/></svg>
+            Supermercado
+          </span>
+          <span class="rb-val" id="rb-super">R$ 0,00</span>
+        </div>
+        <div class="rb-row">
+          <span class="rb-label">
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><rect x="2" y="2" width="12" height="12" rx="3" stroke="#000" stroke-width="1.4" fill="none"/><path d="M8 5v6M5 8h6" stroke="#000" stroke-width="1.6" stroke-linecap="round"/></svg>
+            Farmácia
+          </span>
+          <span class="rb-val" id="rb-farm">R$ 0,00</span>
+        </div>
+        <div class="rb-row">
+          <span class="rb-label">
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 2v5a3 3 0 006 0V2M6 2v5M13 2v12M11 2c0 3 2 3 2 6" stroke="#000" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+            Restaurantes
+          </span>
+          <span class="rb-val" id="rb-rest">R$ 0,00</span>
+        </div>
+        <div class="rb-row">
+          <span class="rb-label">
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 14V4a1 1 0 011-1h5a1 1 0 011 1v3h1a2 2 0 012 2v3a1 1 0 001 1" stroke="#000" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/><path d="M3 8h7" stroke="#000" stroke-width="1.4" stroke-linecap="round"/></svg>
+            Combustível
+          </span>
+          <span class="rb-val" id="rb-comb">R$ 0,00</span>
+        </div>
+        <div class="rb-row">
+          <span class="rb-label">
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M5 2L2 6h3v8h6V6h3L11 2H5z" stroke="#000" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+            Moda &amp; Compras
+          </span>
+          <span class="rb-val" id="rb-moda">R$ 0,00</span>
+        </div>
+        <div class="rb-row">
+          <span class="rb-label">
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><rect x="1" y="3" width="14" height="9" rx="2" stroke="#000" stroke-width="1.4" fill="none"/><path d="M5 14h6M8 12v2" stroke="#000" stroke-width="1.4" stroke-linecap="round"/></svg>
+            Tecnologia
+          </span>
+          <span class="rb-val" id="rb-tech">R$ 0,00</span>
+        </div>
+        <div class="rb-row" style="border-top:2px solid rgba(0,0,0,.1);margin-top:4px;padding-top:10px">
+          <span style="font-weight:800">Total mensal</span>
+          <span class="rb-val" id="rb-total" style="font-size:16px">R$ 0,00</span>
+        </div>
+      </div>
+
+      <div class="annual-box">
+        <div class="annual-label">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="1" y="2" width="12" height="11" rx="2" stroke="#000" stroke-width="1.3" fill="none"/><path d="M1 6h12M4 1v2M10 1v2" stroke="#000" stroke-width="1.3" stroke-linecap="round"/></svg>
+          Em 12 meses você economiza:
+        </div>
+        <div class="annual-val" id="res-anual">R$ 0,00</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Comparativo -->
+  <div class="plan-compare">
+    <h3>
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M3 14v-4M7 14V8M11 14V6M15 14V4" stroke="#000" stroke-width="1.8" stroke-linecap="round"/></svg>
+      Compare os planos
+    </h3>
+    <div class="compare-grid" id="compare-grid"></div>
+  </div>
+
+  <!-- CTA -->
+  <div class="sim-cta">
+    <h3 id="cta-title">Assine agora e comece a economizar!</h3>
+    <p id="cta-sub">Com base no seu perfil de gastos, o Plano Plus é a melhor escolha.</p>
+    <a href="/cadastro"><button class="btn btn-yellow btn-lg" id="cta-btn">Quero assinar o Plano Plus →</button></a>
+  </div>
+</div>
+
+<script>
+  window.addEventListener('load',()=>{ document.getElementById('page-loader').classList.add('hide'); });
+
+  // Cashback % por categoria e plano
+  const rates = {
+    basic:   { super:0.02, farm:0.04, rest:0.04, comb:0.02, moda:0.04, tech:0.02 },
+    plus:    { super:0.04, farm:0.08, rest:0.06, comb:0.03, moda:0.08, tech:0.04 },
+    premium: { super:0.06, farm:0.08, rest:0.08, comb:0.04, moda:0.10, tech:0.05 },
+  };
+  const planCost = { basic:19.90, plus:39.90, premium:69.90 };
+
+  function moeda(v){ return 'R$ '+Number(v).toFixed(2).replace('.',','); }
+  function getVals(){
+    return {
+      super: +document.getElementById('s-super').value,
+      farm:  +document.getElementById('s-farm').value,
+      rest:  +document.getElementById('s-rest').value,
+      comb:  +document.getElementById('s-comb').value,
+      moda:  +document.getElementById('s-moda').value,
+      tech:  +document.getElementById('s-tech').value,
+    };
+  }
+  function calcCashback(vals, plano){
+    const r = rates[plano];
+    return {
+      super: vals.super * r.super,
+      farm:  vals.farm  * r.farm,
+      rest:  vals.rest  * r.rest,
+      comb:  vals.comb  * r.comb,
+      moda:  vals.moda  * r.moda,
+      tech:  vals.tech  * r.tech,
+    };
+  }
+
+  // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+  // INOVAÇÃO 3 — Slider Animado com Fill Dinâmico
+  // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+  const sliderDefs = [
+    { id:'super', min:0, max:3000 },
+    { id:'farm',  min:0, max:1000 },
+    { id:'rest',  min:0, max:2000 },
+    { id:'comb',  min:0, max:1500 },
+    { id:'moda',  min:0, max:2000 },
+    { id:'tech',  min:0, max:2000 },
+  ];
+
+  function updateSliderUI(def, val){
+    const pct = ((val - def.min) / (def.max - def.min)) * 100;
+    document.getElementById(`fill-${def.id}`).style.width = pct + '%';
+    document.getElementById(`thumb-${def.id}`).style.left = pct + '%';
+  }
+
+  sliderDefs.forEach(def => {
+    const input = document.getElementById(`s-${def.id}`);
+    const thumb = document.getElementById(`thumb-${def.id}`);
+    // Init
+    updateSliderUI(def, +input.value);
+    // Drag styling
+    input.addEventListener('mousedown', () => thumb.classList.add('dragging'));
+    input.addEventListener('touchstart', () => thumb.classList.add('dragging'), {passive:true});
+    input.addEventListener('mouseup', () => thumb.classList.remove('dragging'));
+    input.addEventListener('touchend', () => thumb.classList.remove('dragging'));
+    // Update on input
+    input.addEventListener('input', () => {
+      const val = +input.value;
+      updateSliderUI(def, val);
+      // Bump the value tag
+      const tag = document.getElementById(`v-${def.id}`);
+      tag.textContent = 'R$ ' + val.toLocaleString('pt-BR');
+      tag.classList.remove('bumping');
+      void tag.offsetWidth;
+      tag.classList.add('bumping');
+      setTimeout(() => tag.classList.remove('bumping'), 200);
+    });
+  });
+
+  // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+  // INOVAÇÃO 5 — Rolling Number Counter
+  // Anima suavemente do valor anterior ao novo
+  // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+  let currentCashback = 0;
+  let animFrame = null;
+
+  function animateValue(from, to, duration, onUpdate) {
+    if (animFrame) cancelAnimationFrame(animFrame);
+    const start = performance.now();
+    function tick(now) {
+      const elapsed = now - start;
+      const t = Math.min(elapsed / duration, 1);
+      // Ease out cubic
+      const eased = 1 - Math.pow(1 - t, 3);
+      onUpdate(from + (to - from) * eased);
+      if (t < 1) animFrame = requestAnimationFrame(tick);
+    }
+    animFrame = requestAnimationFrame(tick);
+  }
+
+  function setOdometer(val) {
+    document.getElementById('odo-display').textContent = Number(val).toFixed(2).replace('.',',');
+  }
+
+  function flashRb(id, val) {
+    const el = document.getElementById(id);
+    el.textContent = moeda(val);
+    el.classList.remove('updated');
+    void el.offsetWidth;
+    el.classList.add('updated');
+  }
+
+  function update(){
+    const vals = getVals();
+    const total = Object.values(vals).reduce((a,b)=>a+b,0);
+    document.getElementById('total-gasto').textContent = 'R$ '+total.toLocaleString('pt-BR');
+
+    const cb = calcCashback(vals, 'plus');
+    const cbTotal = Object.values(cb).reduce((a,b)=>a+b,0);
+
+    // Rolling counter para cashback principal
+    animateValue(currentCashback, cbTotal, 450, (v) => setOdometer(v));
+    currentCashback = cbTotal;
+
+    // Breakdown com flash
+    flashRb('rb-super', cb.super);
+    flashRb('rb-farm',  cb.farm);
+    flashRb('rb-rest',  cb.rest);
+    flashRb('rb-comb',  cb.comb);
+    flashRb('rb-moda',  cb.moda);
+    flashRb('rb-tech',  cb.tech);
+    flashRb('rb-total', cbTotal);
+    document.getElementById('res-anual').textContent = moeda(cbTotal * 12);
+
+    // Comparativo
+    const plans = ['basic','plus','premium'];
+    const planNames = { basic:'Basic', plus:'Plus', premium:'Premium' };
+    const planLabels = { basic:'<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> Basic', plus:'<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg> Plus', premium:'<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="8 22 12 17 16 22"/><path d="M17 2H7a2 2 0 0 0 0 4h10a2 2 0 0 0 0-4z"/><path d="M12 17V6"/></svg> Premium' };
+    let melhor = 'plus', melhorNet = -Infinity;
+    plans.forEach(p => {
+      const cbP = calcCashback(vals, p);
+      const cbPTotal = Object.values(cbP).reduce((a,b)=>a+b,0);
+      const lucroMes = cbPTotal - planCost[p];
+      if(lucroMes > melhorNet){ melhorNet=lucroMes; melhor=p; }
+    });
+
+    const grid = document.getElementById('compare-grid');
+    grid.innerHTML = plans.map(p=>{
+      const cbP = calcCashback(vals,p);
+      const cbPTotal = Object.values(cbP).reduce((a,b)=>a+b,0);
+      const lucroMes = cbPTotal - planCost[p];
+      const lucroAno = lucroMes * 12;
+      const roiLabel = lucroMes > 0
+        ? `+${moeda(lucroAno)}/ano líquido`
+        : lucroMes === 0 ? 'Empata com o custo'
+        : `Prejuízo de ${moeda(Math.abs(lucroAno))}/ano`;
+      const roiClass = lucroMes > 0 ? 'positive' : 'zero';
+      return `
+        <div class="compare-card ${p===melhor?'active':''}">
+          <div class="cc-plan">${planLabels[p]}</div>
+          <div class="cc-economy">${moeda(cbPTotal)}</div>
+          <div class="cc-per-year">cashback/mês</div>
+          <div class="cc-roi ${roiClass}">${roiLabel}</div>
+        </div>`;
+    }).join('');
+
+    const melhorNomes = { basic:'Basic', plus:'Plus', premium:'Premium' };
+    document.getElementById('cta-title').textContent =
+      `Com seu perfil, o Plano ${melhorNomes[melhor]} é a melhor escolha!`;
+    document.getElementById('cta-sub').textContent =
+      `Você teria um lucro líquido de ${moeda(melhorNet*12)} por ano após descontar o custo da assinatura.`;
+    document.getElementById('cta-btn').textContent =
+      `Quero assinar o Plano ${melhorNomes[melhor]} →`;
+  }
+
+  // Bind sliders
+  ['s-super','s-farm','s-rest','s-comb','s-moda','s-tech'].forEach(id=>{
+    document.getElementById(id).addEventListener('input', update);
+  });
+
+  // Init
+  update();
+</script>
+<script type="module" src="/js/promo-elite.js?v=1.3"></script>
+</body>
+</html>
+

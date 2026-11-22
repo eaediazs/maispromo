@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Inovaï¿½ï¿½es +PROMO ï¿½ Demonstraï¿½ï¿½o</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800;900&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="/css/inovacoes.css?v=1.4">
+</head>
+<body>
+<div class="container">
+
+  <div class="demo-header">
+    <div class="demo-tag"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></svg> Inovaï¿½ï¿½es +PROMO</div>
+    <h1>Funcionalidades que fazem a banca ficar de boca aberta</h1>
+    <p>Cï¿½digo 100% Vanilla JS + HTML5 Canvas ï¿½ Nenhuma biblioteca externa</p>
+  </div>
+
+  <!-- -------------------------------------------
+       INOVAï¿½ï¿½O 1: CONTADOR DE ECONOMIA AO VIVO
+       Mostra quanto o usuï¿½rio acumulou desde que
+       abriu a pï¿½gina ï¿½ nï¿½mero que sobe em tempo real
+  -------------------------------------------- -->
+  <div class="savings-counter" id="savings-counter">
+    <div class="sc-rate">
+      <div class="sc-rate-dot"></div>
+      <span id="sc-rate-text">+R$0,04/seg</span>
+    </div>
+
+    <div class="sc-label">Acumulado desde que vocï¿½ abriu a pï¿½gina</div>
+    <div class="sc-title"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg> Seu cashback crescendo agora</div>
+
+    <div class="sc-main">
+      <span class="sc-currency">R$</span>
+      <span class="sc-value" id="sc-total-display">0,0000</span>
+    </div>
+    <div class="sc-sub" id="sc-sub-text">baseado no seu plano Plus ï¿½ R$1.550/mï¿½s em parceiros</div>
+
+    <div class="sc-breakdown">
+      <div class="sc-item">
+        <div class="sc-item-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg></div>
+        <div class="sc-item-val" id="sc-super">R$0,00</div>
+        <div class="sc-item-lbl">Supermercado</div>
+      </div>
+      <div class="sc-item">
+        <div class="sc-item-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10.5 20H4a2 2 0 0 1-2-2V5c0-1.1.9-2 2-2h3.93a2 2 0 0 1 1.66.9l.82 1.2a2 2 0 0 0 1.66.9H20a2 2 0 0 1 2 2v3"/><circle cx="18" cy="18" r="3"/><path d="M20.5 15.5 15.5 20.5"/></svg></div>
+        <div class="sc-item-val" id="sc-farm">R$0,00</div>
+        <div class="sc-item-lbl">Farmï¿½cia</div>
+      </div>
+      <div class="sc-item">
+        <div class="sc-item-icon"></div>
+        <div class="sc-item-val" id="sc-comb">R$0,00</div>
+        <div class="sc-item-lbl">Combustï¿½vel</div>
+      </div>
+      <div class="sc-item">
+        <div class="sc-item-icon"></div>
+        <div class="sc-item-val" id="sc-rest">R$0,00</div>
+        <div class="sc-item-lbl">Restaurantes</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- -------------------------------------------
+       INOVAï¿½ï¿½O 2: ROLETA DE CUPONS
+  -------------------------------------------- -->
+  <div class="wheel-section">
+    <h2> Roleta de Cupons Exclusivos</h2>
+    <p>Vocï¿½ tem <strong id="chances-restantes">3</strong> tentativas este mï¿½s. Gire e descubra o seu prï¿½mio!</p>
+
+    <div class="wheel-container">
+      <div class="wheel-pointer"></div>
+      <canvas id="wheel-canvas" width="320" height="320"></canvas>
+      <div class="wheel-center"></div>
+    </div>
+
+    <br>
+    <button class="wheel-spin-btn" id="btn-spin">
+      <span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></span> Girar agora
+    </button>
+
+    <div class="wheel-chances">
+      Tentativas restantes:
+      <span class="wheel-chances-num" id="chances-display">3</span>
+    </div>
+  </div>
+
+</div>
+
+<!-- Modal de resultado da roleta -->
+<div class="wheel-result-overlay" id="wheel-result">
+  <div class="wheel-result-modal">
+    <div class="wr-confetti-bg"></div>
+    <div class="wr-emoji" id="wr-emoji"></div>
+    <div class="wr-title" id="wr-title">Parabï¿½ns!</div>
+    <div id="wr-prize-text" class="wr-prize">10% OFF</div>
+    <div class="wr-code" id="wr-code" onclick="copiarCodigo(this)">PROMO10OFF</div>
+    <p style="font-size:13px;color:#aaa;margin-bottom:16px">Clique no cï¿½digo para copiar</p>
+    <button class="wr-close" onclick="fecharResultado()">Fechar e usar cupom ?</button>
+  </div>
+</div>
+
+<script>
+/* ---------------------------------------------------------------
+   INOVAï¿½ï¿½O 1: CONTADOR DE CASHBACK AO VIVO
+   Calcula a taxa de cashback por segundo baseada no
+   gasto mensal configurado e incrementa em tempo real.
+--------------------------------------------------------------- */
+
+// Configuraï¿½ï¿½o (em produï¿½ï¿½o, viriam do Firestore)
+const GASTOS_MES = { super: 600, farm: 300, rest: 400, comb: 250 };
+const RATES_PLUS = { super: 0.04, farm: 0.08, rest: 0.06, comb: 0.03 };
+const SEGUNDOS_MES = 30 * 24 * 3600; // 30 dias em segundos
+
+// Calcular cashback por segundo por categoria
+const taxasSeg = {};
+let taxaTotalSeg = 0;
+for (const cat in GASTOS_MES) {
+  taxasSeg[cat] = (GASTOS_MES[cat] * RATES_PLUS[cat]) / SEGUNDOS_MES;
+  taxaTotalSeg += taxasSeg[cat];
+}
+
+// Atualizar label da taxa
+document.getElementById('sc-rate-text').textContent =
+  `+R$${taxaTotalSeg.toFixed(4)}/seg`;
+
+// Acumuladores
+const acum = { super: 0, farm: 0, rest: 0, comb: 0 };
+let totalAcum = 0;
+let ultimoTimestamp = performance.now();
+
+function fmt(v) {
+  return 'R$' + v.toFixed(2).replace('.', ',');
+}
+
+function updateCounter(timestamp) {
+  const delta = (timestamp - ultimoTimestamp) / 1000; // em segundos
+  ultimoTimestamp = timestamp;
+
+  // Incrementar cada categoria
+  for (const cat in taxasSeg) {
+    acum[cat] += taxasSeg[cat] * delta;
+  }
+  totalAcum += taxaTotalSeg * delta;
+
+  // Atualizar display total com 4 casas (para mostrar que estï¿½ a subir)
+  document.getElementById('sc-total-display').textContent =
+    totalAcum.toFixed(4).replace('.', ',');
+
+  // Atualizar breakdown
+  document.getElementById('sc-super').textContent = fmt(acum.super);
+  document.getElementById('sc-farm').textContent  = fmt(acum.farm);
+  document.getElementById('sc-comb').textContent  = fmt(acum.comb);
+  document.getElementById('sc-rest').textContent  = fmt(acum.rest);
+
+  requestAnimationFrame(updateCounter);
+}
+
+requestAnimationFrame(updateCounter);
+
+/* ---------------------------------------------------------------
+   INOVAï¿½ï¿½O 2: ROLETA DE CUPONS (SPIN WHEEL)
+   Desenhada em HTML5 Canvas com fï¿½sica de desaceleraï¿½ï¿½o suave.
+--------------------------------------------------------------- */
+
+const PREMIOS = [
+  { label: '10% OFF',        sub: 'MercadoFï¿½cil',  emoji: '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>', codigo: 'SUPER10OFF',  cor: '#F7C500', corTexto: '#1A1A1A' },
+  { label: '5% OFF',         sub: 'FarmaVida',      emoji: '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10.5 20H4a2 2 0 0 1-2-2V5c0-1.1.9-2 2-2h3.93a2 2 0 0 1 1.66.9l.82 1.2a2 2 0 0 0 1.66.9H20a2 2 0 0 1 2 2v3"/><circle cx="18" cy="18" r="3"/><path d="M20.5 15.5 15.5 20.5"/></svg>', codigo: 'FARM5OFF',    cor: '#1A1A1A', corTexto: '#F7C500' },
+  { label: '2ï¿½ Milhas',      sub: 'AirFlex',        emoji: '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17.8 19.2L16 11l3.5-3.5C21 6 21 4 19 2c-2-2-4-2-5.5-.5L10 5 1.8 6.2l4.8 4.8-1 5.2 5.2-1 4.8 4.8z"/></svg>', codigo: 'MILHA2X',     cor: '#E0B000', corTexto: '#1A1A1A' },
+  { label: 'Frete Grï¿½tis',   sub: 'BomGarfo',       emoji: '', codigo: 'FRETEGRATIS', cor: '#1A1A1A', corTexto: '#F7C500' },
+  { label: '15% OFF',        sub: 'StyleOn',        emoji: '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.38 3.46L16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.57a1 1 0 0 0 .99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.57a2 2 0 0 0-1.34-2.23z"/></svg>', codigo: 'MODA15OFF',   cor: '#F7C500', corTexto: '#1A1A1A' },
+  { label: '+R$5',           sub: 'Cashback Bï¿½nus', emoji: '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>', codigo: 'BONUS5BRL',   cor: '#18B96A', corTexto: '#FFFFFF' },
+  { label: '8% OFF',         sub: 'TechStore',      emoji: '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>', codigo: 'TECH8OFF',    cor: '#1A1A1A', corTexto: '#F7C500' },
+  { label: '20% Combustï¿½vel',sub: 'PetroPrime',     emoji: '', codigo: 'PETRO20',     cor: '#F7C500', corTexto: '#1A1A1A' },
+];
+
+const canvas  = document.getElementById('wheel-canvas');
+const ctx     = canvas.getContext('2d');
+const N       = PREMIOS.length;
+const ARC     = (2 * Math.PI) / N;
+let   anguloAtual   = 0;
+let   girando       = false;
+let   chancesRestam = 3;
+
+// Desenhar a roleta
+function desenharRoleta(angulo) {
+  const cx = canvas.width  / 2;
+  const cy = canvas.height / 2;
+  const r  = Math.min(cx, cy) - 4;
+
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  PREMIOS.forEach((p, i) => {
+    const startAngle = angulo + i * ARC - Math.PI / 2;
+    const endAngle   = startAngle + ARC;
+
+    // Fatia
+    ctx.beginPath();
+    ctx.moveTo(cx, cy);
+    ctx.arc(cx, cy, r, startAngle, endAngle);
+    ctx.closePath();
+    ctx.fillStyle = p.cor;
+    ctx.fill();
+
+    // Borda
+    ctx.strokeStyle = 'rgba(255,255,255,.15)';
+    ctx.lineWidth   = 2;
+    ctx.stroke();
+
+    // Texto
+    ctx.save();
+    ctx.translate(cx, cy);
+    ctx.rotate(startAngle + ARC / 2);
+    ctx.textAlign    = 'right';
+    ctx.fillStyle    = p.corTexto;
+    ctx.font         = `bold 13px 'Nunito', sans-serif`;
+    ctx.fillText(p.label, r - 16, 0);
+    ctx.font         = `700 10px 'Nunito Sans', sans-serif`;
+    ctx.globalAlpha  = .7;
+    ctx.fillText(p.sub, r - 16, 13);
+    ctx.globalAlpha  = 1;
+    // Emoji
+    ctx.font         = '16px serif';
+    ctx.textAlign    = 'right';
+    ctx.fillText(p.emoji, r - 72, 5);
+    ctx.restore();
+  });
+
+  // Cï¿½rculo central (tampa)
+  ctx.beginPath();
+  ctx.arc(cx, cy, 24, 0, 2 * Math.PI);
+  ctx.fillStyle = '#FFFFFF';
+  ctx.fill();
+  ctx.strokeStyle = '#1A1A1A';
+  ctx.lineWidth   = 3;
+  ctx.stroke();
+}
+
+desenharRoleta(0);
+
+// Funï¿½ï¿½o de girar
+function girar() {
+  if (girando || chancesRestam <= 0) return;
+  girando = true;
+
+  const btn = document.getElementById('btn-spin');
+  btn.disabled = true;
+  btn.innerHTML = '<span>?</span> Girando...';
+
+  // Escolher prï¿½mio aleatï¿½rio
+  const premioIdx  = Math.floor(Math.random() * N);
+
+  // Calcular ï¿½ngulo final para que o ponteiro aponte para o prï¿½mio
+  // O ponteiro estï¿½ no topo (ï¿½ngulo -90ï¿½), queremos que a fatia premioIdx fique lï¿½
+  const anguloAlvo = -(premioIdx * ARC + ARC / 2);
+
+  // Voltas extras para animaï¿½ï¿½o dramï¿½tica (5 a 8 voltas)
+  const voltasExtras = (5 + Math.random() * 3) * 2 * Math.PI;
+  const anguloFinal  = anguloAlvo + voltasExtras;
+
+  const duracaoMs = 4000 + Math.random() * 1500;
+  const inicio    = performance.now();
+  const anguloIni = anguloAtual;
+
+  function animarRoda(agora) {
+    const progresso = Math.min((agora - inicio) / duracaoMs, 1);
+
+    // Easing: aceleraï¿½ï¿½o rï¿½pida, desaceleraï¿½ï¿½o suave (easeOutQuart)
+    const eased = 1 - Math.pow(1 - progresso, 4);
+
+    anguloAtual = anguloIni + (anguloFinal - anguloIni) * eased;
+    desenharRoleta(anguloAtual);
+
+    if (progresso < 1) {
+      requestAnimationFrame(animarRoda);
+    } else {
+      girando = false;
+      chancesRestam--;
+      document.getElementById('chances-display').textContent   = chancesRestam;
+      document.getElementById('chances-restantes').textContent = chancesRestam;
+
+      if (chancesRestam > 0) {
+        btn.disabled = false;
+        btn.innerHTML = '<span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></span> Girar novamente';
+      } else {
+        btn.innerHTML = ' Sem tentativas restantes';
+      }
+
+      // Mostrar resultado com pequeno delay dramï¿½tico
+      setTimeout(() => mostrarResultado(PREMIOS[premioIdx]), 400);
+    }
+  }
+  requestAnimationFrame(animarRoda);
+}
+
+function mostrarResultado(premio) {
+  document.getElementById('wr-emoji').textContent      = premio.emoji;
+  document.getElementById('wr-title').textContent      = ' Vocï¿½ ganhou!';
+  document.getElementById('wr-prize-text').textContent = premio.label + ' no ' + premio.sub;
+  document.getElementById('wr-code').textContent       = premio.codigo;
+  document.getElementById('wheel-result').classList.add('open');
+}
+
+function fecharResultado() {
+  document.getElementById('wheel-result').classList.remove('open');
+}
+
+function copiarCodigo(el) {
+  navigator.clipboard.writeText(el.textContent.trim())
+    .then(() => { el.textContent = ' COPIADO!'; setTimeout(() => el.textContent = document.getElementById('wr-code').dataset.code || el.textContent, 1500); });
+}
+
+document.getElementById('btn-spin').addEventListener('click', girar);
+document.getElementById('wheel-result').addEventListener('click', e => {
+  if (e.target === e.currentTarget) fecharResultado();
+});
+</script>
+</body>
+</html>
+

@@ -1,0 +1,305 @@
+/* ================================================================
+   promo-elite.css — Camada de Elite do +PROMO
+   Adicionar no <head> de TODAS as páginas, APÓS style.css:
+   <link rel="stylesheet" href="../css/promo-elite.css">
+   ================================================================ */
+
+/* ──────────────────────────────────────────────────────────────
+   PILAR 2A: DARK MODE REAL
+   Sistema de tokens CSS que permite alternar o tema inteiro
+   com uma única classe no <html>: class="dark"
+   ────────────────────────────────────────────────────────────── */
+
+/* Variáveis do Light Mode (padrão) */
+:root {
+  --bg-page:        #F4F4F6;
+  --bg-card:        #FFFFFF;
+  --bg-card-hover:  #FAFAFA;
+  --bg-input:       #F9F9F9;
+  --border:         #EBEBEB;
+  --border-focus:   #F7C500;
+  --text-primary:   #1A1A1A;
+  --text-secondary: #666666;
+  --text-muted:     #999999;
+  --sidebar-bg:     #FFFFFF;
+  --navbar-bg:      #FFFFFF;
+  --overlay:        rgba(0,0,0,0.45);
+
+  /* Mantém as cores de marca */
+  --yellow:         #F7C500;
+  --yellow-d:       #E0B000;
+  --yellow-bg:      #FFFBE6;
+  --green:          #18B96A;
+  --red:            #E53935;
+}
+
+/* Variáveis do Dark Mode */
+html.dark {
+  --bg-page:        #0F0F0F;
+  --bg-card:        #1A1A1A;
+  --bg-card-hover:  #222222;
+  --bg-input:       #252525;
+  --border:         #2A2A2A;
+  --border-focus:   #F7C500;
+  --text-primary:   #F0F0F0;
+  --text-secondary: #A0A0A0;
+  --text-muted:     #666666;
+  --sidebar-bg:     #141414;
+  --navbar-bg:      #141414;
+  --overlay:        rgba(0,0,0,0.75);
+
+  /* Amarelo fica idêntico — é a identidade da marca */
+  --yellow-bg:      #2A2200;
+}
+
+/* Aplicar tokens nas classes existentes */
+html.dark body         { background: var(--bg-page); color: var(--text-primary); }
+html.dark .navbar      { background: var(--navbar-bg); border-color: var(--border); }
+html.dark .sidebar     { background: var(--sidebar-bg); border-color: var(--border); }
+html.dark .card,
+html.dark .kpi         { background: var(--bg-card); border-color: var(--border); }
+html.dark .modal       { background: var(--bg-card); }
+html.dark .form-input,
+html.dark .form-select { background: var(--bg-input); border-color: var(--border); color: var(--text-primary); }
+html.dark .btn-ghost   { border-color: var(--border); color: var(--text-secondary); }
+html.dark .sb-item     { color: var(--text-secondary); }
+html.dark .sb-item:hover { background: #222; }
+html.dark .sb-item.on  { background: #2A2200; }
+html.dark .tx-row:hover { background: #222; }
+html.dark .cupon-card.usado { background: #1f1f1f; }
+html.dark .level-card  { background: #2A2200; }
+html.dark .ef-chip     { background: var(--bg-card); border-color: var(--border); color: var(--text-secondary); }
+html.dark .et-card     { background: var(--bg-card); border-color: var(--border); }
+
+/* ── Theme Toggle — Glassmorphism Pill ── */
+.theme-switch {
+  position: relative;
+  width: 44px;
+  height: 44px;
+  cursor: pointer;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.theme-switch input { display: none; }
+.theme-switch .track {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  background: rgba(0, 0, 0, 0.05);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background .3s ease, border-color .3s ease, box-shadow .3s ease;
+  position: relative;
+}
+html.dark .theme-switch .track {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.08);
+}
+.theme-switch .track:hover {
+  background: rgba(0, 0, 0, 0.08);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+}
+html.dark .theme-switch .track:hover {
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 2px 12px rgba(247, 197, 0, 0.08);
+}
+/* Sun icon (light mode — visible by default) */
+.theme-switch .icon-sun,
+.theme-switch .icon-moon {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  transition: opacity .3s ease, transform .3s ease;
+  color: var(--text-secondary, #666);
+}
+.theme-switch .icon-sun {
+  opacity: 1;
+  transform: rotate(0deg) scale(1);
+}
+.theme-switch .icon-moon {
+  opacity: 0;
+  transform: rotate(-45deg) scale(0.7);
+}
+/* Dark mode — show moon, hide sun */
+html.dark .theme-switch .icon-sun {
+  opacity: 0;
+  transform: rotate(45deg) scale(0.7);
+}
+html.dark .theme-switch .icon-moon {
+  opacity: 1;
+  transform: rotate(0deg) scale(1);
+  color: var(--yellow);
+}
+
+/* ──────────────────────────────────────────────────────────────
+   PILAR 2B: SKELETON LOADERS
+   Substitui o page-loader genérico por placeholders
+   que mostram exatamente onde os dados vão aparecer.
+   ────────────────────────────────────────────────────────────── */
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--border) 25%,
+    color-mix(in srgb, var(--border) 60%, transparent) 50%,
+    var(--border) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.4s ease infinite;
+  border-radius: 6px;
+  color: transparent !important;
+  user-select: none;
+  pointer-events: none;
+}
+
+/* Skeleton para KPI cards */
+.skeleton-kpi {
+  height: 20px; width: 70%; border-radius: 4px;
+}
+.skeleton-kpi-val {
+  height: 32px; width: 55%; border-radius: 6px; margin: 8px 0 0;
+}
+.skeleton-kpi-sub {
+  height: 12px; width: 80%; border-radius: 4px; margin-top: 6px;
+}
+
+/* Skeleton para linhas de transação */
+.skeleton-tx {
+  display: flex; align-items: center; gap: 12px;
+  padding: 12px 0; border-bottom: 1px solid var(--border);
+}
+.skeleton-tx-icon {
+  width: 38px; height: 38px; border-radius: 12px; flex-shrink: 0;
+}
+.skeleton-tx-lines { flex: 1; }
+.skeleton-tx-name  { height: 14px; width: 45%; margin-bottom: 6px; border-radius: 4px; }
+.skeleton-tx-date  { height: 11px; width: 30%; border-radius: 4px; }
+.skeleton-tx-val   { text-align: right; }
+.skeleton-tx-amount { height: 14px; width: 60px; border-radius: 4px; margin-bottom: 4px; }
+.skeleton-tx-cash   { height: 11px; width: 80px; border-radius: 4px; margin-left: auto; }
+
+/* Skeleton para gráfico de barras */
+.skeleton-bar {
+  display: flex; align-items: flex-end; gap: 8px; height: 110px;
+}
+.skeleton-bar-item {
+  flex: 1; border-radius: 6px 6px 0 0;
+}
+
+/* ──────────────────────────────────────────────────────────────
+   PILAR 2C: RIPPLE EFFECT NOS BOTÕES
+   Efeito material design: onda que sai do clique.
+   Aplicado via JS (ver promo-elite.js).
+   ────────────────────────────────────────────────────────────── */
+.btn {
+  position: relative;
+  overflow: hidden;
+}
+.ripple-wave {
+  position: absolute;
+  border-radius: 50%;
+  transform: scale(0);
+  animation: ripple-anim .5s linear;
+  background: rgba(255, 255, 255, 0.35);
+  pointer-events: none;
+}
+@keyframes ripple-anim {
+  to { transform: scale(4); opacity: 0; }
+}
+
+/* Scale suave nos botões CTA */
+.btn-yellow:active { transform: scale(0.97); }
+.btn-black:active  { transform: scale(0.97); }
+
+/* ──────────────────────────────────────────────────────────────
+   PILAR 2D: TRANSIÇÕES DE ABA — slide suave no dashboard
+   ────────────────────────────────────────────────────────────── */
+.view {
+  display: none;
+  animation: viewIn .22s ease;
+}
+.view.active {
+  display: block;
+}
+@keyframes viewIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ──────────────────────────────────────────────────────────────
+   PILAR 4C: CONFETTI — canvas overlay
+   ────────────────────────────────────────────────────────────── */
+#confetti-canvas {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9997;
+}
+
+/* ──────────────────────────────────────────────────────────────
+   TOAST SAINDO — animação de saída
+   ────────────────────────────────────────────────────────────── */
+@keyframes toastOut {
+  from { opacity: 1; transform: translateY(0) scale(1); }
+  to   { opacity: 0; transform: translateY(8px) scale(0.95); }
+}
+
+/* ──────────────────────────────────────────────────────────────
+   FEEDBACK DE REDE OFFLINE
+   ────────────────────────────────────────────────────────────── */
+.offline-bar {
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  background: #E53935;
+  color: #fff;
+  text-align: center;
+  padding: 10px;
+  font-size: 13px;
+  font-weight: 700;
+  z-index: 9999;
+  transform: translateY(100%);
+  transition: transform .3s ease;
+}
+.offline-bar.visible { transform: translateY(0); }
+
+/* ──────────────────────────────────────────────────────────────
+   MICRO-ANIMAÇÃO: KPI card quando valor muda
+   ────────────────────────────────────────────────────────────── */
+@keyframes valueFlash {
+  0%   { color: var(--green); transform: scale(1.06); }
+  100% { color: inherit;      transform: scale(1); }
+}
+.kpi-val.updated {
+  animation: valueFlash .5s ease forwards;
+}
+
+/* ──────────────────────────────────────────────────────────────
+   MOBILE: menu hambúrguer
+   ────────────────────────────────────────────────────────────── */
+#menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 22px;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 8px;
+  transition: background .15s;
+}
+#menu-toggle:hover { background: var(--border); }
+
+@media (max-width: 768px) {
+  #menu-toggle { display: block !important; }
+
+  /* Removed conflicting .sidebar.open and .sidebar-overlay CSS to preserve dashboard bottom-sheet architecture */
+}
